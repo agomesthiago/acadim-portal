@@ -20,6 +20,13 @@ export const staggerContainer = {
   }
 } as const;
 
+export const SCALE_SPRING = { type: "spring", stiffness: 400, damping: 17 } as const;
+export const SPRING_TRANSITION = { type: "spring", stiffness: 300, damping: 30 } as const;
+export const slideUpVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT } }
+} as const;
+
 export function Reveal({ children, delay = 0, className = '', y = 20 }: { children: React.ReactNode; delay?: number; className?: string; y?: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
