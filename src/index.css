@@ -3,26 +3,43 @@
 @theme {
   --color-acadim-red: #e31b23;
   --color-acadim-red-dark: #b91c1c;
+  --color-acadim-red-soft: #fef2f2;
   --color-acadim-blue: #0066cc;
   --color-acadim-blue-dark: #004499;
-  --color-acadim-blue-light: #38bdf8;
-  --color-acadim-navy: #0b132b;
-  --color-acadim-navy-light: #1c2541;
-  --color-acadim-slate: #334155;
-  --color-acadim-bg-light: #f8fafc;
+  --color-acadim-blue-soft: #eff6ff;
+  --color-acadim-sky: #38bdf8;
+  --color-acadim-ink: #0f172a;
+  --color-acadim-body: #334155;
+  --color-acadim-muted: #64748b;
+  --color-acadim-bg: #ffffff;
+  --color-acadim-bg-soft: #f8fafc;
+  --color-acadim-border: #e2e8f0;
 
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Merriweather', Georgia, serif;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px; /* compensa navbar fixa */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #f8fafc;
-  color: #0b132b;
+  background: #ffffff;
+  color: var(--color-acadim-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -31,12 +48,23 @@ body {
   font-family: 'Space Grotesk', sans-serif;
 }
 
-/* Custom scrollbar */
+.font-serif {
+  font-family: 'Merriweather', Georgia, serif;
+}
+
+/* Foco visível acessível */
+*:focus-visible {
+  outline: 3px solid #0066cc;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Scrollbar só em webkit */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b132b;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
   background: #0066cc;
@@ -46,17 +74,17 @@ body {
   background: #e31b23;
 }
 
-/* Ambient gradient orbs */
+/* Animações suaves */
 @keyframes float-slow {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -30px) scale(1.05); }
-  66% { transform: translate(-20px, 20px) scale(0.97); }
+  33% { transform: translate(20px, -20px) scale(1.03); }
+  66% { transform: translate(-15px, 15px) scale(0.98); }
 }
 
 @keyframes float-reverse {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(-30px, 30px) scale(1.08); }
-  66% { transform: translate(25px, -20px) scale(0.95); }
+  33% { transform: translate(-20px, 20px) scale(1.05); }
+  66% { transform: translate(20px, -15px) scale(0.97); }
 }
 
 @keyframes pulse-glow {
@@ -74,29 +102,23 @@ body {
   animation: pulse-glow 4s ease-in-out infinite;
 }
 
-/* Glassmorphism utility */
+/* Glass claro */
 .glass {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 .glass-dark {
-  background: rgba(11, 19, 43, 0.75);
+  background: rgba(15, 23, 42, 0.78);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.glass-light {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-}
 
-/* Gradient text */
+/* Gradient texts (com moderação) */
 .text-gradient-red {
-  background: linear-gradient(135deg, #ef4444 0%, #e31b23 50%, #f97316 100%);
+  background: linear-gradient(135deg, #ef4444 0%, #e31b23 60%, #f97316 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -108,8 +130,15 @@ body {
   background-clip: text;
 }
 
-/* Custom selection */
 ::selection {
   background: #e31b23;
   color: #ffffff;
+}
+
+/* Utilitário para truncar texto */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
