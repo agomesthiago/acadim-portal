@@ -8,3 +8,5 @@ dist-ssr/
 .DS_Store
 .agents/
 skills-lock.json
+dist-preview
+vite.preview.config.ts
