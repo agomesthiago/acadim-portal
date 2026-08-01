@@ -5,7 +5,8 @@ import { Login } from './pages/admin/Login';
 import { AdminLayout } from './components/admin/AdminLayout';
 import { Dashboard } from './pages/admin/Dashboard';
 import { NewsManager } from './pages/admin/NewsManager';
-import { Noticias, NoticiaDetalhe } from './pages/Noticias';
+import { Noticias } from './pages/Noticias';
+import { NoticiaDetalhe } from './pages/NoticiaDetalhe';
 
 function App() {
   return (
