@@ -1,5 +1,5 @@
 {
-  "name": "acadim-landing",
+  "name": "acadim",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "test:qa": "node test_qa_hardened.mjs",
     "test:qa-dark": "node test_qa_dark_matrix.mjs",
     "test:qa-regression": "node test_qa_visual_regression.mjs"
@@ -24,7 +25,8 @@
     "playwright": "^1.62.1",
     "postcss": "^8.5.26",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "wait-on": "^9.1.0"
   },
   "dependencies": {
     "lucide-react": "^1.30.0",

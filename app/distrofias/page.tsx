@@ -4,13 +4,11 @@ import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { HeaderNav } from '@/components/HeaderNav';
 import { ContactSection } from '@/components/ContactSection';
-import { PixModal } from '@/components/PixModal';
 import { getAllDiseases, getAllMedicalGroups } from '@/lib/distrofias-data';
 
 import { Dna, Activity, ShieldAlert, Search, Filter, BookOpen, ArrowRight, HeartPulse } from 'lucide-react';
 
 export default function DistrofiasPage() {
-  const [isPixOpen, setIsPixOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGroup, setSelectedGroup] = useState<string>('todos');
 
@@ -59,7 +57,7 @@ export default function DistrofiasPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <HeaderNav onOpenPixModal={() => setIsPixOpen(true)} />
+      <HeaderNav />
 
       <main className="flex-grow pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header Institucional da Enciclopédia */}
@@ -228,11 +226,9 @@ export default function DistrofiasPage() {
 
         {/* Seção de Contato e Dúvidas */}
         <div className="mt-16">
-          <ContactSection onOpenPixModal={() => setIsPixOpen(true)} />
+          <ContactSection />
         </div>
       </main>
-
-      <PixModal isOpen={isPixOpen} onClose={() => setIsPixOpen(false)} />
     </div>
   );
 }

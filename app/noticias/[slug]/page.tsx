@@ -1,22 +1,38 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { Metadata } from 'next';
 import { HeaderNav } from '@/components/HeaderNav';
-import { PixModal } from '@/components/PixModal';
+import { ShareButton } from '@/components/ShareButton';
 import { getNewsBySlug, getAllNews } from '@/lib/news-data';
 import { sanitizeHtml } from '@/lib/sanitize-html';
-import { Calendar, Clock, ArrowLeft, Share2, Check, ArrowRight, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft, ArrowRight, ExternalLink, ShieldCheck } from 'lucide-react';
 
-export default function NoticiaPage() {
-  const params = useParams();
-  const slug = params?.slug as string;
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
 
-  const [isPixOpen, setIsPixOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getNewsBySlug(slug);
 
+  if (!article) {
+    return {
+      title: 'Notícia não encontrada | ACADIM',
+    };
+  }
+
+  return {
+    title: `${article.title} | Notícias ACADIM`,
+    description: article.excerpt,
+    openGraph: {
+      images: [article.coverImage],
+    },
+  };
+}
+
+export default async function NoticiaPage({ params }: PageProps) {
+  const { slug } = await params;
   const article = getNewsBySlug(slug);
 
   if (!article) {
@@ -35,14 +51,6 @@ export default function NoticiaPage() {
       </div>
     );
   }
-
-  const handleShare = () => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 3000);
-    }
-  };
 
   const relatedArticles = getAllNews()
     .filter((a) => a.slug !== article.slug)
@@ -121,7 +129,7 @@ export default function NoticiaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <HeaderNav onOpenPixModal={() => setIsPixOpen(true)} />
+      <HeaderNav />
 
       <main className="pt-28 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Breadcrumb */}
@@ -190,14 +198,7 @@ export default function NoticiaPage() {
                 </div>
               </Link>
 
-              <button
-                onClick={handleShare}
-                className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-4 py-2.5 rounded-xl transition-colors min-h-[44px]"
-                aria-label="Compartilhar matéria"
-              >
-                {copied ? <Check size={16} className="text-emerald-600" /> : <Share2 size={16} />}
-                <span>{copied ? 'Link Copiado!' : 'Compartilhar'}</span>
-              </button>
+              <ShareButton />
             </div>
           </header>
 
@@ -306,8 +307,6 @@ export default function NoticiaPage() {
           </div>
         )}
       </main>
-
-      <PixModal isOpen={isPixOpen} onClose={() => setIsPixOpen(false)} />
     </div>
   );
 }

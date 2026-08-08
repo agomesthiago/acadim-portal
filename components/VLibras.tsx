@@ -2,6 +2,14 @@
 
 import React, { useEffect } from 'react';
 
+declare global {
+  interface Window {
+    VLibras: {
+      Widget: new (url: string) => void;
+    };
+  }
+}
+
 export const VLibras: React.FC = () => {
   useEffect(() => {
     // Carrega o script oficial do VLibras (Governo Federal / SERPRO)
@@ -9,9 +17,7 @@ export const VLibras: React.FC = () => {
     script.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
     script.async = true;
     script.onload = () => {
-      // @ts-expect-error - VLibras é injetado globalmente pelo script
       if (window.VLibras) {
-        // @ts-expect-error - inicialização do widget oficial
         new window.VLibras.Widget('https://vlibras.gov.br/app');
       }
     };

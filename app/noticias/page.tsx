@@ -4,12 +4,10 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HeaderNav } from '@/components/HeaderNav';
-import { PixModal } from '@/components/PixModal';
 import { getAllNews } from '@/lib/news-data';
 import { Calendar, Clock, ArrowRight, ArrowLeft, Search, Filter } from 'lucide-react';
 
 export default function NoticiasPage() {
-  const [isPixOpen, setIsPixOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Todas');
 
@@ -31,7 +29,7 @@ export default function NoticiasPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-text-primary">
-      <HeaderNav onOpenPixModal={() => setIsPixOpen(true)} />
+      <HeaderNav />
 
       <main className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Breadcrumb */}
@@ -178,8 +176,6 @@ export default function NoticiasPage() {
           </div>
         )}
       </main>
-
-      <PixModal isOpen={isPixOpen} onClose={() => setIsPixOpen(false)} />
     </div>
   );
 }

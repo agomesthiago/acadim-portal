@@ -2,6 +2,7 @@ import { Figtree } from 'next/font/google';
 import type { Metadata } from 'next';
 import './globals.css';
 import { AccessibilityProvider } from '@/context/AccessibilityContext';
+import { PixProvider } from '@/context/PixContext';
 import { AccessibilityToolbar } from '@/components/AccessibilityToolbar';
 import { SkipLink } from '@/components/SkipLink';
 import { VLibras } from '@/components/VLibras';
@@ -50,17 +51,19 @@ export default function RootLayout({
     <html lang="pt-BR" className={`scroll-smooth ${figtree.variable}`}>
       <body className={`${figtree.className} antialiased`}>
         <AccessibilityProvider>
-          {/* Atalho de Teclado Ir para Conteúdo */}
-          <SkipLink />
+          <PixProvider>
+            {/* Atalho de Teclado Ir para Conteúdo */}
+            <SkipLink />
 
-          {/* Conteúdo da Aplicação */}
-          {children}
+            {/* Conteúdo da Aplicação */}
+            {children}
 
-          {/* Ferramentas de Acessibilidade Flutuantes (Alto Contraste, Fontes, Modos) */}
-          <AccessibilityToolbar />
+            {/* Ferramentas de Acessibilidade Flutuantes (Alto Contraste, Fontes, Modos) */}
+            <AccessibilityToolbar />
 
-          {/* Widget Oficial de LIBRAS (Governo Federal / VLibras) */}
-          <VLibras />
+            {/* Widget Oficial de LIBRAS (Governo Federal / VLibras) */}
+            <VLibras />
+          </PixProvider>
         </AccessibilityProvider>
       </body>
     </html>

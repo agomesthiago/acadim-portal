@@ -2,12 +2,11 @@
 
 import React from 'react';
 import { Check, ArrowRight, Heart } from 'lucide-react';
+import { usePix } from '@/context/PixContext';
 
-interface DualTargetImpactProps {
-  onOpenPixModal?: () => void;
-}
+export const DualTargetImpact: React.FC = () => {
+  const { openPixModal } = usePix();
 
-export const DualTargetImpact: React.FC<DualTargetImpactProps> = ({ onOpenPixModal }) => {
   return (
     <section id="impacto" className="py-24 lg:py-32 bg-white relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -93,14 +92,7 @@ export const DualTargetImpact: React.FC<DualTargetImpactProps> = ({ onOpenPixMod
             </div>
 
             <button
-              onClick={() => {
-                if (onOpenPixModal) {
-                  onOpenPixModal();
-                } else {
-                  const el = document.getElementById('doar');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
+              onClick={openPixModal}
               className="inline-flex items-center justify-center gap-2 bg-[#E31B23] text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-[#b91c1c] hover:scale-[1.02] transition-all text-center min-h-[44px]"
             >
               <span>Como Doar Agora</span>

@@ -1,14 +1,9 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { ShieldCheck, BookOpen, CheckCircle2, FileText, ArrowLeft } from 'lucide-react';
 import { HeaderNav } from '@/components/HeaderNav';
-import { PixModal } from '@/components/PixModal';
 
 export default function RedacaoPage() {
-  const [isPixOpen, setIsPixOpen] = useState(false);
-
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
@@ -23,7 +18,7 @@ export default function RedacaoPage() {
 
   return (
     <div className="min-h-screen bg-surface-subtle text-text-primary flex flex-col">
-      <HeaderNav onOpenPixModal={() => setIsPixOpen(true)} />
+      <HeaderNav />
 
       {/* Script JSON-LD */}
       <script
@@ -127,8 +122,6 @@ export default function RedacaoPage() {
           </section>
         </div>
       </main>
-
-      <PixModal isOpen={isPixOpen} onClose={() => setIsPixOpen(false)} />
     </div>
   );
 }

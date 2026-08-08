@@ -1,10 +1,7 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { Metadata } from 'next';
 import { HeaderNav } from '@/components/HeaderNav';
-import { PixModal } from '@/components/PixModal';
 import { getDiseaseBySlug, getAllDiseases } from '@/lib/distrofias-data';
 import {
   ArrowLeft,
@@ -20,11 +17,28 @@ import {
   Calendar
 } from 'lucide-react';
 
-export default function DistrofiaWikiPage() {
-  const params = useParams();
-  const slug = params?.slug as string;
-  const [isPixOpen, setIsPixOpen] = useState(false);
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const disease = getDiseaseBySlug(slug);
+
+  if (!disease) {
+    return {
+      title: 'Condição não encontrada | ACADIM',
+    };
+  }
+
+  return {
+    title: `${disease.name} | Enciclopédia Médica ACADIM`,
+    description: disease.summary,
+  };
+}
+
+export default async function DistrofiaWikiPage({ params }: PageProps) {
+  const { slug } = await params;
   const disease = getDiseaseBySlug(slug);
 
   if (!disease) {
@@ -125,7 +139,7 @@ export default function DistrofiaWikiPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <HeaderNav onOpenPixModal={() => setIsPixOpen(true)} />
+      <HeaderNav />
 
       <main className="flex-grow pt-28 pb-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Breadcrumb & Voltar */}
@@ -400,8 +414,6 @@ export default function DistrofiaWikiPage() {
           </div>
         )}
       </main>
-
-      <PixModal isOpen={isPixOpen} onClose={() => setIsPixOpen(false)} />
     </div>
   );
 }

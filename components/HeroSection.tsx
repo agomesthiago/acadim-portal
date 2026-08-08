@@ -3,11 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Heart, ArrowRight, ChevronDown, ShieldCheck, Users } from 'lucide-react';
-
-interface HeroSectionProps {
-  onOpenPixModal: () => void;
-  onNavigateNext: () => void;
-}
+import { usePix } from '@/context/PixContext';
 
 const HERO_IMAGES = [
   {
@@ -28,15 +24,20 @@ const HERO_IMAGES = [
   }
 ];
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPixModal, onNavigateNext }) => {
+export const HeroSection: React.FC = () => {
   // Estado da imagem selecionada (padrão 0 para SSR consistente, altera no mount)
   const [heroImage, setHeroImage] = useState(HERO_IMAGES[0]);
+  const { openPixModal } = usePix();
 
   useEffect(() => {
     // Escolhe aleatoriamente uma das 4 imagens de fundo a cada abertura/refresh
     const randomIndex = Math.floor(Math.random() * HERO_IMAGES.length);
     setHeroImage(HERO_IMAGES[randomIndex]);
   }, []);
+
+  const handleNavigateNext = () => {
+    document.getElementById('sobre')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <section id="hero" className="relative bg-slate-950 text-white pt-24 pb-20 min-h-screen flex flex-col justify-center overflow-hidden">
@@ -78,7 +79,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPixModal, onNavi
           {/* Botões de Ação Principais */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
             <button
-              onClick={onOpenPixModal}
+              onClick={openPixModal}
               className="flex items-center justify-center gap-3 bg-brand-red hover:bg-brand-red-hover text-white font-black text-base min-h-[56px] px-8 rounded-xl shadow-xl shadow-brand-red/30 hover:shadow-brand-red/50 hover:-translate-y-0.5 transition-all group uppercase tracking-wider"
               aria-label="Como doar"
             >
@@ -114,7 +115,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPixModal, onNavi
 
       {/* Indicador de Scroll Animado */}
       <button 
-        onClick={onNavigateNext}
+        onClick={handleNavigateNext}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-300 flex flex-col items-center justify-center gap-1 animate-bounce focus:outline-none min-h-[44px] min-w-[44px]"
         aria-label="Rolar para próxima seção"
       >

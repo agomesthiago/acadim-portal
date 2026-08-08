@@ -3,14 +3,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Heart, Send, Check } from 'lucide-react';
+import { usePix } from '@/context/PixContext';
 
-interface ContactSectionProps {
-  onOpenPixModal: () => void;
-}
-
-export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenPixModal }) => {
+export const ContactSection: React.FC = () => {
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
+  const { openPixModal } = usePix();
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,7 +103,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenPixModal }
 
             <div className="pt-2">
               <button
-                onClick={onOpenPixModal}
+                onClick={openPixModal}
                 className="w-full bg-brand-red hover:bg-brand-red-hover text-white font-black py-3 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm uppercase tracking-wide min-h-[44px]"
               >
                 <Heart size={16} className="fill-current" aria-hidden="true" /> Fazer doação agora

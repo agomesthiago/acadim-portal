@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import { HeaderNav } from '../components/HeaderNav';
 import { NavigationDots } from '../components/NavigationDots';
 import { HeroSection } from '../components/HeroSection';
@@ -15,14 +13,8 @@ import { FAQSection } from '../components/FAQSection';
 import { DonationCTA } from '../components/DonationCTA';
 import { ContactSection } from '../components/ContactSection';
 import { Footer } from '../components/Footer';
-import { PixModal } from '../components/PixModal';
 
-export default function Home() {
-  const [isPixOpen, setIsPixOpen] = useState(false);
-
-  const handleOpenPix = () => setIsPixOpen(true);
-  const handleClosePix = () => setIsPixOpen(false);
-
+export default async function Home() {
   // Schema.org dados estruturados para SEO
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -56,38 +48,28 @@ export default function Home() {
       />
 
       {/* Header Fixo */}
-      <HeaderNav 
-        onOpenPixModal={handleOpenPix} 
-      />
+      <HeaderNav />
 
       {/* Indicadores Laterais (Dots) */}
       <NavigationDots />
 
       {/* Container Principal */}
-      <main>
-        <HeroSection 
-          onOpenPixModal={handleOpenPix} 
-          onNavigateNext={() => {
-            document.getElementById('sobre')?.scrollIntoView({ behavior: 'smooth' });
-          }} 
-        />
+      <main id="main-content">
+        <HeroSection />
         <AboutSection />
         <MascotsSection />
         <ServicesSection />
-        <DualTargetImpact onOpenPixModal={handleOpenPix} />
+        <DualTargetImpact />
         <BazarSection />
         <NewsSection />
         <SecondaryNav />
         <FAQSection />
         <DonationCTA />
-        <ContactSection onOpenPixModal={handleOpenPix} />
+        <ContactSection />
       </main>
 
       {/* Rodapé Completo */}
       <Footer />
-
-      {/* Modal PIX */}
-      <PixModal isOpen={isPixOpen} onClose={handleClosePix} />
     </div>
   );
 }

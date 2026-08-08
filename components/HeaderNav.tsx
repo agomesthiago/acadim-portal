@@ -4,13 +4,11 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Heart, Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import { usePix } from '@/context/PixContext';
 
-interface HeaderNavProps {
-  onOpenPixModal: () => void;
-}
-
-export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenPixModal }) => {
+export const HeaderNav: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { openPixModal } = usePix();
 
   const links = [
     { name: 'Início', href: '/#hero' },
@@ -60,7 +58,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenPixModal }) => {
         {/* Botão de Doação Principal */}
         <div className="hidden xl:flex items-center gap-4">
           <button
-            onClick={onOpenPixModal}
+            onClick={openPixModal}
             className="flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-hover text-white font-extrabold text-sm px-6 min-h-[44px] rounded-full shadow-lg shadow-brand-red/25 hover:shadow-brand-red/45 hover:-translate-y-0.5 transition-all"
             aria-label="Fazer Doação PIX"
           >
@@ -72,7 +70,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenPixModal }) => {
         {/* Botão Mobile */}
         <div className="xl:hidden flex items-center gap-2">
           <button
-            onClick={onOpenPixModal}
+            onClick={openPixModal}
             className="flex items-center justify-center gap-1 bg-brand-red text-white font-extrabold text-xs px-3 min-h-[44px] rounded-full shadow"
             aria-label="Doar PIX"
           >
