@@ -1,4 +1,4 @@
-name: CI
+name: CI & Runtime QA Pipeline
 
 on:
   push:
@@ -7,7 +7,8 @@ on:
     branches: [ main, master ]
 
 jobs:
-  build-and-test:
+  build-and-qa:
+    name: Build & Automated QA Verification
     runs-on: ubuntu-latest
 
     steps:
@@ -23,8 +24,25 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run linter
+      - name: Run Linter
         run: npm run lint
 
       - name: Build Next.js application
         run: npm run build
+
+      - name: Install Playwright Chromium Browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright Runtime QA Suite
+        run: |
+          npm run start -- -p 3000 &
+          npx wait-on http://localhost:3000 --timeout 30000
+          TEST_URL=http://localhost:3000/ npm run test:qa
+
+      - name: Upload Visual & QA Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-visual-screenshots
+          path: '*.png'
+          retention-days: 7

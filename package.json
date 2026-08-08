@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test:qa": "node test_qa_hardened.mjs"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.6",

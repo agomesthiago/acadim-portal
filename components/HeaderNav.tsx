@@ -45,7 +45,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenPixModal }) => {
         </Link>
 
         {/* Links Desktop */}
-        <nav aria-label="Navegação principal" className="hidden md:flex items-center gap-6">
+        <nav aria-label="Navegação principal" className="hidden xl:flex items-center gap-6">
           {links.map((link) => (
             <Link
               key={link.name}
@@ -58,7 +58,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenPixModal }) => {
         </nav>
 
         {/* Botão de Doação Principal */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden xl:flex items-center gap-4">
           <button
             onClick={onOpenPixModal}
             className="flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-hover text-white font-extrabold text-sm px-6 min-h-[44px] rounded-full shadow-lg shadow-brand-red/25 hover:shadow-brand-red/45 hover:-translate-y-0.5 transition-all"
@@ -70,7 +70,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenPixModal }) => {
         </div>
 
         {/* Botão Mobile */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="xl:hidden flex items-center gap-2">
           <button
             onClick={onOpenPixModal}
             className="flex items-center justify-center gap-1 bg-brand-red text-white font-extrabold text-xs px-3 min-h-[44px] rounded-full shadow"
@@ -83,7 +83,8 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenPixModal }) => {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="text-white p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
-            aria-label="Alternar menu"
+            aria-label={mobileOpen ? "Fechar menu principal" : "Abrir menu principal"}
+            aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -91,15 +92,15 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenPixModal }) => {
 
       </div>
 
-      {/* Menu Dropdown Mobile */}
+      {/* Menu Mobile Dropdown */}
       {mobileOpen && (
-        <div className="md:hidden bg-surface-inverse border-t border-white/10 px-4 py-4 space-y-2">
+        <div className="xl:hidden bg-surface-inverse border-t border-white/10 px-4 py-4 space-y-2">
           {links.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="block w-full text-left py-3 min-h-[44px] text-base font-semibold text-slate-200 hover:text-brand-red transition-colors"
+              className="block text-base font-medium text-slate-200 hover:text-white py-2 px-3 rounded-lg hover:bg-white/10 transition-colors min-h-[44px] flex items-center"
             >
               {link.name}
             </Link>
