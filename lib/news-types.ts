@@ -5,7 +5,9 @@ export type NewsCategory =
   | 'Direitos no SUS'
   | 'Eventos ACADIM'
   | 'Histórias de Vida'
-  | 'Pesquisa & Ensaios Clínicos';
+  | 'Pesquisa & Ensaios Clínicos'
+  | 'Aprovações Terapêuticas'
+  | 'Diretrizes Clínicas & Manejo';
 
 export interface NewsAuthor {
   name: string;

@@ -39,6 +39,7 @@ jobs:
           npx wait-on http://localhost:3000 --timeout 30000
           TEST_URL=http://localhost:3000/ npm run test:qa
           TEST_URL=http://localhost:3000/ npm run test:qa-dark
+          TEST_URL=http://localhost:3000/ npm run test:qa-regression
 
       - name: Upload Visual & QA Artifacts
         if: always()

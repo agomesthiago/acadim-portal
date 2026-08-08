@@ -1,582 +1,526 @@
 // lib/distrofias-data.ts
 import { DiseaseDetail, MedicalGroup } from './distrofias-types';
 
-export const diseasesRepository: DiseaseDetail[] = [
+export const diseasesData: DiseaseDetail[] = [
   {
     slug: 'duchenne',
     name: 'Distrofia Muscular de Duchenne',
     shortName: 'DMD',
-    synonyms: ['DMD', 'Distrofinopatia grave', 'Distrofia de Duchenne'],
+    synonyms: ['Distrofinopatia grave', 'Dystrophinopathy - Duchenne type', 'DMD'],
     group: 'Distrofinopatias',
+    subType: 'Ausência total de distrofina (Out-of-frame mutations)',
     gene: 'DMD (Xp21.2)',
-    protein: 'Distrofina (ausência total ou grave)',
+    protein: 'Distrofina (ausente ou <1% dos níveis normais)',
     inheritance: 'Ligada ao X Recessiva',
     onsetAge: 'Infância precoce (2 a 5 anos)',
-    affectedSystems: ['Musculoesquelético', 'Cardíaco', 'Respiratório', 'Cognitivo (em 30% dos casos)'],
-    summary: 'A forma mais comum e grave de distrofinopatia, caracterizada pela ausência de distrofina e evolução progressiva da fraqueza muscular proximal.',
-    overview: 'A Distrofia Muscular de Duchenne (DMD) é uma condição genética recessiva ligada ao cromossomo X causada por mutações no gene DMD, que impede a produção da proteína distrofina. A distrofina funciona como um amortecedor molecular protegendo as fibras musculares durante a contração. Sem ela, o tecido muscular sofre degeneração contínua, fibrose e substituição por tecido adiposo.',
-    classification: 'Pertence ao grupo das Distrofinopatias (CID-10 G71.0).',
+    affectedSystems: ['Músculo esquelético', 'Miocárdio', 'Diafragma/Músculos respiratórios', 'Sistema Nervoso Central (cognição em ~30% dos casos)'],
+    summary: 'A forma mais comum e grave de distrofinopatia. Causada por mutações que alteram a matriz de leitura no gene DMD, resultando na ausência virtual da proteína distrofina.',
+    overview: 'A Distrofia Muscular de Duchenne (DMD) afeta predominantemente indivíduos do sexo masculino. Caracteriza-se por fraqueza muscular progressiva simétrica com início na musculatura cinto-membro proximal (quadril e coxas), evoluindo com pseudohipertrofia de panturrilhas, marcha anserina e Sinal de Gowers positivo.',
+    classification: 'Distrofinopatia primária ligada ao cromossomo X (OMIM #310200). Mutações de deleção (65%), duplicação (10%) ou pontuais/nonsense (25%) que quebram a matriz de leitura (out-of-frame).',
+    pathophysiology: 'A distrofina forma o complexo glicoproteico associado à distrofina (DAGC), ancorando o citoesqueleto de f-actina à matriz extracelular (laminina-211). Sua ausência resulta em instabilidade no sarcolema durante a contração muscular, influxo maciço de cálcio extracelular, ativação de proteases (calpaínas), degeneração necrosante e substituição progressiva de fibras por tecido fibroadiposo.',
     signsAndSymptoms: [
-      'Atraso na marcha independente e quedas frequentes.',
-      'Sinal de Gowers positivo (necessidade de apoiar as mãos nas pernas para se levantar).',
-      'Hipertrofia das panturrilhas (pseudohipertrofia por substituição fibrogordurosa).',
-      'Marcha anserina ou "de pato" com marcha na ponta dos pés.',
-      'Perda da capacidade de deambulação independente geralmente entre 10 e 14 anos sem intervenção.'
+      'Atraso na aquisição da marcha independente (frequentemente >18 meses)',
+      'Sinal de Gowers positivo (necessidade de apoiar as mãos nas pernas para se levantar do solo)',
+      'Pseudohipertrofia verdadeira de panturrilhas (substituição por gordura/fibrose)',
+      'Quedas frequentes e dificuldade para subir degraus ou correr',
+      'Marcha nas pontas dos pés por contratura inicial dos tendões de Aquiles',
+      'Lordose lombar compensatória acentuada'
     ],
-    cardiacManifestations: 'Desenvolvimento gradual de cardiomiopatia dilatada em 100% dos pacientes após os 18 anos. Requer monitoramento eletrocardiográfico e ecocardiográfico anual a partir dos 6 anos de idade.',
-    respiratoryManifestations: 'Declínio progressivo da capacidade vital forçada (CVF) devido à fraqueza do diafragma e músculos intercostais. Necessita de suporte de ventilação não invasiva (VNI) com Bilevel na adolescência.',
-    orthopedicManifestations: 'Desenvolvimento de contraturas musculares (tendão de Aquiles, flexores do quadril e joelho) e escoliose progressiva pós-perda da marcha.',
+    cardiacManifestations: 'Cardiomiopatia dilatada assintomática inicial evoluindo para fibrose do miocárdio (parede póstero-lateral do ventrículo esquerdo) e arritmias. Afeta >90% dos indivíduos após os 18 anos.',
+    respiratoryManifestations: 'Insuficiência respiratória restritiva progressiva por fraqueza do diafragma e músculos intercostais, com redução da Capacidade Vital Forçada (CVF) e hipoventilação noturna a partir da segunda década.',
+    orthopedicManifestations: 'Contraturas em flexão de joelhos e quadris, deformidade em equinovaro nos tornozelos e escoliose rapidamente progressiva após a perda da deambulação.',
     diagnosisAndTests: [
-      'Dosagem de Creatinoquinase (CK sérica): valores extremamente elevados (10 a 100 vezes acima do normal).',
-      'Teste Genético Molecular: MLPA (Multiplicidade de Sondas) ou Sequenciamento Completo do Gene DMD (identifica deleções em 65-70%, duplicações em 10% ou mutações pontuais).',
-      'Biópsia Muscular com Imunohistoquímica: mostra ausência virtual completa (<1%) de distrofina (usada em casos sem mutação detectada no DNA).'
+      'Dosagem de Creatina Quinase (CK) sérica: Elevação massiva (50 a 100 vezes os valores de referência normais, frequentemente >10.000 U/L)',
+      'Exame Genético Molecular por MLPA (Multiplex Ligation-dependent Probe Amplification): Detecta deleções e duplicações de éxons',
+      'Sequenciamento Completo do Gene DMD por NGS (Next Generation Sequencing): Indicado se MLPA for negativo para rastreio de mutações de ponto ou microinserções',
+      'Biópsia Muscular (imunohistoquímica/Western Blot): Reservada para casos de variante genética incerta; demonstra ausência total de distrofina (<1%)',
+      'Ecocardiograma e Ressonância Magnética Cardíaca anuais a partir dos 6 anos'
     ],
+    differentialDiagnosis: ['Distrofia Muscular de Becker (DMB)', 'Distrofias Musculares das Cinturas (LGMD)', 'Atrofia Muscular Espinhal (AME tipo 3)', 'Miopatias Inflamatórias/Polimiosite Pediátrica'],
     treatmentsAndManagement: [
-      'Corticoterapia contínua (Deflazacort ou Prednisona): padrão-ouro para desacelerar a perda de força e proteger a função respiratória/cardíaca.',
-      'Fisioterapia motora e alongamentos diários preventivos.',
-      'Suporte ventilatório não invasivo (VNI) e auxílio mecânico à tossidura (CoughAssist).',
-      'Inibidores da ECA ou Bloqueadores dos Receptores de Angiotensina para proteção cardíaca precoce.'
+      'Corticoterapia contínua (Deflazacorte ou Prednisona): Padrão-ouro para retardo da perda de deambulação em 2 a 5 anos e preservação da função respiratória e cardíaca',
+      'Fisioterapia Motora e Respiratória regular com alongamentos passivos diários para prevenção de contraturas',
+      'Suporte Ventilatório Não Invasivo (VNI / BiPAP) e assistente de tosse (Cough Assist) guiados por espirometria',
+      'Manejo Cardiológico preventivo com Inibidores da ECA (Enalapril/Lisinopril) ou BRAs a partir dos 6-10 anos'
     ],
     approvedTherapies: [
-      'Terapias de Salto de Éxon (Exon Skipping: Eteplirsen para éxon 51, Golodirsen/Viltolarsen para éxon 53, Casimersen para éxon 45).',
-      'Terapias de Microdistrofina via Vetores Virais AAV (aprovadas condicionalmente em agências regulatórias internacionais como a FDA).'
+      'Corticoides (Deflazacorte / Prednisona) - Aprovados ANVISA/FDA/EMA',
+      'Terapia de Salto de Éxon (Eteplirsen para éxon 51, Golodirsen/Viltolarsen para éxon 53, Casimersen para éxon 45) - Aprovados FDA em mutações específicas',
+      'Terapia Gênica por Vetor Viral AAV (Delandistrogene moxeparvovec) - Aprovada FDA sob condições específicas'
     ],
-    ongoingResearch: 'Ensaios clínicos de fase III investigando corretores de gene CRISPR/Cas9, novos anti-inflamatórios não esteroidais (Vamorolona) e vetores AAV de segunda geração.',
+    ongoingResearch: 'Novas gerações de oligonucleotídeos peptídicos (PPMOs), moduladores de utrofina, inibidores de miostatina, terapia de edição genômica (CRISPR/Cas9) e novos agentes anti-inflamatórios não esteroidais (Vamorolone).',
     faqs: [
       {
         question: 'Duchenne afeta apenas meninos?',
-        answer: 'Como é uma herança ligada ao cromossomo X, afeta predominantemente indivíduos do sexo masculino (1 a cada 3.500-5.000 nascimentos masculinos). Mulheres portadoras da mutação raramente apresentam sintomas graves, mas podem apresentar miocardiopatia ou fraqueza leve e devem ser acompanhadas.'
+        answer: 'Devido à herança ligada ao cromossomo X, afeta predominantemente meninos. Mulheres portadoras da mutação em um dos cromossomos X geralmente são assintomáticas, mas cerca de 2% a 5% podem apresentar sintomas leves de fraqueza muscular ou cardiomiopatia isolada (portadoras sintomáticas).'
       },
       {
-        question: 'Por que o exame genético é indispensável?',
-        answer: 'O exame genético preciso é indispensável não apenas para o diagnóstico definitivo sem necessidade de biópsia, mas porque as novas terapias genéticas de precisão (como salto de éxon) dependem da localização exata da mutação no DNA.'
+        question: 'A fisioterapia com carga forte de peso é recomendada?',
+        answer: 'Não. Exercícios excêntricos de alta resistência com peso são estritamente contraindicados, pois a ausência de distrofina faz com que a sobrecarga mecânica destrua as fibras musculares. Recomenda-se fisioterapia de alongamento, posicionamento e hidroterapia em água aquecida.'
       }
     ],
     references: [
-      {
-        title: 'Diagnosis and management of Duchenne muscular dystrophy, part 1 & 2',
-        source: 'Lancet Neurology (Birnkrant et al., 2018)',
-        url: 'https://www.nature.com/articles/s41582-018-0001-4'
-      },
-      {
-        title: 'MDA Disease Information: Duchenne Muscular Dystrophy',
-        source: 'Muscular Dystrophy Association (MDA)',
-        url: 'https://www.mda.org/disease/duchenne-muscular-dystrophy'
-      }
+      { title: 'Duchenne Muscular Dystrophy - GeneReviews', source: 'NIH / NCBI', url: 'https://www.ncbi.nlm.nih.gov/books/NBK1119/' },
+      { title: 'Orphanet: Duchenne muscular dystrophy', source: 'Orphanet', url: 'https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=GB&Expert=98896' },
+      { title: 'OMIM #310200 - MUSCULAR DYSTROPHY, DUCHENNE TYPE', source: 'OMIM', url: 'https://omim.org/entry/310200' }
     ],
     lastReviewed: '2026-08-05'
   },
   {
     slug: 'becker',
     name: 'Distrofia Muscular de Becker',
-    shortName: 'BMD',
-    synonyms: ['BMD', 'Distrofinopatia moderada/benigna'],
+    shortName: 'DMB',
+    synonyms: ['Distrofinopatia moderada', 'Dystrophinopathy - Becker type', 'DMB'],
     group: 'Distrofinopatias',
+    subType: 'Produção de distrofina alterada ou reduzida (In-frame mutations)',
     gene: 'DMD (Xp21.2)',
-    protein: 'Distrofina (produção de forma encurtada ou parcialmente funcional)',
+    protein: 'Distrofina (presente em tamanho alterado ou quantidade reduzida: 10% a 60%)',
     inheritance: 'Ligada ao X Recessiva',
-    onsetAge: 'Segunda infância, adolescência ou vida adulta (5 a 15+ anos)',
-    affectedSystems: ['Musculoesquelético', 'Cardíaco'],
-    summary: 'Forma com progressão mais lenta de distrofinopatia, na qual a proteína distrofina é produzida em formato encurtado porém parcialmente funcional.',
-    overview: 'A Distrofia Muscular de Becker (BMD) é causada por mutações no mesmo gene DMD responsável por Duchenne, porém que mantêm a matriz de leitura genética (in-frame deletions). Isso permite que a célula muscular produza uma proteína distrofina parcial, resultando em sintomas mais leves e progressão consideravelmente mais lenta.',
-    classification: 'Pertence ao grupo das Distrofinopatias (CID-10 G71.0).',
+    onsetAge: 'Segunda infância, adolescência ou início da vida adulta (5 a 20+ anos)',
+    affectedSystems: ['Músculo esquelético', 'Miocárdio'],
+    summary: 'Forma mais branda e de progressão mais lenta de distrofinopatia. Resulta de mutações no gene DMD que preservam a matriz de leitura (in-frame), gerando distrofina parcialmente funcional.',
+    overview: 'A Distrofia Muscular de Becker (DMB) compartilha a mesma base genética da Duchenne, porém apresenta curso clínico mais heterogêneo. A deambulação independente é mantida após os 16 anos de idade, podendo se estender por toda a vida adulta.',
+    classification: 'Distrofinopatia ligada ao X (OMIM #300376). Mutações in-frame mantêm a extremidade C-terminal e N-terminal conectadas.',
+    pathophysiology: 'A presença de distrofina parcial minimiza o estresse de estiramento do sarcolema em comparação com Duchenne. Contudo, a redução quantitativa ou estrutural ainda induz necrose muscular crônica e fibrose progressiva.',
     signsAndSymptoms: [
-      'Cãibras musculares induzidas por exercício e fadiga precoce.',
-      'Fraqueza muscular nas cinturas pélvica e escapular que se inicia mais tarde.',
-      'Manutenção da marcha independente além dos 16 a 20 anos de idade.',
-      'Hipertrofia de panturrilhas presente na infância/adolescência.'
+      'Cãibras musculares induzidas pelo exercício na adolescência',
+      'Mialgia e fraqueza de membros inferiores durante atividades físicas intensas',
+      'Pseudohipertrofia de panturrilhas frequente',
+      'Perda tardia da capacidade de subir escadas',
+      'Elevação de CK episódica ou persistente'
     ],
-    cardiacManifestations: 'A cardiomiopatia dilatada pode ser o sintoma primário ou desproporcional à fraqueza muscular, surgindo às vezes antes dos sintomas motores. Requer ECG/Ecocardiograma anual.',
-    respiratoryManifestations: 'Comprometimento respiratório mais tardio e menos frequente que em Duchenne, exigindo monitoramento periódico na vida adulta.',
-    orthopedicManifestations: 'Contraturas de tendão de Aquiles e contraturas articulares leves.',
+    cardiacManifestations: 'Cardiomiopatia dilatada grave pode ser a manifestação inicial ou desproporcional à fraqueza esquelética, exigindo rastreio cardiológico precoce.',
+    respiratoryManifestations: 'Preservada na maioria dos pacientes até fases avançadas, com hipoventilação restritiva de início tardio.',
+    orthopedicManifestations: 'Encurtamento leve de tendões de Aquiles e contraturas articulares moderadas.',
     diagnosisAndTests: [
-      'CK sérica elevada (5 a 50 vezes o valor de referência).',
-      'Painel genético do gene DMD com detecção de mutações in-frame.',
-      'Biópsia muscular mostrando redução quantitativa ou alteração no tamanho da distrofina por Western Blot.'
+      'CK sérica elevada (10 a 50 vezes o valor normal)',
+      'MLPA do gene DMD identificando deleções/duplicações in-frame',
+      'Ressonância Magnética Cardíaca e Holter 24h',
+      'Biópsia Muscular com Western Blot mostrando distrofina em massa molecular reduzida ou quantidade diminuída'
     ],
+    differentialDiagnosis: ['Distrofias Musculares das Cinturas (LGMD)', 'Miopatia Miotônica', 'Polimiosite'],
     treatmentsAndManagement: [
-      'Acompanhamento cardiológico rigoroso com introdução precoce de IECA/BRA.',
-      'Fisioterapia motora de manutenção sem exercícios anaeróbicos exaustivos.',
-      'Uso criterioso de corticosteroides em casos de declínio motor mais rápido.'
+      'Acompanhamento cardiológico rigoroso com uso profilático de IECAs/BRAs',
+      'Fisioterapia para preservação de ADM (amplitude de movimento)',
+      'Corticoterapia em casos de progressão motora acentuada (avaliado individualmente)'
     ],
-    approvedTherapies: [
-      'Manejo sintomático multidisplicinar e cardioproteção orientada.'
-    ],
-    ongoingResearch: 'Estudos com moduladores metabólicos, utrofina e inibidores de miostatina.',
+    approvedTherapies: ['Manejo sintomático cardiológico e reabilitação física.'],
+    ongoingResearch: 'Estudos com moduladores de reparo de membrana, vasodilatadores musculares e vetores sintéticos.',
     faqs: [
       {
-        question: 'Qual a principal diferença entre Duchenne e Becker?',
-        answer: 'A diferença principal reside na quantidade e funcionalidade da distrofina. Em Duchenne há ausência quase total da proteína, enquanto em Becker ela existe em menor quantidade ou tamanho reduzido, permitindo maior preservação da força muscular.'
+        question: 'Qual a diferença entre Duchenne e Becker?',
+        answer: 'Em Duchenne a proteína distrofina está ausente por completo, provocando fraqueza motora na infância precoce. Em Becker a distrofina é produzida em menor quantidade ou tamanho menor, resultando em sintomas mais leves e início mais tardio.'
       }
     ],
     references: [
-      {
-        title: 'Becker Muscular Dystrophy Overview',
-        source: 'NINDS / NIH',
-        url: 'https://www.ninds.nih.gov/health-information/disorders/becker-muscular-dystrophy'
-      }
+      { title: 'Becker Muscular Dystrophy - GeneReviews', source: 'NIH / NCBI', url: 'https://www.ncbi.nlm.nih.gov/books/NBK1119/' },
+      { title: 'OMIM #300376 - MUSCULAR DYSTROPHY, BECKER TYPE', source: 'OMIM', url: 'https://omim.org/entry/300376' }
     ],
     lastReviewed: '2026-08-05'
   },
   {
-    slug: 'lgmd-r1',
-    name: 'Distrofia Muscular das Cinturas R1 (Calpaína-3)',
-    shortName: 'LGMD R1 / LGMDR1',
-    synonyms: ['LGMD2A', 'Calpainopatia', 'LGMD R1 Calpain3-related'],
+    slug: 'lgmd-r1-calpainopatia',
+    name: 'Distrofia Muscular das Cinturas R1 (Calpainopatia)',
+    shortName: 'LGMD-R1 / LGMD2A',
+    synonyms: ['LGMD2A', 'Calpainopatia', 'Limb-Girdle Muscular Dystrophy R1', 'LGMD-CAPN3'],
     group: 'Distrofias Musculares das Cinturas (LGMD)',
+    subType: 'Deficiência da Protease Calpaína-3',
     gene: 'CAPN3 (15q15.1)',
-    protein: 'Calpaína-3 (protease não lisossomal dependente de cálcio)',
+    protein: 'Calpaína-3 (Protease não estrutural do sarcômero)',
     inheritance: 'Autossômica Recessiva',
     onsetAge: 'Adolescência ou início da idade adulta (8 a 15 anos)',
-    affectedSystems: ['Musculoesquelético (Cintura Pélvica e Escapular)'],
-    summary: 'Subtipo mais frequente de LGMD recessiva no Brasil e no mundo, caracterizado por atrofia e fraqueza progressiva das cinturas com escore cardíaco geralmente preservado.',
-    overview: 'A LGMD R1 (anteriormente classificada como LGMD2A ou Calpainopatia) é uma condição autossômica recessiva causada por defeitos no gene CAPN3. A enzima calpaína-3 atua na remodelação dos sarcômeros musculares. Deficiência dessa protease leva à desorganização estrutural e degradação progressiva do tecido muscular proximal.',
-    classification: 'Subtipo de Distrofia Muscular das Cinturas Autossômica Recessiva (CID-10 G71.0).',
+    affectedSystems: ['Músculo esquelético da cintura pélvica e escapular', 'Musculatura paravertebral'],
+    summary: 'A forma recessiva mais frequente de Distrofia Muscular das Cinturas. Causada por mutações no gene CAPN3, levando à deficiência da enzima calpaína-3.',
+    overview: 'A LGMD-R1 afeta ambos os sexos igualmente. Apresenta-se com fraqueza simétrica da cintura pélvica e escapular, escápulas aladas proeminentes e marcha anserina. O envolvimento cardíaco e intelectual é notavelmente ausente.',
+    classification: 'Distrofia Muscular das Cinturas do tipo Recessivo 1 (OMIM #253600).',
+    pathophysiology: 'A calpaína-3 é uma protease não estrutural ligada à titina que regula a renovação e remodelação do sarcômero. Sua deficiência induz estresse do retículo endoplasmático e apoptose celular muscular.',
     signsAndSymptoms: [
-      'Fraqueza muscular simétrica e progressiva na cintura pélvica (dificuldade para subir escadas e correr).',
-      'Escápulas aladas proeminentes e fraqueza nos adutores da coxa.',
-      'Preservação relativa dos músculos deltoides e musculatura facial.',
-      'Tendência a contraturas precoces dos tendões de Aquiles.'
+      'Dificuldade para correr e subir escadas na segunda infância ou adolescência',
+      'Escápula alada bilateral evidente',
+      'Atrofia acentuada da musculatura posterior de coxas e adutores',
+      'Marcha anserina (gingada)',
+      'Preservação da musculatura facial e cardíaca'
     ],
-    cardiacManifestations: 'O envolvimento cardíaco é extremamente raro na LGMD R1, diferenciando-a de outros subtipos de LGMD.',
-    respiratoryManifestations: 'Comprometimento respiratório tardio nas fases em que o paciente necessita de cadeira de rodas.',
-    orthopedicManifestations: 'Contraturas musculares articulares precoces no tornozelo e hipermobilidade compensatória.',
+    cardiacManifestations: 'Comprometimento cardíaco é extremamente raro na LGMD-R1, servindo como importante marcador de diagnóstico diferencial.',
+    respiratoryManifestations: 'Insuficiência respiratória restritiva moderada em fases avançadas pós-perda da deambulação.',
+    orthopedicManifestations: 'Contraturas precoces em flexão plantar dos tornozelos e escoliose secundária.',
     diagnosisAndTests: [
-      'CK sérica moderada a acentuadamente elevada (5 a 30 vezes o normal).',
-      'Painel NGS de Sequenciamento de Nova Geração para genes de LGMD (gene CAPN3).',
-      'Análise de Western Blot para calpaína-3 em biópsia muscular quando a genética é indeterminada.'
+      'CK sérica elevada (5 a 30 vezes o valor normal)',
+      'Painel Genético por NGS para genes de LGMD (identificando mutações bi-alólicas no CAPN3)',
+      'Western Blot muscular para proteína calpaína-3'
     ],
+    differentialDiagnosis: ['LGMD-R2 (Dysferlinopatia)', 'FSHD', 'Miopatias metabólicas'],
     treatmentsAndManagement: [
-      'Programa de fisioterapia direcionada para prevenção de contraturas de Aquiles.',
-      'Atividades aeróbicas de baixo impacto (hidroterapia em água morna).',
-      'Adaptações ergonômicas funcionais e suporte ortótico.'
+      'Fisioterapia motora de manutenção de amplitude articular',
+      'Suporte ortopédico para tornozelos',
+      'Monitoramento de capacidade vital respiratória esporádica'
     ],
-    approvedTherapies: ['Tratamento de suporte conservador multidisciplinar.'],
-    ongoingResearch: 'Estudos de terapia de substituição gênica com vetores AAV contendo a sequência humana do CAPN3 em ensaios de fase I/II.',
+    approvedTherapies: ['Manejo de suporte multidisciplinar.'],
+    ongoingResearch: 'Estudos de substituição gênica com AAV-rh74-CAPN3 em fase clínica 1/2.',
     faqs: [
       {
-        question: 'O que significa a nova nomenclatura LGMD R1?',
-        answer: 'Em 2018, a diretiva internacional de classificação redefiniu as LGMDs. O "R" indica herança Recessiva e o número "1" designa a primeira forma descoberta nessa categoria (antiga LGMD2A).'
+        question: 'O coração é afetado na Calpainopatia?',
+        answer: 'Raramente. Diferente das distrofinopatias, a LGMD-R1 preserva o músculo cardíaco na grande maioria dos pacientes.'
       }
     ],
     references: [
-      {
-        title: '229th ENMC International Workshop: Limb girdle muscular dystrophies nomenclature',
-        source: 'Neuromuscular Disorders (Straub et al., 2018)',
-        url: 'https://www.nmd-journal.com/article/S0960-8966(18)30504-2/fulltext'
-      }
+      { title: 'Limb-Girdle Muscular Dystrophy R1 - GeneReviews', source: 'NIH', url: 'https://www.ncbi.nlm.nih.gov/books/NBK1313/' },
+      { title: 'Orphanet: LGMD R1', source: 'Orphanet', url: 'https://www.orpha.net' }
     ],
-    lastReviewed: '2026-08-05'
+    lastReviewed: '2026-08-04'
   },
   {
-    slug: 'lgmd-r2',
-    name: 'Distrofia Muscular das Cinturas R2 (Disferlina)',
-    shortName: 'LGMD R2 / LGMDR2',
-    synonyms: ['LGMD2B', 'Disferlinopatia', 'Miopatia de Miyoshi'],
+    slug: 'lgmd-r2-dysferlinopatia',
+    name: 'Distrofia Muscular das Cinturas R2 (Disferlinopatia / Miopatia de Miyoshi)',
+    shortName: 'LGMD-R2 / LGMD2B',
+    synonyms: ['LGMD2B', 'Disferlinopatia', 'Miopatia de Miyoshi', 'Miopatia Distal de Miyoshi'],
     group: 'Distrofias Musculares das Cinturas (LGMD)',
+    subType: 'Deficiência do Reparo de Membrana por Disferlina',
     gene: 'DYSF (2p13.2)',
-    protein: 'Disferlina (proteína de reparo de membrana sarcolemal)',
+    protein: 'Disferlina (Proteina transmembrana de reparo de sarcolema)',
     inheritance: 'Autossômica Recessiva',
-    onsetAge: 'Final da adolescência ou início da vida adulta (15 a 25 anos)',
-    affectedSystems: ['Musculoesquelético (Membros inferiores e cintura pélvica)'],
-    summary: 'Disferlinopatia caracterizada por falha no reparo da membrana sarcolemal das fibras musculares, podendo se manifestar como LGMD ou Miopatia Distal de Miyoshi.',
-    overview: 'A LGMD R2 é causada por defeitos no gene DYSF, que codifica a proteína disferlina. A disferlina é essencial para a fusão de vesículas que reparam microlesões na membrana muscular durante a contração. Sem ela, microlesões diárias se acumulam, desencadeando resposta inflamatória severa.',
-    classification: 'Subtipo de Distrofia Muscular das Cinturas Autossômica Recessiva (CID-10 G71.0).',
+    onsetAge: 'Início da vida adulta (15 a 25 anos)',
+    affectedSystems: ['Músculo esquelético distal (gastrocnêmios) e pélvico'],
+    summary: 'Causada por mutações no gene DYSF, podendo se manifestar como LGMD-R2 (fraqueza proximal das cinturas) ou como Miopatia de Miyoshi (fraqueza distal inicial de panturrilhas).',
+    overview: 'A disferlinopatia é caracterizada por elevação extrema de CK em adultos jovens, muitas vezes antes do surgimento da fraqueza motora. Pacientes frequentemente eram atletas antes do início dos sintomas.',
+    classification: 'Distrofia Muscular das Cinturas Recessiva tipo 2 (OMIM #253601).',
+    pathophysiology: 'A disferlina medeia a fusão vesicular dependente de cálcio necessária para o reparo rápido de rupturas na membrana muscular. Sem disferlina, lesões de exercício não são reparadas, levando à necrose e ativação do sistema complemento.',
     signsAndSymptoms: [
-      'Dificuldade inicial para andar na ponta dos pés (na forma Miyoshi) ou subir escadas (na forma LGMD).',
-      'Incapacidade repentina de se manter na ponta dos pés em jovens atletas.',
-      'Inflamação muscular marcante frequentemente confundida com polimiosite idiopática.',
-      'CK sérica extremamente elevada (muitas vezes > 50 a 100 vezes o limite).'
+      'Incapacidade repentina de ficar na ponta dos pés (Miopatia de Miyoshi)',
+      'Dificuldade para subir escadas e se levantar de cadeiras baixas (Fenótipo LGMD)',
+      'Atrofia marcada dos músculos gastrocnêmios e sóleo',
+      'Histórico prévio de excelente aptidão física/esportiva na infância'
     ],
-    cardiacManifestations: 'Envolvimento cardíaco raro, mas acompanhamento periódico é recomendado.',
-    respiratoryManifestations: 'Preservação respiratória prolongada.',
-    orthopedicManifestations: 'Atrofia dos músculos gastrocnêmios e sóleo nas fases iniciais.',
+    cardiacManifestations: 'Comprometimento cardíaco é incomum.',
+    respiratoryManifestations: 'Raramente comprometida gravemente.',
+    orthopedicManifestations: 'Contraturas articulares menos frequentes que em outras formas de cinturas.',
     diagnosisAndTests: [
-      'CK sérica maciçamente elevada (> 5.000 a 20.000 U/L).',
-      'Sequenciamento genético NGS do gene DYSF.',
-      'Exame de Imunohistoquímica e Western Blot para disferlina em tecido muscular.'
+      'CK sérica extremamente elevada (>20 a 100 vezes o normal, frequentemente >15.000 U/L em assintomáticos)',
+      'Sequenciamento Genético NGS do gene DYSF',
+      'Imunohistoquímica de biópsia muscular mostrando ausência de disferlina na membrana'
     ],
+    differentialDiagnosis: ['Polimiosite / Miopatia inflamatória (frequentemente causa erro diagnóstico inicial)', 'Calpainopatia'],
     treatmentsAndManagement: [
-      'Atenção crucial: Corticoides NÃO são eficazes na disferlinopatia e podem acelerar a perda muscular.',
-      'Fisioterapia motora suave e exercícios não fatigantes.',
-      'Evitar esportes de alto impacto e sobrecarga anaeróbica.'
+      'Atenção: Corticoides são contraindicados ou ineficazes na disferlinopatia (diferente da polimiosite)',
+      'Fisioterapia leve de conservação de energia'
     ],
-    approvedTherapies: ['Tratamento de suporte e reabilitação funcional.'],
-    ongoingResearch: 'Pesquisas de terapia gênica com sistemas de vetor duplo (dual-AAV) devido ao grande tamanho do gene DYSF.',
+    approvedTherapies: ['Manejo de suporte multidisciplinar.'],
+    ongoingResearch: 'Terapias com vetores AAV dual e moduladores de membrana celular.',
     faqs: [
       {
-        question: 'Por que o uso de corticoides deve ser evitado na Disferlinopatia?',
-        answer: 'Estudos clínicos internacionais demonstraram que, diferentemente de Duchenne, o uso prolongado de corticoides em pacientes com deficiência de disferlina resulta em prejuízo motor sem benefício clínico.'
+        question: 'Por que o uso de corticoide é evitado na Disferlinopatia?',
+        answer: 'Estudos mostraram que os corticoides não melhoram a força muscular na LGMD-R2 e podem acelerar a perda funcional, diferente de sua indicação em Duchenne.'
       }
     ],
     references: [
-      {
-        title: 'Jain Foundation Dysferlinopathy Registry & Clinical Guidelines',
-        source: 'Jain Foundation',
-        url: 'https://www.jain-foundation.org'
-      }
+      { title: 'Dysferlinopathy - GeneReviews', source: 'NIH', url: 'https://www.ncbi.nlm.nih.gov/books/NBK1321/' }
     ],
-    lastReviewed: '2026-08-05'
+    lastReviewed: '2026-08-04'
   },
   {
-    slug: 'cmd-ullrich',
-    name: 'Distrofia Muscular Congênita de Ullrich',
-    shortName: 'UCMD',
-    synonyms: ['UCMD', 'Distrofia Congênita por Colágeno VI'],
+    slug: 'cmd-lama2-merosina',
+    name: 'Distrofia Muscular Congênita LAMA2-relacionada (Merosina-Negativa)',
+    shortName: 'CMD-LAMA2 / MDC1A',
+    synonyms: ['Distrofia Muscular Congênita do Tipo 1A', 'MDC1A', 'Merosin-deficient CMD'],
     group: 'Distrofias Musculares Congênitas (CMD)',
-    gene: 'COL6A1, COL6A2, COL6A3',
-    protein: 'Colágeno Tipo VI',
+    subType: 'Deficiência da Cadeia Alfa-2 da Laminina (Merosina)',
+    gene: 'LAMA2 (6q22.31)',
+    protein: 'Laminina alfa-2 (Merosina / componente de matriz extracelular)',
+    inheritance: 'Autossômica Recessiva',
+    onsetAge: 'Neonatal ou primeiros 6 meses de vida',
+    affectedSystems: ['Músculo esquelético global', 'Substância branca cerebral (leucoencefalopatia assintomática)', 'Nervos periféricos'],
+    summary: 'A forma mais comum de Distrofia Muscular Congênita grave. Caracteriza-se por hipotonia ao nascimento ("floppy infant"), contraturas articulares e leucoencefalopatia característica na ressonância.',
+    overview: 'Bebês afetados apresentam hipotonia acentuada, choro fraco e dificuldades de sucção ao nascimento. A maioria dos pacientes não adquire marcha independente, necessitando de suporte postural e respiratório.',
+    classification: 'Distrofia Muscular Congênita tipo 1A (OMIM #607855).',
+    pathophysiology: 'A laminina alfa-2 liga a integrina e a distroglicana à matriz extracelular. A deficiência rompe a ancoragem muscular e a mielinização dos nervos periféricos e sistema nervoso central.',
+    signsAndSymptoms: [
+      'Hipotonia congênita grave ("síndrome do bebê hipotônico")',
+      'Atraso acentuado dos marcos de desenvolvimento motor',
+      'Contraturas congênitas de cotovelos, joelhos e quadris',
+      'Infecções respiratórias recorrentes na primeira infância'
+    ],
+    cardiacManifestations: 'Função cardíaca geralmente preservada.',
+    respiratoryManifestations: 'Insuficiência respiratória precoce por fraqueza intercostal, exigindo ventilação não invasiva noturna.',
+    orthopedicManifestations: 'Escoliose precoce e rígida, necessitando de colete ortopédico e cirurgia de fusão espinhal.',
+    diagnosisAndTests: [
+      'CK sérica elevada (>1.000 a 5.000 U/L)',
+      'Ressonância Magnética de Crânio: Mostra hiperintensidade difusa e simétrica da substância branca em T2 (leucoencefalopatia sem retardo mental obrigatoriamente associado)',
+      'Sequenciamento NGS do gene LAMA2'
+    ],
+    differentialDiagnosis: ['Atrofia Muscular Espinhal tipo 1 (AME1)', 'CMD COL6-relacionada', 'Miopatias congênitas'],
+    treatmentsAndManagement: [
+      'Acompanhamento pneumológico pediátrico intensivo',
+      'Suporte nutricional por gastrostomia se houver disfagia',
+      'Fisioterapia motora e controle postural'
+    ],
+    approvedTherapies: ['Manejo de suporte multidisciplinar.'],
+    ongoingResearch: 'Vetores virais bicassetes e proteínas de fusão sintéticas (LAMA1/linker).',
+    faqs: [
+      {
+        question: 'A alteração na substância branca do cérebro afeta a inteligência?',
+        answer: 'Na maioria das crianças com LAMA2, a alteração da substância branca na ressonância reflete desmielinização sutil e a inteligência permanece preservada.'
+      }
+    ],
+    references: [
+      { title: 'LAMA2-Related Dystrophy - GeneReviews', source: 'NIH', url: 'https://www.ncbi.nlm.nih.gov/books/NBK343584/' }
+    ],
+    lastReviewed: '2026-08-04'
+  },
+  {
+    slug: 'cmd-col6-ullrich-bethlem',
+    name: 'Distrofias Musculares do Colágeno VI (Ullrich e Bethlem)',
+    shortName: 'CMD-COL6',
+    synonyms: ['Distrofia Muscular Congênita de Ullrich (UCMD)', 'Miopatia de Bethlem', 'COL6-RD'],
+    group: 'Distrofias Musculares Congênitas (CMD)',
+    subType: 'Espectro do Colágeno VI (Ullrich grave / Bethlem amena)',
+    gene: 'COL6A1, COL6A2, COL6A3 (21q22.3 e 2q37.3)',
+    protein: 'Colágeno tipo VI (Cadeias alfa-1, alfa-2 e alfa-3)',
     inheritance: 'Autossômica Dominante ou Recessiva',
-    onsetAge: 'Nascimento ou primeiros meses de vida',
-    affectedSystems: ['Musculoesquelético', 'Articular (Hipermobilidade e Contraturas)', 'Respiratório'],
-    summary: 'Forma grave de distrofia congênita caracterizada por hipotonia ao nascimento, combinação de contraturas proximais com hipermobilidade distal, e insuficiência respiratória precoce.',
-    overview: 'A Distrofia Muscular Congênita de Ullrich (UCMD) é causada por mutações nos genes que codificam as cadeias alfas do Colágeno VI, componente chave da matriz extracelular. A ausência ou defeito no colágeno VI rompe a ancoragem da fibra muscular ao tecido conjuntivo circundante.',
-    classification: 'Distrofia Muscular Congênita por Colágenopatia VI (CID-10 G71.2).',
+    onsetAge: 'Congênito (Ullrich) a infância/adolescência (Bethlem)',
+    affectedSystems: ['Músculo esquelético', 'Tecido conjuntivo', 'Pele (cicatrizes queloides)', 'Função respiratória'],
+    summary: 'Espectro contínuo de condições causadas por deficiência de Colágeno VI na matriz extracelular, caracterizado pelo contraste entre contraturas proximais e hiperlaxidão distal.',
+    overview: 'Na forma grave de Ullrich, crianças apresentam hipotonia congênita, contraturas de cotovelos/quadris e hipermobilidade de dedos. Na Miopatia de Bethlem, a progressão é mais lenta.',
+    classification: 'Espectro COL6-RD (OMIM #254090 / #158810).',
+    pathophysiology: 'O colágeno VI forma microfibrilas na matriz extracelular muscular. Sua ausência desestabiliza a ancoragem celular e induz disfunção mitocondrial com apoptose muscular inapropriada.',
     signsAndSymptoms: [
-      'Hipotonia congênita ("bebê mole") e fraqueza muscular grave desde o nascimento.',
-      'Combinação marcante de contraturas articulares proximais (cotovelos e quadris) com hipermobilidade distal (dedos e tornozelos).',
-      'Hiperqueratose folicular na pele e tendência a cicatrizes queloides.',
-      'Evolução para insuficiência respiratória diurna na primeira década de vida.'
-    ],
-    cardiacManifestations: 'Função cardíaca primária geralmente preservada.',
-    respiratoryManifestations: 'Atingimento respiratório precoce por fraqueza diafragmática. A monitoramento da CVF e o início de VNI noturna são frequentemente necessários entre os 6 e 12 anos.',
-    orthopedicManifestations: 'Desenvolvimento precoce e rígido de escoliose e rigidez de coluna vertebral.',
-    diagnosisAndTests: [
-      'Sequenciamento NGS para os genes COL6A1, COL6A2 e COL6A3.',
-      'Imunofluorescência de colágeno VI em biópsia de pele ou músculo.',
-      'Dosagem de CK sérica (normal a discretamente elevada).'
-    ],
-    treatmentsAndManagement: [
-      'Suporte ventilatório noturno precoce (VNI).',
-      'Fisioterapia motora e respiratória intensiva.',
-      'Acompanhamento ortopédico para coluna e mobilização articular.'
-    ],
-    approvedTherapies: ['Manejo de suporte multidisciplinar preventivo.'],
-    ongoingResearch: 'Estudos com cicloporina A e análogos para inibição da porosidade mitocondrial e terapias oligonucleotídicas.',
-    faqs: [
-      {
-        question: 'Qual o papel da fisioterapia respiratória em Ullrich?',
-        answer: 'Como a fraqueza do diafragma se desenvolve cedo, a fisioterapia respiratória e o acompanhamento de polissonografia são vitais para introdução preventiva de suporte de ventilação noturna.'
-      }
-    ],
-    references: [
-      {
-        title: 'Congenital Muscular Dystrophy Types & Genetics',
-        source: 'Muscular Dystrophy Association (MDA)',
-        url: 'https://www.mda.org/disease/congenital-muscular-dystrophy'
-      }
-    ],
-    lastReviewed: '2026-08-05'
-  },
-  {
-    slug: 'cmd-bethlem',
-    name: 'Distrofia Muscular Congênita de Bethlem',
-    shortName: 'Miopatia de Bethlem',
-    synonyms: ['Bethlem Myopathy', 'Colágenopatia VI moderada'],
-    group: 'Distrofias Musculares Congênitas (CMD)',
-    gene: 'COL6A1, COL6A2, COL6A3',
-    protein: 'Colágeno Tipo VI',
-    inheritance: 'Autossômica Dominante (mais comum) ou Recessiva',
-    onsetAge: 'Infância ou início da idade adulta',
-    affectedSystems: ['Musculoesquelético', 'Articulações (Flexores dos dedos)'],
-    summary: 'Forma mais leve do espectro de miopatias por Colágeno VI, caracterizada por progressão lenta e contraturas típicas dos dedos das mãos.',
-    overview: 'A Miopatia de Bethlem situa-se no extremo mais moderado do espectro de deficiências de Colágeno VI. Os indivíduos afetados costumam manter a capacidade de andar durante a vida adulta, apresentando contraturas articulares características.',
-    classification: 'Distrofia/Miopatia Congênita (CID-10 G71.2).',
-    signsAndSymptoms: [
-      'Fraqueza muscular leve a moderada de início na infância ou vida adulta.',
-      'Contraturas típicas dos dedos (incapacidade de estender totalmente os dedos quando os punhos estão estendidos).',
-      'Contraturas nos tendões de Aquiles e cotovelos.',
-      'Hiperqueratose folicular na superfície extensora dos membros.'
+      'Coexistência de contraturas proximais (cotovelos) e hipermobilidade distal (dedos das mãos)',
+      'Hiperqueratose pilar e cicatrização queloidiana na pele',
+      'Protrusão de calcâneo',
+      'Insuficiência respiratória desproporcional à perda da marcha'
     ],
     cardiacManifestations: 'Preservado.',
-    respiratoryManifestations: 'Monitoramento respiratório recomendado na idade adulta madura.',
-    orthopedicManifestations: 'Contraturas musculares progressivas nas mãos e tornozelos.',
+    respiratoryManifestations: 'Comprometimento respiratório precoce por rigidez da caixa torácica e fraqueza do diafragma.',
+    orthopedicManifestations: 'Contraturas graves e escoliose.',
     diagnosisAndTests: [
-      'Sequenciamento genético NGS para COL6A1/2/3.',
-      'Imunocoloração de colágeno VI em biópsia cutânea.'
+      'CK normal ou levemente elevada',
+      'Sequenciamento NGS dos genes COL6A1, COL6A2, COL6A3',
+      'Biópsia de pele/músculo com imunofluorescência para Colágeno VI'
     ],
+    differentialDiagnosis: ['CMD LAMA2', 'Síndrome de Ehlers-Danlos', 'Miopatia de Emery-Dreifuss'],
     treatmentsAndManagement: [
-      'Fisioterapia motora focada em manter a amplitude articular das mãos e pés.',
-      'Uso de órteses noturnas para os punhos e pés.'
+      'Monitoramento de ventilação noturna desde a infância',
+      'Fisioterapia de amplitude articular',
+      'Cuidados dermatológicos'
     ],
-    approvedTherapies: ['Manejo conservador multidisciplinar.'],
-    ongoingResearch: 'Pesquisas de moléculas de estabilização sarcoplasmática.',
+    approvedTherapies: ['Manejo de suporte multidisciplinar.'],
+    ongoingResearch: 'Moduladores da função mitocondrial (Ciclosporina A/Omigapil) e terapia gênica com ASOs.',
     faqs: [
       {
-        question: 'Bethlem e Ullrich são a mesma doença?',
-        answer: 'São manifestações de severidade diferente causadas por defeitos no mesmo grupo de genes (COL6A1/2/3). Ullrich é a forma grave congênita e Bethlem é a forma moderada com evolução prolongada.'
+        question: 'Qual a característica marcante ao exame físico na distrofia do Colágeno VI?',
+        answer: 'A combinação de articulações duras/enrijecidas no cotovelo e ombro com dedos das mãos extremamente flexíveis e dobráveis.'
       }
     ],
     references: [
-      {
-        title: 'Collagen VI-related Dystrophies Clinical Guidelines',
-        source: 'GARD / NIH',
-        url: 'https://rarediseases.info.nih.gov'
-      }
+      { title: 'Collagen VI-Related Dystrophies - GeneReviews', source: 'NIH', url: 'https://www.ncbi.nlm.nih.gov/books/NBK2002/' }
     ],
-    lastReviewed: '2026-08-05'
+    lastReviewed: '2026-08-04'
   },
   {
-    slug: 'fshd1',
-    name: 'Distrofia Muscular Facioscapuloumeral Tipo 1',
-    shortName: 'FSHD1 / FSHD',
-    synonyms: ['FSHD1', 'Distrofia de Landouzy-Dejerine'],
+    slug: 'fshd-facioescapuloumeral',
+    name: 'Distrofia Muscular Facioescapuloumeral',
+    shortName: 'FSHD',
+    synonyms: ['FSHD1', 'FSHD2', 'Landouzy-Dejerine', 'Facioscapulohumeral dystrophy'],
     group: 'Facioscapuloumeral (FSHD)',
-    gene: 'D4Z4 / DUX4 (4q35)',
-    protein: 'DUX4 (expressão tóxica aberrante em músculo maduro)',
+    subType: 'FSHD1 (Contração D4Z4 4q35) / FSHD2 (Mutações SMCHD1/DNMT3B)',
+    gene: 'DUX4 (4q35) / SMCHD1 (18p11.32)',
+    protein: 'DUX4 (Fator de transcrição embrionário tóxico)',
     inheritance: 'Autossômica Dominante',
-    onsetAge: 'Adolescência ou segunda década de vida (10 a 20 anos)',
-    affectedSystems: ['Musculoesquelético (Face, Ombro, Braço e Abdômen)', 'Auditivo (Retinopatia/Hipoacusia ocasional)'],
-    summary: 'Caracterizada por assimetria muscular marcante afetando inicialmente a musculatura facial, os fixadores da escápula e a porção anterior dos braços.',
-    overview: 'A FSHD1 é a terceira distrofia muscular mais prevalente em adultos. É causada pela contração do número de repetições D4Z4 no cromossomo 4q35 associada a um alelo permissivo. Isso resulta no desrelaxamento epigenético e expressão ectópica tóxica do fator de transcrição DUX4 nas fibras musculares adultas.',
-    classification: 'Distrofia Facioscapuloumeral (CID-10 G71.0).',
+    onsetAge: 'Segunda década de vida (15 a 30 anos)',
+    affectedSystems: ['Músculos da face', 'Cintura escapular', 'Fixadores da escápula', 'Dorsiflexores do pé'],
+    summary: 'Terceira forma mais comum de distrofia muscular. Caracteriza-se por fraqueza assimétrica da musculatura facial, ombros e braços, com proeminência de escápula alada.',
+    overview: 'A FSHD afeta a musculatura imitando assimetria muscular. Inicialmente compromete a capacidade de assobiar, fechar completamente os olhos durante o sono e elevar os braços acima da cabeça.',
+    classification: 'FSHD1 (95% dos casos, desrepressão epigenética por contração de repetições D4Z4 no 4q35) e FSHD2 (5%, mutações no gene SMCHD1).',
+    pathophysiology: 'A hipometilação da região D4Z4 permite a expressão inadequada do gene embrionário DUX4 nos miócitos adultos, desencadeando cascatas apoptóticas e resposta imune inflamatória destrutiva.',
     signsAndSymptoms: [
-      'Fraqueza facial assimétrica (dificuldade para assobiar, inflar as bochechas ou fechar os olhos completamente durante o sono).',
-      'Escápula alada proeminente e inclinação dos ombros para frente.',
-      'Dificuldade para elevar os braços acima da linha dos ombros.',
-      'Fraqueza da musculatura abdominal (sinal de Beevor positivo) e hiperlordose.',
-      'Comprometimento assimétrico dos dorsiflexores do pé (pé caído).'
+      'Fraqueza facial assimétrica (dificuldade para sorrir, assobiar ou inflar bochechas)',
+      'Escápula alada assimétrica ("scapular winging")',
+      'Dificuldade para erguer os braços acima da linha dos ombros',
+      'Queda de pé ("foot drop") por fraqueza do tibial anterior',
+      'Assimetria peitoral visual'
     ],
-    cardiacManifestations: 'Arritmias supraventriculares ocasionais. Monitoramento anual com ECG.',
-    respiratoryManifestations: 'Insuficiência respiratória rara, limitada a cerca de 10% dos pacientes com doença avançada.',
-    orthopedicManifestations: 'Subluxação de ombro e dor decorrente da instabilidade escapular.',
+    cardiacManifestations: 'Arritmias supraventriculares leves em uma minoria de casos.',
+    respiratoryManifestations: 'Insuficiência respiratória em cerca de 10% dos casos graves.',
+    orthopedicManifestations: 'Hiperlordose e instabilidade articular escapulotorácica.',
     diagnosisAndTests: [
-      'Teste Genético Específico para FSHD: Análise por Southern Blot ou Bionano Genomics para contagem de repetições D4Z4 (1 a 10 repetições confirmam FSHD1).',
-      'CK sérica normal ou discretamente elevada (2 a 5 vezes).'
+      'CK normal a moderadamente elevada (2 a 5 vezes o normal)',
+      'Exame Genético de Bloting / Southern Blotting ou Bionano optical mapping para contagem de repetições D4Z4',
+      'Sequenciamento de SMCHD1 em suspeita de FSHD2'
     ],
+    differentialDiagnosis: ['Miopatia de Cinturas LGMD-R1', 'Síndrome de Poland', 'Miopatia mitocondrial'],
     treatmentsAndManagement: [
-      'Fisioterapia motora focada em estabilização funcional da cintura escapular.',
-      'Cirurgia de fixação escapulotorácica em casos selecionados para recuperar a abdução do armo.',
-      'Uso de órteses AFO para pé caído.'
+      'Cirurgia de fixação da escápula (escapulopexia) em casos selecionados para recuperar elevação do braço',
+      'Fisioterapia para fortalecimento e controle de dor miofascial',
+      'Acompanhamento auditivo (telangiectasias retinianas / Doença de Coats associada)'
     ],
-    approvedTherapies: ['Tratamento sintomático e fisioterápico.'],
-    ongoingResearch: 'Ensaios clínicos avançados de fase III investigando inibidores direcionados da expressão da proteína tóxica DUX4 (como o Losmapimod) e terapias de RNA antissentido.',
+    approvedTherapies: ['Manejo sintomático e reabilitação.'],
+    ongoingResearch: 'Inibidores de DUX4 por p38 MAPK quinases, oligonucleotídeos antissemânticos (ASOs) e anticorpos monoclonais.',
     faqs: [
       {
-        question: 'Por que a FSHD frequentemente apresenta sintomas assimétricos?',
-        answer: 'A expressão do gene tóxico DUX4 ocorre de forma estocástica e pontual nas fibras musculares, fazendo com que um lado do corpo (ex: ombro direito) possa ser consideravelmente mais afetado que o outro.'
+        question: 'A FSHD afeta ambos os lados do corpo da mesma maneira?',
+        answer: 'Não. Uma das marcas registradas da FSHD é a assimetria: um lado da face ou um ombro pode ser significativamente mais fraco que o outro.'
       }
     ],
     references: [
-      {
-        title: 'FSHD Society Clinical Guidelines',
-        source: 'FSHD Society',
-        url: 'https://www.fshdsociety.org'
-      }
+      { title: 'Facioscapulohumeral Muscular Dystrophy - GeneReviews', source: 'NIH', url: 'https://www.ncbi.nlm.nih.gov/books/NBK1443/' }
     ],
-    lastReviewed: '2026-08-05'
+    lastReviewed: '2026-08-04'
   },
   {
     slug: 'dm1-steinert',
-    name: 'Distrofia Miotônica Tipo 1 (Steinert)',
-    shortName: 'DM1 / Steinert',
-    synonyms: ['Doença de Steinert', 'DM1', 'Myotonic Dystrophy Type 1'],
+    name: 'Distrofia Muscular Miotônica do Tipo 1 (Doença de Steinert)',
+    shortName: 'DM1',
+    synonyms: ['Doença de Steinert', 'Myotonic Dystrophy Type 1', 'DM1'],
     group: 'Miotônica (DM)',
+    subType: 'Expansão de Repetições CTG no gene DMPK',
     gene: 'DMPK (19q13.32)',
-    protein: 'Miotonina Proteína Quinase (expansão CTG)',
+    protein: 'Miotonina proteico-quinase (DMPK)',
     inheritance: 'Autossômica Dominante',
-    onsetAge: 'Variável (Congênita, Infantil, Adulto [20-40 anos] ou Tardia)',
-    affectedSystems: ['Musculoesquelético', 'Miotonia', 'Cardíaco (Condução)', 'Endócrino', 'SNC', 'Catarata'],
-    summary: 'Doença multissistêmica caracterizada por miotonia (dificuldade de relaxamento muscular), fraqueza distal e alterações cardíacas e endócrinas.',
-    overview: 'A Distrofia Miotônica Tipo 1 (DM1) é a distrofia muscular mais comum em adultos de origem europeia. É uma doença de expansão de repetições de nucleotídeos CTG no gene DMPK. O RNA mutado expandido acumula-se no núcleo celular, sequestrando proteínas de splicing como a MBNL1 e causando alteração no processamento de múltiplos pré-mRNAs no organismo.',
-    classification: 'Distrofia Miotônica (CID-10 G71.1).',
+    onsetAge: 'Adulta (20-40 anos) ou Congênita (em recém-nascidos de mães afetadas)',
+    affectedSystems: ['Músculo esquelético', 'Miócardio/Sistema de Condução', 'Olhos (catarata precoce)', 'Sistema Endócrino', 'SNC'],
+    summary: 'A distrofia muscular mais comum em adultos. Caracteriza-se por miotonia (dificuldade de relaxamento muscular pós-contração), fraqueza distal e comprometimento multissistêmico.',
+    overview: 'A DM1 é uma doença multissistêmica por expansão instável de nucleotídeos. Além da miotonia (ex: incapacidade de soltar a mão após um aperto de mão), apresenta catarata em idade precoce, calvície frontal em homens e bloqueio de condução cardíaca.',
+    classification: 'Doença de expansão trinucleotídica CTG (OMIM #160900). Forma congênita ocorre com repetições >1.000 CTG.',
+    pathophysiology: 'O transcrito de RNA mutado contendo repetições CUG expandidas acumula-se em focos nucleares celulares, sequestrando fatores de splicing alternativo (MBNL1), alterando múltiplos canais iônicos (CLCN1 e SCN5A).',
     signsAndSymptoms: [
-      'Miotonia de preensão (dificuldade para soltar a mão após um aperto firme ou segurar uma ferramenta).',
-      'Fraqueza muscular distal (mãos, pés) e facial (ptose palpebral, frouxidão da mandíbula).',
-      'Catarata precoce (antes dos 50 anos).',
-      'Sonolência excessiva diurna, fadiga e alterações do sono.',
-      'Calvície frontal precoce em homens e alterações endócrinas (diabetes, hipotireoidismo).'
+      'Miotonia de ação e de percussão (dificuldade de relaxar a musculatura da mão)',
+      'Ptose palpebral bilateral e dolicofacia (fácie miotópica alongada)',
+      'Fraqueza distal de flexores dos dedos e dorsiflexores do pé',
+      'Sonolência diurna excessiva e fadiga central',
+      'Catarata iridescente precoce (<40 anos)'
     ],
-    cardiacManifestations: 'Alto risco de bloqueios de condução atrioventricular e arritmias ventriculares graves. Holter e ECG anuais indispensáveis; necessidade frequente de implante de marcapasso ou CDI preventivo.',
-    respiratoryManifestations: 'Apneia obstrutiva do sono e fraqueza dos músculos respiratórios. Indicação frequente de BiPAP.',
-    orthopedicManifestations: 'Deformidade de pé caído e contraturas distais nas mãos.',
+    cardiacManifestations: 'Bloqueio atrioventricular (BAV de 1º a 3º grau), arritmias ventriculares e morte súbita. Eletrocardiograma anual obrigatório.',
+    respiratoryManifestations: 'Hipoventilação alveolar central e fraqueza diafragmática com apneia do sono.',
+    orthopedicManifestations: 'Pé caído por fraqueza distal.',
     diagnosisAndTests: [
-      'Teste Genético de PCR / Southern Blot para expansão da repetição CTG no gene DMPK (> 50 repetições confirma o diagnóstico).',
-      'Eletromiografia (EMG): presença de descargas miotônicas ("som de avião mergulhador").'
+      'CK normal a levemente elevada',
+      'Teste Genético de PCR para expansão de repetições CTG no gene DMPK',
+      'Eletromiografia (EMG): Demonstra descargas miotônicas características ("som de bombardeiro mergulhador")',
+      'ECG e Holter 24h anuais'
     ],
+    differentialDiagnosis: ['Distrofia Miotônica Tipo 2 (DM2/PROMM)', 'Miotonia Congênita de Thomsen/Becker'],
     treatmentsAndManagement: [
-      'Monitoramento cardiológico profilático rigoroso (principal causa de mortalidade precoce).',
-      'Uso de Mexiletina para alívio sintomático da miotonia muscular incapacitante.',
-      'Modafinila ou Solriamfetol para tratamento da sonolência excessiva diurna.',
-      'Cirurgia de catarata e suporte endócrino.'
+      'Monitoramento cardiológico rigoroso com indicação de marca-passo se PR >240ms ou BAV',
+      'Alerta médico anestésico (contraindicação estrita de succinilcolina)',
+      'Mexiletina para controle de miotonia sintomática grave'
     ],
-    approvedTherapies: ['Tratamento de suporte multissistêmico orientado.'],
-    ongoingResearch: 'Terapias de oligonucleotídeos antissentido (ASO) para degradação seletiva do RNA mutado tóxico do gene DMPK.',
+    approvedTherapies: ['Mexiletina para miotonia (aprovada EMA/FDA). Manejo multidisciplinar.'],
+    ongoingResearch: 'Oligonucleotídeos antissemânticos para degradação do RNA CUG tóxico acumulado no núcleo.',
     faqs: [
       {
-        question: 'O que é o fenômeno da antecipação genética na DM1?',
-        answer: 'A repetição CTG tende a se expandir ao ser transmitida para as gerações seguintes, especialmente por via materna. Isso significa que filhos de mães afetadas podem apresentar a doença em idade mais jovem e com sintomas mais severos (forma congênita).'
+        question: 'O que é o fenômeno da miotonia no dia a dia?',
+        answer: 'É a incapacidade temporária do músculo de relaxar após uma contração voluntária. Por exemplo, ao segurar uma maçaneta ou cumprimentar alguém com aperto de mão, o paciente leva vários segundos para conseguir abrir os dedos.'
       }
     ],
     references: [
-      {
-        title: 'Consensus-based care recommendations for adults with myotonic dystrophy type 1',
-        source: 'Neurology (MDF / Ashizawa et al.)',
-        url: 'https://www.myotonic.org'
-      }
+      { title: 'Myotonic Dystrophy Type 1 - GeneReviews', source: 'NIH', url: 'https://www.ncbi.nlm.nih.gov/books/NBK1165/' }
     ],
-    lastReviewed: '2026-08-05'
+    lastReviewed: '2026-08-04'
   },
   {
-    slug: 'dm2',
-    name: 'Distrofia Miotônica Tipo 2',
-    shortName: 'DM2 / PROMM',
-    synonyms: ['PROMM', 'Miopatia Miotônica Proximal'],
-    group: 'Miotônica (DM)',
-    gene: 'CNBP / ZNF9 (3q21.3)',
-    protein: 'Proteína de ligação a ácido nucleico celular (expansão CCTG)',
-    inheritance: 'Autossômica Dominante',
-    onsetAge: 'Vida adulta (30 a 50+ anos)',
-    affectedSystems: ['Musculoesquelético (Proximal)', 'Miotonia', 'Cardíaco', 'Catarata'],
-    summary: 'Forma multissistêmica moderada caracterizada por fraqueza predominantemente PROXIMAL (coxas e quadris), miotonia e dor muscular prolongada.',
-    overview: 'A DM2 é causada por uma expansão do tetra-nucleotídeo CCTG no intron 1 do gene CNBP. Embora compartilhe o mecanismo de toxicidade do RNA com a DM1, a DM2 apresenta curso clínico mais brando, sem forma congênita identificada e com acometimento preferencialmente proximal.',
-    classification: 'Distrofia Miotônica Tipo 2 (CID-10 G71.1).',
-    signsAndSymptoms: [
-      'Dores musculares difusas (mialgias) frequentes e persistentes.',
-      'Fraqueza proximal em quadríceps e flexores do quadril.',
-      'Miotonia de preensão mais leve que na DM1.',
-      'Catarata subcapsular posterior precoce.'
-    ],
-    cardiacManifestations: 'Distúrbios de condução cardíaca menos frequentes e mais moderados que na DM1, exigindo ECG bienal.',
-    respiratoryManifestations: 'Raramente afetada.',
-    orthopedicManifestations: 'Hipertrofia ou atrofia discreta de musculatura proximal.',
-    diagnosisAndTests: [
-      'Teste de PCR com amplificação por primer repetido para o gene CNBP (expansão CCTG).',
-      'Eletromiografia demonstrando miotonia subclínica.'
-    ],
-    treatmentsAndManagement: [
-      'Manejo da dor neuropática e muscular com analgésicos e moduladores.',
-      'Exercícios aeróbicos de impacto moderado e acompanhamento cardiológico.'
-    ],
-    approvedTherapies: ['Tratamento de suporte multissistêmico.'],
-    ongoingResearch: 'Estudos de alvos terapêuticos de splicing idênticos aos da DM1.',
-    faqs: [
-      {
-        question: 'Existe forma congênita na DM2?',
-        answer: 'Não. Diferente da DM1, a DM2 não se manifesta ao nascimento nem apresenta o fenômeno de antecipação grave por via materna.'
-      }
-    ],
-    references: [
-      {
-        title: 'Myotonic Dystrophy Type 2 Clinical Resources',
-        source: 'Myotonic Dystrophy Foundation (MDF)',
-        url: 'https://www.myotonic.org/about-dm/myotonic-dystrophy-type-2'
-      }
-    ],
-    lastReviewed: '2026-08-05'
-  },
-  {
-    slug: 'edmd1',
-    name: 'Distrofia Muscular de Emery-Dreifuss Tipo 1',
-    shortName: 'EDMD1',
-    synonyms: ['EDMD1', 'Emery-Dreifuss ligada ao X', 'Emerinopatia'],
+    slug: 'emery-dreifuss',
+    name: 'Distrofia Muscular de Emery-Dreifuss',
+    shortName: 'EDMD',
+    synonyms: ['EDMD1', 'EDMD2', 'Laminopatia cardíaca com contraturas'],
     group: 'Emery-Dreifuss (EDMD)',
-    gene: 'EMD (Xq28)',
-    protein: 'Emerina (proteína do envelope nuclear)',
+    subType: 'EDMD1 (Ligada ao X / EMD) ou EDMD2 (Autossômica / LMNA)',
+    gene: 'EMD (Xq28) ou LMNA (1q22)',
+    protein: 'Emerina (EMD) ou Laminas A/C (LMNA)',
     inheritance: 'Ligada ao X Recessiva',
-    onsetAge: 'Primeira infância ou adolescência (5 a 15 anos)',
-    affectedSystems: ['Musculoesquelético', 'Articular (Contraturas precoces)', 'Cardíaco (Nó Sinusal e Condução)'],
-    summary: 'Caracterizada pela tríade clássica: contraturas articulares precoces, fraqueza umeroperoneal progressiva e cardiopatia grave com distúrbios de condução.',
-    overview: 'A EDMD1 é uma envelopatia nuclear decorrente de mutações no gene EMD, levando à perda da proteína emerina da membrana nuclear interna. A falta de emerina causa instabilidade mecânica nas células submetidas a estresse contrátil, especialmente miócitos cardíacos e esqueléticos.',
-    classification: 'Distrofia Muscular de Emery-Dreifuss (CID-10 G71.0).',
+    onsetAge: 'Infância a adolescência (5 a 15 anos)',
+    affectedSystems: ['Músculo esquelético', 'Sistema de condução cardíaco', 'Articulações (cotovelos e tendão de Aquiles)'],
+    summary: 'Caracterizada pela tríade de contraturas articulares precoces (cotovelos e tornozelos), fraqueza humeroperoneal e cardiopatia com risco de bloqueio atrioventricular total.',
+    overview: 'A EDMD exige vigilância cardiológica extrema. A limitação articular nos cotovelos e coluna cervical frequentemente surge antes de qualquer fraqueza muscular perceptível.',
+    classification: 'EDMD1 (OMIM #310300) e EDMD2 (OMIM #181350).',
+    pathophysiology: 'Emerina e laminas A/C formam o andaime de sustentação nuclear celular. Sua ausência desestabiliza o núcleo mecânico em tecidos expostos a estresse (músculo e condução cardíaca).',
     signsAndSymptoms: [
-      'Contraturas precoces do tendão de Aquiles, cotovelos e coluna cervical (rigidez de nuca) ANTES de fraqueza muscular significativa.',
-      'Fraqueza muscular de distribuição umeroperoneal (bíceps/tríceps nos braços e peroneais nas pernas).',
-      'Marcha nas pontas dos pés por limitação da dorsiflexão do tornozelo.',
-      'Rigidez acentuada da coluna vertebral.'
+      'Contraturas precoces em flexão de cotovelos (incapacidade de estender completamente o braço)',
+      'Rigidez de coluna cervical e dorso',
+      'Fraqueza de distribuição humeroperoneal (bíceps/tríceps e perônios)',
+      'Palpitações e síncopes por bloqueio cardíaco'
     ],
-    cardiacManifestations: 'Comprometimento cardíaco prático inevitável na vida adulta: paralisia atrial, bloqueio AV total e risco de morte súbita. O implante profilático de marcapasso ou CDI é frequentemente vital.',
-    respiratoryManifestations: 'Hipoventilação restritiva em decorrência da deforma da caixa torácica e rigidez da coluna.',
-    orthopedicManifestations: 'Contraturas musculares articulares graves e precoces.',
+    cardiacManifestations: 'Fibrilação atrial, paralisia atrial e bloqueio AV completo. Alta incidência de morte súbita sem marcapasso.',
+    respiratoryManifestations: 'Preservada na maioria até fases avançadas.',
+    orthopedicManifestations: 'Rigidez acentuada de cotovelos e coluna posterior.',
     diagnosisAndTests: [
-      'Sequenciamento genético NGS para o gene EMD.',
-      'Ausência de imunomarcação para emerina em biópsia de pele ou leucócitos sanguíneos.'
+      'CK moderadamente elevada',
+      'Sequenciamento NGS dos genes EMD e LMNA',
+      'ECG e Holter 24h'
     ],
+    differentialDiagnosis: ['CMD COL6', 'FSHD', 'LGMD-R1'],
     treatmentsAndManagement: [
-      'Instalação profilática de marcapasso/CDI orientada por eletrofisiologia.',
-      'Fisioterapia motora diária focada na preservação da mobilidade articular.',
-      'Procedimentos cirúrgicos de liberação de tendões em casos selecionados.'
+      'Implante preventivo de Marca-passo / CDI ao primeiro sinal de alteração no ECG',
+      'Fisioterapia motora de amplitude para cotovelos'
     ],
-    approvedTherapies: ['Manejo cirúrgico, cardiológico e reabilitador conservador.'],
-    ongoingResearch: 'Estudos sobre estabilização da lâmina A/C e rotas de sinalização MAPK.',
+    approvedTherapies: ['Implante de dispositivos cardíacos e reabilitação.'],
+    ongoingResearch: 'Inibidores de quinases e vetores AAV para LMNA.',
     faqs: [
       {
-        question: 'Por que o acompanhamento cardíaco na EDMD é de extrema urgência?',
-        answer: 'Na EDMD, bloqueios cardíacos graves e arritmias podem surgir repentinamente mesmo em indivíduos com fraqueza muscular leve. O monitoramento contínuo evita mortes súbitas cardíacas.'
+        question: 'Qual a complicação mais séria da Distrofia de Emery-Dreifuss?',
+        answer: 'Os bloqueios da condução elétrica do coração. O acompanhamento com cardiologista e o uso de marca-passo salvam vidas nessa condição.'
       }
     ],
     references: [
-      {
-        title: 'Emery-Dreifuss Muscular Dystrophy Overview',
-        source: 'NINDS / NIH',
-        url: 'https://www.ninds.nih.gov'
-      }
+      { title: 'Emery-Dreifuss Muscular Dystrophy - GeneReviews', source: 'NIH', url: 'https://www.ncbi.nlm.nih.gov/books/NBK1436/' }
     ],
-    lastReviewed: '2026-08-05'
+    lastReviewed: '2026-08-04'
   },
   {
-    slug: 'opmd',
+    slug: 'opmd-oculofaringea',
     name: 'Distrofia Muscular Oculofaríngea',
     shortName: 'OPMD',
-    synonyms: ['OPMD', 'Distrofia Oculofaríngea'],
+    synonyms: ['Oculopharyngeal Muscular Dystrophy', 'OPMD'],
     group: 'Oculofaríngea (OPMD)',
+    subType: 'Expansão de repetição GCN no gene PABPN1',
     gene: 'PABPN1 (14q11.2)',
-    protein: 'Poly(A) Binding Protein Nuclear 1 (expansão GCN)',
+    protein: 'Poly(A) Binding Protein Nuclear 1 (PABPN1)',
     inheritance: 'Autossômica Dominante',
-    onsetAge: 'Quinta ou sexta década de vida (40 a 60+ anos)',
-    affectedSystems: ['Ocular (Ptose palpebral)', 'Digestivo/Bulbar (Disfagia)', 'Musculoesquelético (Proximal leve)'],
-    summary: 'Distrofia de início tardio caracterizada por ptose palpebral bilateral progressiva, dificuldade para engolir (disfagia) e fraqueza proximal leve.',
-    overview: 'A OPMD é uma doença genética dominante causada por uma pequena expansão de repetições de trinucleotídeos (GCN) no gene PABPN1. O acúmulo da proteína mutada forma agregados filamentosos nucleares insolúveis nas células musculares adultas.',
-    classification: 'Distrofia Muscular Oculofaríngea (CID-10 G71.0).',
+    onsetAge: 'Idade adulta avançada (40 a 60 anos)',
+    affectedSystems: ['Músculos elevadores das pálpebras', 'Músculos faríngeos de deglutição', 'Cintura pélvica tardia'],
+    summary: 'Distrofia de início tardio caracterizada por ptose palpebral bilateral e disfagia progressiva para alimentos sólidos e líquidos.',
+    overview: 'A OPMD manifesta-se tipicamente após os 50 anos. Pacientes inclinam a cabeça para trás para enxergar devido à queda das pálpebras (ptose) e relatam engasgos frequentes.',
+    classification: 'Doença de expansão trinucleotídica GCN no PABPN1 (OMIM #164300).',
+    pathophysiology: 'O acúmulo de proteína PABPN1 mutada forma agregados intranucleares filamentares em miócitos faríngeos e oculares, induzindo apoptose.',
     signsAndSymptoms: [
-      'Ptose palpebral bilateral progressiva (pálpebras caídas que cobrem a pupila, levando à postura compensatória de inclinar a cabeça para trás).',
-      'Disfagia progressiva para alimentos sólidos e posteriormente líquidos.',
-      'Engasgos frequentes e voz anasalada.',
-      'Fraqueza proximal leve nos quadris e ombros na evolução tardia.'
+      'Ptose palpebral bilateral progressiva',
+      'Disfagia para sólidos e posteriormente para líquidos',
+      'Voz anasalada',
+      'Fraqueza proximal de membros inferiores em fases tardias'
     ],
-    cardiacManifestations: 'Preservado.',
-    respiratoryManifestations: 'Risco de pneumonia por aspiração secundária à disfagia grave.',
-    orthopedicManifestations: 'Inclinamento compensatório de coluna cervical.',
+    cardiacManifestations: 'Ausente.',
+    respiratoryManifestations: 'Risco de pneumonia por aspiração secundária à disfagia.',
+    orthopedicManifestations: 'Inexistentes.',
     diagnosisAndTests: [
-      'Teste Genético Específico por PCR/Sequenciamento do gene PABPN1.',
-      'Videodeglutograma e avaliação fonoaudiológica instrumental.'
+      'CK normal a levemente elevada',
+      'Teste Genético para expansão GCN no gene PABPN1',
+      'Videodeglutograma para avaliação de disfagia'
     ],
+    differentialDiagnosis: ['Miastenia Gravis', 'Miopatia mitocondrial (CPEO)', 'Esclerose Lateral Amiotrófica (ELA)'],
     treatmentsAndManagement: [
-      'Acompanhamento fonoaudiológico intensivo para reabilitação da deglutição.',
-      'Cirurgia de correção de ptose palpebral (blefaroplastia/suspensão ao frontal).',
-      'Dilatação cricofaríngea ou miotomia para disfagia severa.',
-      'Adaptação de consistência alimentar.'
+      'Cirurgia de correção de ptose palpebral (blefaroplastia/suspensão frontal)',
+      'Fonoterapia de adaptação da deglutição e espessamento de líquidos',
+      'Miotomia cricofaríngea ou gastrostomia em disfagia severa'
     ],
-    approvedTherapies: ['Manejo fonoaudiológico, cirúrgico e nutricional de suporte.'],
-    ongoingResearch: 'Estudos com terapias de silencing e substituição gênica (AAV-shRNA-PABPN1).',
+    approvedTherapies: ['Cirurgia palpebral, fonoterapia e intervenções nutricionais.'],
+    ongoingResearch: 'Terapia gênica com vetores AAV para silenciamento e substituição do PABPN1.',
     faqs: [
       {
-        question: 'Qual a principal complicação da OPMD e como preveni-la?',
-        answer: 'A principal complicação é a pneumonia por aspiração devido à disfagia. Ela é prevenida com exercícios fonoaudiológicos, adequação da consistência dos alimentos e intervenções cirúrgicas quando indicadas.'
+        question: 'A OPMD afeta a expectativa de vida?',
+        answer: 'A expectativa de vida é próxima da normal quando a disfagia é adequadamente manejada para prevenir pneumonias por aspiração brônquica.'
       }
     ],
     references: [
-      {
-        title: 'Oculopharyngeal Muscular Dystrophy Guidelines',
-        source: 'MDA / GARD',
-        url: 'https://www.mda.org/disease/oculopharyngeal-muscular-dystrophy'
-      }
+      { title: 'Oculopharyngeal Muscular Dystrophy - GeneReviews', source: 'NIH', url: 'https://www.ncbi.nlm.nih.gov/books/NBK1126/' }
     ],
-    lastReviewed: '2026-08-05'
+    lastReviewed: '2026-08-04'
   }
 ];
 
-// Repositório Helpers
 export function getAllDiseases(): DiseaseDetail[] {
-  return diseasesRepository;
+  return diseasesData;
 }
 
 export function getDiseaseBySlug(slug: string): DiseaseDetail | undefined {
-  return diseasesRepository.find((d) => d.slug === slug);
-}
-
-export function getDiseasesByGroup(group: MedicalGroup): DiseaseDetail[] {
-  return diseasesRepository.filter((d) => d.group === group);
+  return diseasesData.find((d) => d.slug === slug);
 }
 
 export function getAllMedicalGroups(): MedicalGroup[] {
@@ -589,4 +533,8 @@ export function getAllMedicalGroups(): MedicalGroup[] {
     'Emery-Dreifuss (EDMD)',
     'Oculofaríngea (OPMD)'
   ];
+}
+
+export function getDiseasesByGroup(group: MedicalGroup): DiseaseDetail[] {
+  return diseasesData.filter((d) => d.group === group);
 }

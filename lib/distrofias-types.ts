@@ -34,6 +34,7 @@ export interface DiseaseDetail {
   shortName: string;
   synonyms: string[];
   group: MedicalGroup;
+  subType?: string;
   gene: string;
   protein: string;
   inheritance: InheritancePattern;
@@ -42,11 +43,13 @@ export interface DiseaseDetail {
   summary: string;
   overview: string;
   classification: string;
+  pathophysiology: string;
   signsAndSymptoms: string[];
   cardiacManifestations: string;
   respiratoryManifestations: string;
   orthopedicManifestations: string;
   diagnosisAndTests: string[];
+  differentialDiagnosis: string[];
   treatmentsAndManagement: string[];
   approvedTherapies: string[];
   ongoingResearch: string;

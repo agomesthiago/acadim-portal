@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint .",
     "test:qa": "node test_qa_hardened.mjs",
-    "test:qa-dark": "node test_qa_dark_matrix.mjs"
+    "test:qa-dark": "node test_qa_dark_matrix.mjs",
+    "test:qa-regression": "node test_qa_visual_regression.mjs"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.6",
