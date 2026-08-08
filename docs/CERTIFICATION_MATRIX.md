@@ -10,10 +10,10 @@ Este documento estabelece a matriz oficial de Engenharia e Produto do portal **A
 FASE 9 — ROADMAP DE ENGENHARIA E PRODUTO ACADIM
 │
 ├── 9.3 QA Estrutural / Funcional (CI Pipeline) ..... PASS
-├── 9.4 Mobile Runtime Certification ................ PASS CONDICIONAL
+├── 9.4 Mobile Runtime Certification ................ PASS
 │   ├── Light × 9 Viewports ......................... PASS
 │   ├── High Contrast × 9 Viewports ................. PASS
-│   └── Dark × 9 Viewports .......................... PENDING
+│   └── Dark × 9 Viewports .......................... PASS
 ├── 9.5 Accessibility & Reflow Certification ........ PENDING
 ├── 9.6 Editorial, News & Structured Data ........... PENDING
 └── 9.7 Medical Knowledge Base & Taxonomy ........... PENDING
@@ -35,23 +35,14 @@ FASE 9 — ROADMAP DE ENGENHARIA E PRODUTO ACADIM
 | **Gate 8 — Composição Responsiva** | Disposição vertical e sem clipping | **PASS** | Auditado no escopo dos 9 viewports |
 | **Gate 9 — Reflow WCAG 1.4.10** | Ausência de perda de info em 320 CSS px | **PENDING** | Exige auditoria visual de reflow sem rolagens bidimensionais |
 | **Gate 10 — Hardware Físico** | Teste em dispositivos reais iOS/Android | **PENDING** | Aguarda validação em telefones físicos |
-| **Gate 11a — Light × 9 Viewports** | Matriz Light em 9 larguras | **PASS** | Executado e auditado |
-| **Gate 11b — High Contrast × 9 Viewports** | Matriz High Contrast em 9 larguras | **PASS** | Executado e auditado |
-| **Gate 11c — Dark × 9 Viewports** | Matriz Dark em 9 larguras | **PENDING** | Dark foi corrigido unitariamente, falta matriz completa |
+| **Gate 11a — Light × 9 Viewports** | Matriz Light em 9 larguras | **PASS** | Executado e auditado (0 overflow) |
+| **Gate 11b — High Contrast × 9 Viewports** | Matriz High Contrast em 9 larguras | **PASS** | Executado e auditado (0 overflow) |
+| **Gate 11c — Dark × 9 Viewports** | Matriz Dark em 9 larguras | **PASS** | Executado e auditado (0 overflow + screenshots) |
 | **Gate 12 — Interatividade Mobile** | Menus, modais, FAQ toggle, PIX | **PASS** | Auditado com sucesso nos testes interativos DOM |
 
 ---
 
 ## 3. Escopo das Próximas Fases de Produto
-
-### Fase 9.4 (Conclusão) — Mobile Runtime Certification (Dark Theme)
-- Rodar a matriz dos 9 viewports especificamente sob o tema **Dark** para fechar o `Gate 11c`.
-
-### Fase 9.5 — Accessibility & Reflow Certification
-- Conformidade WCAG 1.4.10 (Reflow em 320 CSS px / 400% zoom).
-- Checagem de contraste de cor (mínimo 4.5:1 para texto normal, 3:1 para grande).
-- Navegação por teclado, indicadores visuais de foco e nomes acessíveis computados.
-- Testes com leitores de tela assistivos reais (VoiceOver / TalkBack / NVDA).
 
 ### Fase 9.6 — Editorial, News & Structured Data Certification
 - **Governança Editorial Transparente**: Uso exclusivo do **"Núcleo Editorial ACADIM"** como entidade institucional responsável por curadoria e tradução (sem apresentar pessoas fictícias como médicos/pesquisadores).
@@ -74,3 +65,9 @@ FASE 9 — ROADMAP DE ENGENHARIA E PRODUTO ACADIM
   - Pesquisas Clínicas, Prognóstico, Epidemiologia e Complicações
   - FAQ Específico, Fontes Médicas e Data de Revisão Editorial
 - **Cards da Página Principal**: Índice informativo e claro (nome, grupo/classificação, característica distintiva, herança, faixa de início e link para a página wiki).
+
+### Fase 9.5 — Accessibility & Reflow Certification
+- Conformidade WCAG 1.4.10 (Reflow em 320 CSS px / 400% zoom).
+- Checagem de contraste de cor (mínimo 4.5:1 para texto normal, 3:1 para grande).
+- Navegação por teclado, indicadores visuais de foco e nomes acessíveis computados.
+- Testes com leitores de tela assistivos reais (VoiceOver / TalkBack / NVDA).

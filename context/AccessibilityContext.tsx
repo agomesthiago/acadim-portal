@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export type ThemeMode = 'light' | 'high-contrast';
+export type ThemeMode = 'light' | 'dark' | 'high-contrast';
 export type FontSize = 'normal' | 'large' | 'xlarge';
 
 interface AccessibilityContextType {
@@ -32,7 +32,7 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
     const savedFont = localStorage.getItem('acadim_font') as FontSize;
     const savedMotion = localStorage.getItem('acadim_motion') === 'true';
 
-    if (savedTheme && (savedTheme === 'light' || savedTheme === 'high-contrast')) {
+    if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark' || savedTheme === 'high-contrast')) {
       setThemeState(savedTheme);
       document.documentElement.setAttribute('data-theme', savedTheme);
     } else {
@@ -74,6 +74,7 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme, fontSize]);
 
   const setTheme = (newTheme: ThemeMode) => {

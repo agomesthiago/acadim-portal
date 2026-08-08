@@ -37,6 +37,6 @@ lerna-debug.log*
 
 # Testing & temporary artifacts
 *.zip
-screenshot.png
+screenshot*.png
 capture_screenshot.mjs
 test_*.mjs

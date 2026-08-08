@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Mail, Phone, MapPin, Heart, Send, Check } from 'lucide-react';
 
 interface ContactSectionProps {
@@ -120,7 +121,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenPixModal }
           <nav className="flex gap-4 items-center font-bold" aria-label="Redes Sociais e Políticas">
             <a href="https://www.instagram.com/acadimrj/" target="_blank" rel="noopener noreferrer" className="hover:text-white text-brand-red">Instagram</a>
             <a href="https://www.facebook.com/ACADIMRJ/" target="_blank" rel="noopener noreferrer" className="hover:text-white text-brand-red">Facebook</a>
-            <a href="/distrofias" className="hover:text-white">Tipos de Distrofia</a>
+            <Link href="/distrofias" className="hover:text-white">Enciclopédia de Distrofias</Link>
           </nav>
         </footer>
 

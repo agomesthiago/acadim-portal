@@ -68,14 +68,46 @@ export default function NoticiaPage() {
       url: 'https://acadim.org.br',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://acadim.org.br/assets/logo.png',
+        url: 'https://acadim.org.br/logo.png',
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://acadim.org.br/noticias/${article.slug}`,
     },
+    articleSection: article.category,
+    citation: article.primarySource ? article.primarySource.url : undefined,
+    sourceOrganization: article.primarySource ? {
+      '@type': 'Organization',
+      name: article.primarySource.name,
+      sameAs: article.primarySource.url,
+    } : undefined,
     isAccessibleForFree: true,
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Início',
+        item: 'https://acadim.org.br',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Notícias',
+        item: 'https://acadim.org.br/noticias',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: article.title,
+        item: `https://acadim.org.br/noticias/${article.slug}`,
+      },
+    ],
   };
 
   return (
@@ -83,6 +115,10 @@ export default function NoticiaPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       <HeaderNav onOpenPixModal={() => setIsPixOpen(true)} />

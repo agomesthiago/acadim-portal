@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Target, Eye, HeartHandshake, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
@@ -66,13 +67,13 @@ export const AboutSection: React.FC = () => {
               <p className="text-xs text-slate-600 font-medium leading-relaxed">
                 Conheça as particularidades de cada tipo de distrofia muscular para orientar o acompanhamento multidisciplinar correto.
               </p>
-              <a
+              <Link
                 href="/distrofias"
                 className="inline-flex items-center gap-2 text-sm font-extrabold text-brand-red hover:text-brand-red-hover hover:underline pt-1 transition-colors group"
               >
-                <span>Entenda todas as 10 formas de distrofia</span>
+                <span>Conheça o Catálogo de Distrofias</span>
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
             </div>
           </div>
         </header>
