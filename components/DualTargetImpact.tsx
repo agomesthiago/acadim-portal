@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Check, ArrowRight, Heart } from 'lucide-react';
+import { Check, ArrowRight, Heart, Users } from 'lucide-react';
 import { usePix } from '@/context/PixContext';
+import { SectionBadge } from './SectionBadge';
 
 export const DualTargetImpact: React.FC = () => {
   const { openPixModal } = usePix();
@@ -10,8 +11,9 @@ export const DualTargetImpact: React.FC = () => {
   return (
     <section id="impacto" className="py-24 lg:py-32 bg-white relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div>
+            <SectionBadge icon={Users} text="Rede de Apoio & Impacto" variant="red" className="mb-4" />
             <h2 className="font-display font-black text-4xl sm:text-5xl text-[#0B132B]">
               Junte-se à nossa <span className="text-[#E31B23]">Rede de Apoio</span>
             </h2>
@@ -25,9 +27,7 @@ export const DualTargetImpact: React.FC = () => {
           {/* Box 1: Portadores */}
           <div className="bg-gradient-to-br from-blue-50 to-sky-100/60 rounded-3xl p-8 sm:p-10 border border-blue-200 shadow-xl flex flex-col justify-between h-full hover:shadow-2xl transition-all">
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#0066CC] text-white text-xs font-bold px-3.5 py-1 rounded-full uppercase mb-6">
-                Para Portadores & Cuidadores
-              </div>
+              <SectionBadge text="Para Portadores & Cuidadores" variant="blue" className="mb-6" />
               <h3 className="font-display font-black text-3xl text-[#0B132B] mb-4">
                 Precisa de apoio ou orientação?
               </h3>
@@ -65,9 +65,7 @@ export const DualTargetImpact: React.FC = () => {
           {/* Box 2: Investidores */}
           <div className="bg-gradient-to-br from-red-50 to-amber-100/50 rounded-3xl p-8 sm:p-10 border border-red-200 shadow-xl flex flex-col justify-between h-full hover:shadow-2xl transition-all">
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#E31B23] text-white text-xs font-bold px-3.5 py-1 rounded-full uppercase mb-6">
-                Para Doadores & Empresas
-              </div>
+              <SectionBadge text="Para Doadores & Empresas" variant="red" className="mb-6" />
               <h3 className="font-display font-black text-3xl text-[#0B132B] mb-4">
                 Quer investir no impacto social?
               </h3>

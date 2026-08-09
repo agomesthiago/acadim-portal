@@ -1,7 +1,9 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { ShoppingBag, Shirt, Home, Footprints } from 'lucide-react';
+import { SectionBadge } from './SectionBadge';
 
 export const BazarSection: React.FC = () => {
   const items = [
@@ -13,12 +15,9 @@ export const BazarSection: React.FC = () => {
   return (
     <section id="bazar" className="py-20 lg:py-28 bg-surface-inverse text-white relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
           <div>
-            <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full text-xs font-bold text-[#38bdf8] uppercase tracking-wider mb-3">
-              <ShoppingBag className="w-4 h-4" aria-hidden="true" />
-              Bazar Beneficente
-            </div>
+            <SectionBadge icon={ShoppingBag} text="Economia Solidária & Sustentabilidade" variant="white" className="mb-4" />
             <h2 className="font-display font-black text-4xl sm:text-5xl text-white">
               BAZAR <span className="text-gradient-red">ONLINE</span>
             </h2>
@@ -42,12 +41,12 @@ export const BazarSection: React.FC = () => {
                 <h3 className="font-display font-bold text-xl text-white mb-6 leading-snug">
                   {cat.title}
                 </h3>
-                <a
-                  href="#contato"
+                <Link
+                  href="/#contato"
                   className="bg-[#38bdf8] hover:bg-white text-[#0B132B] font-black uppercase text-xs tracking-wider px-8 py-3 rounded-full shadow-lg hover:scale-105 transition-all inline-flex items-center justify-center min-h-[44px]"
                 >
                   ACESSE
-                </a>
+                </Link>
               </article>
             );
           })}

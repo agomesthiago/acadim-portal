@@ -1,5 +1,4 @@
 import React from 'react';
-import { HeaderNav } from '../components/HeaderNav';
 import { NavigationDots } from '../components/NavigationDots';
 import { HeroSection } from '../components/HeroSection';
 import { AboutSection } from '../components/AboutSection';
@@ -8,13 +7,20 @@ import { ServicesSection } from '../components/ServicesSection';
 import { DualTargetImpact } from '../components/DualTargetImpact';
 import { BazarSection } from '../components/BazarSection';
 import { NewsSection } from '../components/NewsSection';
-import { SecondaryNav } from '../components/SecondaryNav';
 import { FAQSection } from '../components/FAQSection';
-import { DonationCTA } from '../components/DonationCTA';
 import { ContactSection } from '../components/ContactSection';
-import { Footer } from '../components/Footer';
+import { InstagramSection } from '../components/InstagramSection';
+import { DonationCTA } from '../components/DonationCTA';
+import { ScrollReveal } from '../components/ScrollReveal';
+
+import { getAllNewsAsync, sortNewsForHero } from '@/lib/news-data';
+
+export const revalidate = 60;
 
 export default async function Home() {
+  const latestNews = await getAllNewsAsync();
+  const heroNews = sortNewsForHero(latestNews);
+
   // Schema.org dados estruturados para SEO
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -40,36 +46,28 @@ export default async function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-surface-inverse">
+    <div className="relative bg-surface-inverse">
       {/* Dados Estruturados JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Header Fixo */}
-      <HeaderNav />
-
       {/* Indicadores Laterais (Dots) */}
       <NavigationDots />
 
-      {/* Container Principal */}
-      <main id="main-content">
-        <HeroSection />
-        <AboutSection />
-        <MascotsSection />
-        <ServicesSection />
-        <DualTargetImpact />
-        <BazarSection />
-        <NewsSection />
-        <SecondaryNav />
-        <FAQSection />
-        <DonationCTA />
-        <ContactSection />
-      </main>
-
-      {/* Rodapé Completo */}
-      <Footer />
+      {/* Seções da Home */}
+      <HeroSection latestNews={heroNews} />
+      <ScrollReveal><AboutSection /></ScrollReveal>
+      <ScrollReveal><MascotsSection /></ScrollReveal>
+      <ScrollReveal><ServicesSection /></ScrollReveal>
+      <ScrollReveal><DualTargetImpact /></ScrollReveal>
+      <ScrollReveal><BazarSection /></ScrollReveal>
+      <ScrollReveal><NewsSection latestNews={latestNews} /></ScrollReveal>
+      <ScrollReveal><FAQSection /></ScrollReveal>
+      <ScrollReveal><ContactSection /></ScrollReveal>
+      <ScrollReveal><InstagramSection /></ScrollReveal>
+      <ScrollReveal><DonationCTA /></ScrollReveal>
     </div>
   );
 }

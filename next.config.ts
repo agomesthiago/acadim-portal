@@ -24,7 +24,7 @@ const securityHeaders = [
   {
     // Restrict browser feature access — camera/mic/geo not needed for this portal
     key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=(), browsing-topics=()',
+    value: 'camera=(), microphone=(), geolocation=()',
   },
   // NOTE: Content-Security-Policy is MANUAL REQUIRED.
   // The app uses dangerouslySetInnerHTML for JSON-LD schema and loads VLibras
@@ -44,8 +44,8 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        // Apply security headers to all routes
-        source: '/(.*)',
+        // Apply security headers to all routes except internal Next.js assets
+        source: '/((?!_next/static|_next/image|favicon.ico).*)',
         headers: securityHeaders,
       },
     ];

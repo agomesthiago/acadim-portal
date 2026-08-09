@@ -1,10 +1,10 @@
 # Governança Editorial - ACADIM
 
-## O Núcleo Editorial ACADIM
+## O Redação ACADIM
 O "Núcleo Editorial de Ciência, Saúde e Cidadania" da Associação Carioca de Distrofia Muscular (ACADIM) é o órgão de comunicação institucional responsável por traduzir a complexidade dos avanços científicos, ensaios clínicos, terapias e direitos no SUS para uma linguagem clara e ética. 
 
 ## Critérios de Publicação
-- Não há publicação de autores ou médicos fictícios. O autor é o *Núcleo Editorial ACADIM* (Curadoria Institucional).
+- Não há publicação de autores ou médicos fictícios. O autor é o *Redação ACADIM* (Curadoria Institucional).
 - Não há promessas de "curas milagrosas".
 - Foco em capacitar pacientes, cuidadores e profissionais de saúde com bases fundamentadas para tomadas de decisão.
 

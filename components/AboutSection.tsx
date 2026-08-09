@@ -3,7 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Target, Eye, HeartHandshake, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Target, Eye, HeartHandshake, CheckCircle2, ArrowRight, Info } from 'lucide-react';
+import { SectionBadge } from './SectionBadge';
 
 export const AboutSection: React.FC = () => {
   const pillars = [
@@ -30,12 +31,7 @@ export const AboutSection: React.FC = () => {
         
         {/* Cabeçalho da Seção */}
         <header className="max-w-4xl mb-12 space-y-4">
-          <div className="flex items-center gap-2">
-            <span className="w-8 h-[3px] bg-brand-red inline-block rounded-full" />
-            <span className="text-xs font-black uppercase tracking-[0.2em] text-brand-red">
-              Sobre a ACADIM
-            </span>
-          </div>
+          <SectionBadge icon={Info} text="Sobre a ACADIM" variant="red" />
           
           <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-text-primary leading-tight">
             Nascida do compromisso inabalável com a vida, a dignidade e o acolhimento.
@@ -69,7 +65,7 @@ export const AboutSection: React.FC = () => {
               </p>
               <Link
                 href="/distrofias"
-                className="inline-flex items-center gap-2 text-sm font-extrabold text-brand-red hover:text-brand-red-hover hover:underline pt-1 transition-colors group"
+                className="inline-flex items-center gap-2 text-sm font-extrabold text-brand-red hover:text-brand-red-hover hover:underline pt-1 transition-colors group min-h-[44px]"
               >
                 <span>Conheça o Catálogo de Distrofias</span>
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

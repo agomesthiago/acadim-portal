@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { ExternalLink, ShieldCheck, BookOpen, AlertCircle } from 'lucide-react';
+import { ShieldCheck, BookOpen, AlertCircle } from 'lucide-react';
 import { PrimarySource } from '@/lib/news-types';
+import { formatDate } from '@/lib/date-utils';
 
 interface SourceCitationProps {
   source: PrimarySource;
@@ -19,7 +20,7 @@ export const SourceCitation: React.FC<SourceCitationProps> = ({ source, creditTe
         </div>
         {source.originalPublishedAt && (
           <span className="text-[11px] font-semibold text-slate-500">
-            Publicado na fonte em: {new Date(source.originalPublishedAt).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
+            Publicado na fonte em: {formatDate(source.originalPublishedAt, { day: '2-digit', month: 'long', year: 'numeric' })}
           </span>
         )}
       </div>
@@ -40,21 +41,14 @@ export const SourceCitation: React.FC<SourceCitationProps> = ({ source, creditTe
       )}
 
       <div className="pt-2 flex items-center justify-between flex-wrap gap-3 text-xs">
-        <a
-          href={source.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 bg-white border border-slate-300 hover:border-brand-blue text-brand-blue font-bold px-3.5 py-2 rounded-xl transition-all shadow-xs hover:shadow-md shrink-0"
-          aria-label={`Acessar publicação original em ${source.name}`}
-        >
-          <BookOpen size={14} />
-          <span>Acessar Publicação Original na Íntegra</span>
-          <ExternalLink size={12} />
-        </a>
+        <div className="flex items-center gap-1.5 text-xs text-slate-500 font-semibold">
+          <BookOpen size={14} className="text-brand-blue" />
+          <span>Atribuição Editorial e Revisão pela Redação ACADIM</span>
+        </div>
 
         <div className="flex items-center gap-1 text-[11px] text-slate-400 font-semibold">
           <AlertCircle size={13} />
-          <span>Link externo verificado pela Redação ACADIM</span>
+          <span>Fonte primária jornalística / institucional</span>
         </div>
       </div>
     </div>

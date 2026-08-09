@@ -45,7 +45,7 @@ FASE 9 — ROADMAP DE ENGENHARIA E PRODUTO ACADIM
 ## 3. Escopo das Próximas Fases de Produto
 
 ### Fase 9.6 — Editorial, News & Structured Data Certification
-- **Governança Editorial Transparente**: Uso exclusivo do **"Núcleo Editorial ACADIM"** como entidade institucional responsável por curadoria e tradução (sem apresentar pessoas fictícias como médicos/pesquisadores).
+- **Governança Editorial Transparente**: Uso exclusivo do **"Redação ACADIM"** como entidade institucional responsável por curadoria e tradução (sem apresentar pessoas fictícias como médicos/pesquisadores).
 - **Ficha Editorial por Notícia**: Título, linha fina, imagem, data de publicação, data de modificação, núcleo editorial, fonte original, autor original, link externo original, resumo, contexto, implicações e fontes complementares.
 - **Dados Estruturados Schema.org (JSON-LD)**: Implementação em Next.js App Router para `NewsArticle` (`headline`, `description`, `image`, `datePublished`, `dateModified`, `author`, `publisher`, `citation`, `sourceOrganization`, `isAccessibleForFree`), `Organization`, `WebSite` e `BreadcrumbList`.
 

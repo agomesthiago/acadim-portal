@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
+import { SectionBadge } from './SectionBadge';
 
 export const FAQSection: React.FC = () => {
   const faqs = [
@@ -23,7 +24,7 @@ export const FAQSection: React.FC = () => {
     },
     {
       q: 'Onde fica localizada a ACADIM?',
-      a: 'Nossa sede fica na cidade do Rio de Janeiro, mas prestamos orientação online e remota para famílias de diversos municípios do estado.',
+      a: 'Nossa sede fica no Rio de Janeiro (Rocha Miranda / Bento Ribeiro), mas prestamos orientação remota para famílias de todo o estado.',
     },
   ];
 
@@ -32,11 +33,9 @@ export const FAQSection: React.FC = () => {
   return (
     <section id="faq" className="py-24 bg-white relative">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
+        <div className="text-center mb-14 space-y-3">
           <div>
-            <span className="text-[#0066CC] text-xs font-black uppercase tracking-widest bg-blue-50 px-4 py-1.5 rounded-full inline-block mb-3">
-              Dúvidas Frequentes
-            </span>
+            <SectionBadge icon={HelpCircle} text="Tire suas Dúvidas" variant="blue" className="mb-3" />
             <h2 className="font-display font-black text-4xl sm:text-5xl text-[#0B132B]">
               Perguntas <span className="text-[#E31B23]">Frequentes</span>
             </h2>

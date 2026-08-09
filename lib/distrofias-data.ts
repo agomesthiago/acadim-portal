@@ -4,6 +4,7 @@ import { DiseaseDetail, MedicalGroup } from './distrofias-types';
 export const diseasesData: DiseaseDetail[] = [
   {
     slug: 'duchenne',
+    cid: 'G71.0',
     name: 'Distrofia Muscular de Duchenne',
     shortName: 'DMD',
     synonyms: ['Distrofinopatia grave', 'Dystrophinopathy - Duchenne type', 'DMD'],
@@ -68,6 +69,7 @@ export const diseasesData: DiseaseDetail[] = [
   },
   {
     slug: 'becker',
+    cid: 'G71.0',
     name: 'Distrofia Muscular de Becker',
     shortName: 'DMB',
     synonyms: ['Distrofinopatia moderada', 'Dystrophinopathy - Becker type', 'DMB'],
@@ -120,6 +122,7 @@ export const diseasesData: DiseaseDetail[] = [
   },
   {
     slug: 'lgmd-r1-calpainopatia',
+    cid: 'G71.0',
     name: 'Distrofia Muscular das Cinturas R1 (Calpainopatia)',
     shortName: 'LGMD-R1 / LGMD2A',
     synonyms: ['LGMD2A', 'Calpainopatia', 'Limb-Girdle Muscular Dystrophy R1', 'LGMD-CAPN3'],
@@ -171,6 +174,7 @@ export const diseasesData: DiseaseDetail[] = [
   },
   {
     slug: 'lgmd-r2-dysferlinopatia',
+    cid: 'G71.0',
     name: 'Distrofia Muscular das Cinturas R2 (Disferlinopatia / Miopatia de Miyoshi)',
     shortName: 'LGMD-R2 / LGMD2B',
     synonyms: ['LGMD2B', 'Disferlinopatia', 'Miopatia de Miyoshi', 'Miopatia Distal de Miyoshi'],
@@ -219,7 +223,8 @@ export const diseasesData: DiseaseDetail[] = [
   },
   {
     slug: 'cmd-lama2-merosina',
-    name: 'Distrofia Muscular Congênita LAMA2-relacionada (Merosina-Negativa)',
+    cid: 'G71.2',
+    name: 'Distrofia Muscular Congênita Deficiente de Merosina (LAMA2)',
     shortName: 'CMD-LAMA2 / MDC1A',
     synonyms: ['Distrofia Muscular Congênita do Tipo 1A', 'MDC1A', 'Merosin-deficient CMD'],
     group: 'Distrofias Musculares Congênitas (CMD)',
@@ -268,7 +273,8 @@ export const diseasesData: DiseaseDetail[] = [
   },
   {
     slug: 'cmd-col6-ullrich-bethlem',
-    name: 'Distrofias Musculares do Colágeno VI (Ullrich e Bethlem)',
+    cid: 'G71.2',
+    name: 'Miopatias Relacionadas ao Colágeno VI (Ullrich/Bethlem)',
     shortName: 'CMD-COL6',
     synonyms: ['Distrofia Muscular Congênita de Ullrich (UCMD)', 'Miopatia de Bethlem', 'COL6-RD'],
     group: 'Distrofias Musculares Congênitas (CMD)',
@@ -317,6 +323,7 @@ export const diseasesData: DiseaseDetail[] = [
   },
   {
     slug: 'fshd-facioescapuloumeral',
+    cid: 'G71.0',
     name: 'Distrofia Muscular Facioescapuloumeral',
     shortName: 'FSHD',
     synonyms: ['FSHD1', 'FSHD2', 'Landouzy-Dejerine', 'Facioscapulohumeral dystrophy'],
@@ -367,7 +374,8 @@ export const diseasesData: DiseaseDetail[] = [
   },
   {
     slug: 'dm1-steinert',
-    name: 'Distrofia Muscular Miotônica do Tipo 1 (Doença de Steinert)',
+    cid: 'G71.1',
+    name: 'Distrofia Miotônica tipo 1 (Doença de Steinert)',
     shortName: 'DM1',
     synonyms: ['Doença de Steinert', 'Myotonic Dystrophy Type 1', 'DM1'],
     group: 'Miotônica (DM)',
@@ -418,6 +426,7 @@ export const diseasesData: DiseaseDetail[] = [
   },
   {
     slug: 'emery-dreifuss',
+    cid: 'G71.0',
     name: 'Distrofia Muscular de Emery-Dreifuss',
     shortName: 'EDMD',
     synonyms: ['EDMD1', 'EDMD2', 'Laminopatia cardíaca com contraturas'],
@@ -466,6 +475,7 @@ export const diseasesData: DiseaseDetail[] = [
   },
   {
     slug: 'opmd-oculofaringea',
+    cid: 'G71.0',
     name: 'Distrofia Muscular Oculofaríngea',
     shortName: 'OPMD',
     synonyms: ['Oculopharyngeal Muscular Dystrophy', 'OPMD'],

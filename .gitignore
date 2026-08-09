@@ -40,3 +40,19 @@ lerna-debug.log*
 screenshot*.png
 capture_screenshot.mjs
 test_*.mjs
+
+# CMS Local Development Data (NOT for production persistence)
+data/custom-news.json
+
+# Scratch / local-only utilities (audits, manual exports, test artifacts)
+scratch/
+scripts/
+test-results/
+
+# Vercel local binding (linked project config, never commit)
+.vercel/
+
+# OS / shell artifacts
+$null
+Thumbs.db
+Desktop.ini

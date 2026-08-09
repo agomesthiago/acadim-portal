@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Heart, Stethoscope, Scale, Users, GraduationCap, Shield } from 'lucide-react';
+import { SectionBadge } from './SectionBadge';
 
 export const ServicesSection: React.FC = () => {
   const services = [
@@ -40,11 +41,9 @@ export const ServicesSection: React.FC = () => {
   return (
     <section id="servicos" className="py-24 lg:py-32 bg-slate-50 relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div>
-            <span className="text-[#0066CC] text-xs font-black uppercase tracking-widest bg-blue-100 px-4 py-1.5 rounded-full inline-block mb-4">
-              Como Ajudamos
-            </span>
+            <SectionBadge icon={Heart} text="Como Ajudamos" variant="blue" className="mb-4" />
             <h2 className="font-display font-black text-4xl sm:text-5xl text-[#0B132B]">
               Pilares de Atuação da <span className="text-[#0066CC]">ACADIM</span>
             </h2>

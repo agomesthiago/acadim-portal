@@ -5,6 +5,8 @@ import { AccessibilityProvider } from '@/context/AccessibilityContext';
 import { PixProvider } from '@/context/PixContext';
 import { AccessibilityToolbar } from '@/components/AccessibilityToolbar';
 import { SkipLink } from '@/components/SkipLink';
+import { HeaderNav } from '@/components/HeaderNav';
+import { Footer } from '@/components/Footer';
 import { VLibras } from '@/components/VLibras';
 
 const figtree = Figtree({ 
@@ -49,19 +51,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`scroll-smooth ${figtree.variable}`}>
-      <body className={`${figtree.className} antialiased`}>
+      <body className={`${figtree.className} antialiased min-h-screen flex flex-col justify-between bg-surface-subtle text-text-primary`}>
         <AccessibilityProvider>
           <PixProvider>
             {/* Atalho de Teclado Ir para Conteúdo */}
             <SkipLink />
 
-            {/* Conteúdo da Aplicação */}
-            {children}
+            {/* Header Institucional Global Persistente */}
+            <HeaderNav />
 
-            {/* Ferramentas de Acessibilidade Flutuantes (Alto Contraste, Fontes, Modos) */}
+            {/* Conteúdo Principal da Aplicação */}
+            <main id="main-content" className="flex-grow">
+              {children}
+            </main>
+
+            {/* Rodapé Institucional Global */}
+            <Footer />
+
+            {/* Ferramentas de Acessibilidade Flutuantes */}
             <AccessibilityToolbar />
 
-            {/* Widget Oficial de LIBRAS (Governo Federal / VLibras) */}
+            {/* Widget Oficial de LIBRAS */}
             <VLibras />
           </PixProvider>
         </AccessibilityProvider>

@@ -10,7 +10,7 @@ interface PixModalProps {
 
 export const PixModal: React.FC<PixModalProps> = ({ isOpen, onClose }) => {
   const [copied, setCopied] = useState(false);
-  const pixKey = "05.123.456/0001-89";
+  const pixKey = "02.916.982/0001-91";
 
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -78,8 +78,21 @@ export const PixModal: React.FC<PixModalProps> = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(pixKey);
+  const handleCopy = async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(pixKey);
+      } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = pixKey;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+    } catch {
+      // Fallback
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -160,7 +173,7 @@ export const PixModal: React.FC<PixModalProps> = ({ isOpen, onClose }) => {
 
           <div className="text-[0.75rem] text-slate-500 text-center leading-relaxed">
             Razão Social: Associação Carioca de Distrofia Muscular<br />
-            Banco do Brasil | Agência: 1234-5 | C/C: 56789-0
+            Banco Itaú | Chave Pix CNPJ: 02.916.982/0001-91
           </div>
         </div>
 

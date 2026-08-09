@@ -31,7 +31,7 @@
 Existem dois arquivos principais de dados médicos, o que causa uma leve sobreposição estrutural:
 1. `lib/distrofias-data.ts`: Contém o modelo `DiseaseDetail` com informações aprofundadas (herança, gene, fisiopatologia, fontes) e dita a estrutura da rota `/distrofias/[slug]`.
 2. `lib/conditions-data.ts`: Define a interface `Subtype` e `Condition`. Parecem dados criados para agrupamento na UI (ex: `<ConditionSection />`) destacando gravidade e sintomas pontuais.
-3. `lib/news-data.ts`: Contém a lista de publicações, artigos e autores do "Núcleo Editorial ACADIM".
+3. `lib/news-data.ts`: Contém a lista de publicações, artigos e autores do "Redação ACADIM".
 
 ## Context
 - `AccessibilityContext.tsx`: Gerencia os temas (light, dark, high-contrast), tamanho de fonte e navegação com foco reduzido (reduced motion). Há mapeamento global de atalhos de teclado (Alt+C, Alt++, etc).

@@ -3,32 +3,33 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, Clock, ArrowRight } from 'lucide-react';
-import { getAllNews } from '@/lib/news-data';
+import { Calendar, Clock, ArrowRight, Newspaper } from 'lucide-react';
+import { formatDate } from '@/lib/date-utils';
+import { SectionBadge } from './SectionBadge';
+import { NewsArticle } from '@/lib/news-types';
 
-export const NewsSection: React.FC = () => {
-  const articles = getAllNews().slice(0, 3); // Exibe os 3 mais recentes
+interface NewsSectionProps {
+  latestNews: NewsArticle[];
+}
+
+export const NewsSection: React.FC<NewsSectionProps> = ({ latestNews }) => {
+  const articles = latestNews.slice(0, 3); // Exibe os 3 mais recentes
 
   return (
-    <section id="noticias" className="bg-slate-50 text-text-primary py-20 border-t border-slate-200">
+    <section id="noticias" className="bg-surface-subtle text-text-primary py-20 border-t border-border-subtle">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
         {/* Cabeçalho da Seção */}
         <header className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-3xl space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="w-8 h-[3px] bg-brand-red inline-block rounded-full" />
-              <span className="text-xs font-black uppercase tracking-[0.2em] text-brand-red">
-                Informação & Conscientização
-              </span>
-            </div>
+            <SectionBadge icon={Newspaper} text="Notícias & Ciência" variant="red" />
 
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-text-primary leading-tight">
-              Notícias, Ciência & Conquistas no SUS.
+            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-text-primary leading-tight">
+              Acompanhe nosso trabalho.
             </h2>
 
-            <p className="text-base text-slate-700 leading-relaxed font-normal">
-              Fique por dentro das atualizações sobre pesquisas clínicas, direitos das famílias e eventos promovidos pela ACADIM.
+            <p className="text-sm text-text-secondary leading-relaxed font-normal">
+              Atualizações sobre pesquisas, direitos e eventos da ACADIM.
             </p>
           </div>
 
@@ -47,11 +48,11 @@ export const NewsSection: React.FC = () => {
           {articles.map((article) => (
             <article
               key={article.slug}
-              className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-border-default transition-all flex flex-col justify-between overflow-hidden group"
+              className="bg-surface-default rounded-2xl border border-border-default shadow-sm hover:shadow-xl hover:border-brand-red transition-all flex flex-col justify-between overflow-hidden group"
             >
               <div>
                 {/* Imagem de Capa */}
-                <div className="relative w-full h-48 bg-slate-100 overflow-hidden">
+                <div className="relative w-full h-48 bg-surface-subtle overflow-hidden">
                   <Image
                     src={article.coverImage}
                     alt={article.imageAlt}
@@ -65,17 +66,13 @@ export const NewsSection: React.FC = () => {
 
                 {/* Conteúdo */}
                 <div className="p-6 space-y-3">
-                  <div className="flex items-center gap-4 text-xs font-semibold text-slate-400">
+                  <div className="flex items-center gap-4 text-xs font-semibold text-text-tertiary">
                     <span className="flex items-center gap-1.5">
                       <Calendar size={13} className="text-brand-red" aria-hidden="true" />
-                      {new Date(article.publishedAt).toLocaleDateString('pt-BR', {
-                        day: '2-digit',
-                        month: 'short',
-                        year: 'numeric'
-                      })}
+                      {formatDate(article.publishedAt)}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Clock size={13} className="text-slate-400" aria-hidden="true" />
+                      <Clock size={13} className="text-text-tertiary" aria-hidden="true" />
                       {article.readTime}
                     </span>
                   </div>
@@ -84,18 +81,18 @@ export const NewsSection: React.FC = () => {
                     {article.title}
                   </h3>
 
-                  <p className="text-xs text-slate-600 leading-relaxed font-medium line-clamp-3">
+                  <p className="text-xs text-text-secondary leading-relaxed font-medium line-clamp-3">
                     {article.excerpt}
                   </p>
                 </div>
               </div>
 
               {/* Link de Leitura */}
-              <div className="p-6 pt-0 border-t border-slate-100 mt-4">
+              <div className="p-6 pt-0 border-t border-border-subtle mt-4">
                 <Link
                   href={`/noticias/${article.slug}`}
                   className="inline-flex items-center gap-2 text-xs font-black text-brand-red hover:underline pt-3 min-h-[44px]"
-                  aria-label={`Ler notícia completa: ${article.title}`}
+                  aria-label={`Ler matéria completa: ${article.title}`}
                 >
                   <span>Ler matéria completa</span>
                   <ArrowRight size={14} aria-hidden="true" />

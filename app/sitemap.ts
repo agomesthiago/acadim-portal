@@ -1,12 +1,12 @@
 import { MetadataRoute } from 'next';
 import { getAllDiseases } from '@/lib/distrofias-data';
-import { getAllNews } from '@/lib/news-data';
+import { getAllNewsAsync } from '@/lib/news-data';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://acadim.org.br';
 
   const diseases = getAllDiseases();
-  const news = getAllNews();
+  const news = await getAllNewsAsync();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {

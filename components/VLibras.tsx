@@ -32,9 +32,10 @@ export const VLibras: React.FC = () => {
   }, []);
 
   return (
-    <div className="enabled">
-      <div className="active" />
-      <div className="vw-plugin-wrapper">
+    // @ts-expect-error VLibras custom attributes
+    <div vw="true" className="enabled">
+      <div vw-access-button="true" className="active" />
+      <div vw-plugin-wrapper="true">
         <div className="vw-plugin-top-wrapper" />
       </div>
     </div>

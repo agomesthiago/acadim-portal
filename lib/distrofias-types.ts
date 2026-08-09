@@ -30,6 +30,7 @@ export interface ScientificReference {
 
 export interface DiseaseDetail {
   slug: string;
+  cid?: string;
   name: string;
   shortName: string;
   synonyms: string[];

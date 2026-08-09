@@ -4,10 +4,16 @@ export type NewsCategory =
   | 'Avanços Científicos'
   | 'Direitos no SUS'
   | 'Eventos ACADIM'
+  | 'Comunicados'
+  | 'Recados'
+  | 'Avisos'
   | 'Histórias de Vida'
   | 'Pesquisa & Ensaios Clínicos'
   | 'Aprovações Terapêuticas'
-  | 'Diretrizes Clínicas & Manejo';
+  | 'Diretrizes Clínicas & Manejo'
+  | 'Outros';
+
+export type ArticleStatus = 'Rascunho' | 'Em revisão' | 'Publicado' | 'Arquivado';
 
 export interface NewsAuthor {
   name: string;

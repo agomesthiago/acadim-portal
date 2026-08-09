@@ -2,17 +2,29 @@
 
 import React, { useState } from 'react';
 import { Heart, Check, Copy } from 'lucide-react';
+import { SectionBadge } from './SectionBadge';
 
 export const DonationCTA: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const pixKey = "02.916.982/0001-91";
 
-  const handleCopy = () => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(pixKey);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 3000);
+  const handleCopy = async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(pixKey);
+      } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = pixKey;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+    } catch {
+      // Fallback para navegadores restritos
     }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 3000);
   };
 
   return (
@@ -20,11 +32,8 @@ export const DonationCTA: React.FC = () => {
       <div className="absolute inset-0 bg-radial from-[#E31B23]/20 via-transparent to-transparent opacity-60" />
       
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center space-y-8">
-        <div>
-          <div className="inline-flex items-center gap-2 bg-[#E31B23] text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg mb-4">
-            <Heart className="w-4 h-4 fill-current" aria-hidden="true" />
-            Fortaleça esta Causa
-          </div>
+        <div className="space-y-4">
+          <SectionBadge icon={Heart} text="Fortaleça Esta Causa" variant="red" className="mb-4 shadow-lg" />
           <h2 className="font-display font-black text-4xl sm:text-6xl text-white leading-tight">
             Sua ajuda transforma <span className="text-gradient-red">vidas reais</span>.
           </h2>
