@@ -90,8 +90,8 @@ export default function AdminLoginPage() {
           </button>
         </form>
 
-        <div className="text-center text-[11px] text-slate-400 font-mono">
-          Chave padrão local: <code className="text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">acadim-editorial-secret-2026</code>
+        <div className="text-center text-[11px] text-slate-400">
+          <p>Acesso restrito à redação e administração da ACADIM.</p>
         </div>
       </div>
     </div>
