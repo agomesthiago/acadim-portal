@@ -114,6 +114,35 @@ class LocalFileStorageDriver implements StorageDriver {
       this.isWriting = false;
     }
   }
+
+  async getPublishedArticles(): Promise<NewsArticle[]> {
+    // O site deve funcionar mesmo sem storage externo configurado.
+    // Retorna as notícias-base (static) e custom published news do filesystem local.
+    const records = await this.loadRecords();
+    const published = records.filter(
+      (r) => r.status === 'published' && r.title && r.title.trim() !== '' && r.content && r.content.trim() !== ''
+    );
+
+    return published.map((r) => ({
+      slug: r.slug || slugifyTitle(r.title),
+      title: r.title,
+      excerpt: r.summary || (r.content.length > 160 ? r.content.substring(0, 160) + '...' : r.content),
+      content: r.content,
+      category: r.category || 'Avanços Científicos',
+      publishedAt: r.publishedAt || r.createdAt.split('T')[0],
+      updatedAt: r.updatedAt ? r.updatedAt.split('T')[0] : undefined,
+      readTime: '5 min de leitura',
+      author: {
+        name: r.author || 'Redação ACADIM',
+        role: 'Curadoria e Comunicação Institucional em Saúde e Cidadania',
+        url: '/redacao',
+      },
+      coverImage: r.imageUrl || '/assets/community-bg.jpg',
+      imageAlt: r.title,
+      featured: Boolean(r.featured),
+      tags: r.tags || [],
+    }));
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -134,6 +163,30 @@ class LocalFileStorageDriver implements StorageDriver {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const UPSTASH_KEY = 'acadim_custom_news';
+
+/**
+ * Driver que falha explicitamente em produção quando storage não está configurado.
+ * Impede falsa persistência: filesystem serverless não é durável entre instâncias.
+ */
+class NullProductionDriver implements StorageDriver {
+  async loadRecords(): Promise<AdminNewsRecord[]> {
+    // Leitura tolerante: retorna vazio para que o site (SSG/ISR) funcione
+    // usando apenas STATIC_BASE_NEWS. Não quebra o build público.
+    console.warn(
+      '[Storage] Produção sem storage persistente. Apenas notícias-base estáticas serão exibidas.'
+    );
+    return [];
+  }
+
+  async saveRecords(): Promise<boolean> {
+    // Escrita FALHA explicitamente — não fingir persistência
+    throw new Error(
+      '[Storage] Produção sem storage persistente configurado. ' +
+      'Configure KV_REST_API_URL e KV_REST_API_TOKEN nas variáveis de ambiente. ' +
+      'A notícia NÃO foi salva.'
+    );
+  }
+}
 
 class UpstashStorageDriver implements StorageDriver {
   private url: string;
@@ -226,14 +279,26 @@ class NewsRepository implements NewsRepositoryInterface {
       this.driver = driver;
       this.driverName = driver.constructor.name;
     } else {
-      // Seleção automática: Upstash em produção (quando configurado), senão arquivo local
+      // Seleção automática: Upstash (quando configurado), senão arquivo local
       const cloud = UpstashStorageDriver.fromEnv();
       if (cloud) {
         this.driver = cloud;
         this.driverName = 'UpstashStorageDriver';
       } else {
-        this.driver = new LocalFileStorageDriver();
-        this.driverName = 'LocalFileStorageDriver';
+        // PROTEÇÃO: em produção NÃO permitir fallback silencioso para filesystem.
+        // Filesystem serverless é efêmero — usá-lo seria falsa persistência.
+        if (process.env.NODE_ENV === 'production' || process.env.VERCEL === '1') {
+          console.error(
+            '[News Repository] ERRO CRÍTICO: produção sem storage persistente configurado. ' +
+            'Configure KV_REST_API_URL e KV_REST_API_TOKEN (Upstash) nas variáveis de ambiente.'
+          );
+          // Marcar como não configurado — operações devem falhar explicitamente
+          this.driverName = 'UNCONFIGURED_PRODUCTION';
+          this.driver = new NullProductionDriver();
+        } else {
+          this.driver = new LocalFileStorageDriver();
+          this.driverName = 'LocalFileStorageDriver';
+        }
       }
     }
     if (process.env.NODE_ENV !== 'production' || process.env.DEBUG_STORAGE) {
