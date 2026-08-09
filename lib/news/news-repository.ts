@@ -117,14 +117,128 @@ class LocalFileStorageDriver implements StorageDriver {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Upstash Redis Storage Driver (Produção — Plano Gratuito, REST/HTTP)
+// ─────────────────────────────────────────────────────────────────────────────
+//
+// Compatível com Vercel Hobby (Serverless, sem filesystem persistente).
+// Usa a REST API do Upstash Redis via fetch nativo (nenhum SDK necessário).
+// Tier gratuito: 10.000 comandos/dia, 256MB storage, sem cartão de crédito.
+//
+// Variáveis (server-only, NUNCA prefixar com NEXT_PUBLIC_):
+//   KV_REST_API_URL   — ex.: https://your-db.upstash.io
+//   KV_REST_API_TOKEN — bearer token
+//
+// Também aceita aliases comuns de integração:
+//   UPSTASH_REDIS_REST_URL
+//   UPSTASH_REDIS_REST_TOKEN
+// ─────────────────────────────────────────────────────────────────────────────
+
+const UPSTASH_KEY = 'acadim_custom_news';
+
+class UpstashStorageDriver implements StorageDriver {
+  private url: string;
+  private token: string;
+
+  constructor(url: string, token: string) {
+    // Remove trailing slash para construir URLs consistentes
+    this.url = url.replace(/\/+$/, '');
+    this.token = token;
+  }
+
+  static isConfigured(): boolean {
+    const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+    const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+    return Boolean(url && token);
+  }
+
+  static fromEnv(): UpstashStorageDriver | null {
+    const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+    const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+    if (!url || !token) return null;
+    return new UpstashStorageDriver(url, token);
+  }
+
+  async loadRecords(): Promise<AdminNewsRecord[]> {
+    // Sem cache em memória entre chamadas: serverless = instâncias efêmeras.
+    // Sempre ler do Redis é a única garantia de consistência entre instâncias.
+    const res = await fetch(`${this.url}/get/${UPSTASH_KEY}`, {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${this.token}` },
+      cache: 'no-store',
+    });
+
+    if (!res.ok) {
+      throw new Error(`[Upstash] GET falhou: HTTP ${res.status}`);
+    }
+
+    const data = await res.json();
+    if (!data || data.result == null) {
+      return [];
+    }
+
+    // Upstash retorna string JSON serializada; aceitar também objeto direto
+    const parsed = typeof data.result === 'string' ? JSON.parse(data.result) : data.result;
+    return Array.isArray(parsed) ? parsed : [];
+  }
+
+  async saveRecords(records: AdminNewsRecord[]): Promise<boolean> {
+    // IMPORTANTE: NÃO mentir sobre persistência. Se a gravação falhar, retornar false
+    // para que a API reporte erro ao editor em vez de sucesso falso.
+    //
+    // Escrita via SET simples — Upstash SET é atômico por chave no servidor.
+    // Race condition entre duas instâncias serverless simultâneas é LAST-WRITE-WINS.
+    // Limitação conhecida e documentada: para este volume editorial (baixo),
+    // o risco de colisão é aceitável; para writes concorrentes frequentes seria
+    // necessário WATCH/MULTI/EXEC (transação), disponível no tier gratuito.
+    const payload = JSON.stringify(records);
+    const res = await fetch(`${this.url}/set/${UPSTASH_KEY}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+      },
+      // O endpoint /set/<key> aceita o valor como body JSON-encoded (string)
+      body: JSON.stringify(payload),
+      cache: 'no-store',
+    });
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => '');
+      console.error(`[Upstash] SET falhou: HTTP ${res.status} ${text}`);
+      return false;
+    }
+
+    const data = await res.json().catch(() => null);
+    return data?.result === 'OK';
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // News Repository (Lógica Editorial + Storage Driver)
 // ─────────────────────────────────────────────────────────────────────────────
 
 class NewsRepository implements NewsRepositoryInterface {
   private driver: StorageDriver;
+  private driverName: string;
 
   constructor(driver?: StorageDriver) {
-    this.driver = driver || new LocalFileStorageDriver();
+    if (driver) {
+      this.driver = driver;
+      this.driverName = driver.constructor.name;
+    } else {
+      // Seleção automática: Upstash em produção (quando configurado), senão arquivo local
+      const cloud = UpstashStorageDriver.fromEnv();
+      if (cloud) {
+        this.driver = cloud;
+        this.driverName = 'UpstashStorageDriver';
+      } else {
+        this.driver = new LocalFileStorageDriver();
+        this.driverName = 'LocalFileStorageDriver';
+      }
+    }
+    if (process.env.NODE_ENV !== 'production' || process.env.DEBUG_STORAGE) {
+      console.log(`[News Repository] Storage driver ativo: ${this.driverName}`);
+    }
   }
 
   private async loadRecords(): Promise<AdminNewsRecord[]> {
@@ -185,7 +299,11 @@ class NewsRepository implements NewsRepositoryInterface {
     };
 
     records.unshift(newRecord);
-    await this.saveRecords(records);
+    const saved = await this.saveRecords(records);
+    if (!saved) {
+      // NÃO fingir sucesso. Se a persistência falhou, propagar erro explícito.
+      throw new Error('[News Repository] Falha ao persistir nova notícia no storage. Nada foi gravado.');
+    }
     return newRecord;
   }
 
@@ -228,7 +346,10 @@ class NewsRepository implements NewsRepositoryInterface {
     };
 
     records[index] = updatedRecord;
-    await this.saveRecords(records);
+    const saved = await this.saveRecords(records);
+    if (!saved) {
+      throw new Error('[News Repository] Falha ao persistir atualização no storage. Nada foi gravado.');
+    }
     return updatedRecord;
   }
 
@@ -236,7 +357,11 @@ class NewsRepository implements NewsRepositoryInterface {
     const records = await this.loadRecords();
     const filtered = records.filter((r) => r.id !== id);
     if (filtered.length === records.length) return false;
-    return this.saveRecords(filtered);
+    const saved = await this.saveRecords(filtered);
+    if (!saved) {
+      throw new Error('[News Repository] Falha ao persistir exclusão no storage.');
+    }
+    return true;
   }
 
   async getPublishedArticles(): Promise<NewsArticle[]> {

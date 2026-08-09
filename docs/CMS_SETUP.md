@@ -42,17 +42,38 @@ As 4 notícias em `lib/news/static-news.ts` são **permanentes** e vivem no cód
 - Airtable é apenas fonte secundária opcional e falha silenciosa.
 - Se `AIRTABLE_TOKEN`/`AIRTABLE_BASE_ID` estiverem vazios, integração desliga limpa.
 
-## Persistência em Produção (planejado, NÃO validado nesta fase)
+## Persistência em Produção
 
-O `NewsRepository` usa um `StorageDriver` injetável. Para produção, a implementação
-atual é `LocalFileStorageDriver`. Para Vercel Hobby + persistência real, o passo
-seguinte (fora do escopo desta fase) é criar um `HttpKvStorageDriver` que fale com
-um Redis-compatible REST (Upstash free tier) **sem alterar** a interface do
-Repository nem os Route Handlers.
+O `NewsRepository` usa um `StorageDriver` injetável com seleção automática:
 
-Variáveis que seriam necessárias em produção (NÃO configurar agora):
-- `ADMIN_SECRET_KEY` (obrigatória)
-- `KV_REST_API_URL` e `KV_REST_API_TOKEN` (futuro, quando a conta for provisionada)
+- **Local** (sem env): `LocalFileStorageDriver` → `data/custom-news.json`
+- **Produção** (com `KV_REST_API_URL` + `KV_REST_API_TOKEN`): `UpstashStorageDriver` → Upstash Redis REST
+
+### Configurar Upstash (gratuito, sem cartão)
+
+1. Acesse https://upstash.com e crie conta gratuita
+2. Create Database → Redis → escolha região próxima (ex.: `us-east-1`)
+3. No painel do database, copie:
+   - `UPSTASH_REDIS_REST_URL` (ex.: `https://xyz.upstash.io`)
+   - `UPSTASH_REDIS_REST_TOKEN` (bearer token)
+4. Na Vercel: Project → Settings → Environment Variables → Production:
+   - `ADMIN_SECRET_KEY` = `<segredo forte>`
+   - `KV_REST_API_URL` = `<REST URL>`
+   - `KV_REST_API_TOKEN` = `<REST TOKEN>`
+5. Redeploy
+
+### Semântica de erro
+
+Se a gravação no Upstash falhar em produção, a API retorna HTTP 500 explícito
+ao editor. **Nunca** informamos "sucesso" sem persistência confirmada.
+
+### Concorrência serverless
+
+Upstash `SET` é atômico por chave no servidor, mas a leitura-modificação-escrita
+do array inteiro é **last-write-wins** entre instâncias serverless simultâneas.
+Para o volume editorial do site (redação pequena, baixa frequência), o risco
+é aceitável. Limitação documentada; para writes concorrentes frequentes seria
+necessário `WATCH/MULTI/EXEC`.
 
 ## Segurança
 
