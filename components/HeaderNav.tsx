@@ -14,6 +14,7 @@ export const HeaderNav: React.FC = () => {
   const links = [
     { name: 'Início', href: '/#hero' },
     { name: 'Sobre', href: '/#sobre' },
+    { name: 'Nossa História', href: '/sobre-nos' },
     { name: 'Distrofias', href: '/distrofias' },
     { name: 'Notícias', href: '/noticias' },
   ];
@@ -64,15 +65,15 @@ export const HeaderNav: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
         {/* Logo Institucional Oficial ACADIM (Transparente SVG) */}
-        <Link href="/" className="flex items-center gap-3 group text-left min-h-[44px]">
-          <div className="relative w-10 h-10 flex items-center justify-center group-hover:scale-105 transition-transform shrink-0">
+        <Link href="/" className="flex items-center gap-2 sm:gap-3 group text-left min-h-[44px]">
+          <div className="relative w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-105 transition-transform shrink-0">
             <Image src="/logo.svg" alt="Símbolo Institucional ACADIM" fill className="object-contain" priority />
           </div>
           <div className="flex flex-col">
-            <span className="text-white font-black text-xl tracking-tight leading-none">
+            <span className="text-white font-black text-lg sm:text-xl tracking-tight leading-none">
               ACA<span className="text-brand-red">DIM</span>
             </span>
-            <span className="text-[10px] text-slate-300 font-semibold tracking-wider uppercase mt-0.5">
+            <span className="hidden sm:block text-[10px] text-slate-300 font-semibold tracking-wider uppercase mt-0.5">
               Distrofia Muscular RJ
             </span>
           </div>
@@ -99,7 +100,7 @@ export const HeaderNav: React.FC = () => {
             aria-label="Fazer Doação PIX"
           >
             <Heart size={16} className="fill-current" />
-            <span>Fazer Doação (PIX)</span>
+            <span>Fazer Doação</span>
           </button>
         </div>
 

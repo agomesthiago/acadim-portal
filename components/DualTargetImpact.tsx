@@ -93,7 +93,7 @@ export const DualTargetImpact: React.FC = () => {
               onClick={openPixModal}
               className="inline-flex items-center justify-center gap-2 bg-[#E31B23] text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-[#b91c1c] hover:scale-[1.02] transition-all text-center min-h-[44px]"
             >
-              <span>Como Doar Agora</span>
+              <span>Fazer Doação</span>
               <Heart className="w-4 h-4 fill-current" aria-hidden="true" />
             </button>
           </div>

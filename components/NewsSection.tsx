@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
+import NewsImage from '@/components/NewsImage';
 import Link from 'next/link';
 import { Calendar, Clock, ArrowRight, Newspaper } from 'lucide-react';
 import { formatDate } from '@/lib/date-utils';
@@ -53,7 +53,7 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ latestNews }) => {
               <div>
                 {/* Imagem de Capa */}
                 <div className="relative w-full h-48 bg-surface-subtle overflow-hidden">
-                  <Image
+                  <NewsImage
                     src={article.coverImage}
                     alt={article.imageAlt}
                     fill

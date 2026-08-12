@@ -34,6 +34,8 @@ export interface NewsArticle {
   title: string;
   excerpt: string;
   content: string;
+  contentFormat?: 'markdown' | 'html';
+  status?: ArticleStatus;
   category: NewsCategory;
   publishedAt: string; // ISO YYYY-MM-DD
   updatedAt?: string; // ISO YYYY-MM-DD

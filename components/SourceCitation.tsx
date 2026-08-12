@@ -46,7 +46,7 @@ export const SourceCitation: React.FC<SourceCitationProps> = ({ source, creditTe
           <span>Atribuição Editorial e Revisão pela Redação ACADIM</span>
         </div>
 
-        <div className="flex items-center gap-1 text-[11px] text-slate-400 font-semibold">
+        <div className="flex items-center gap-1 text-[11px] text-slate-500 font-semibold">
           <AlertCircle size={13} />
           <span>Fonte primária jornalística / institucional</span>
         </div>

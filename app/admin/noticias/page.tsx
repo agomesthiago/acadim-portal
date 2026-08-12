@@ -45,7 +45,13 @@ export default async function AdminNewsPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+          <Link
+            href="/admin/hero"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-black text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl transition-all shadow-md min-h-[44px] cursor-pointer"
+          >
+            <span>Editar Destaque (Hero)</span>
+          </Link>
           <Link
             href="/admin/noticias/nova"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-hover text-white font-black text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl transition-all shadow-md min-h-[44px] cursor-pointer"

@@ -18,6 +18,7 @@ export interface AdminNewsRecord {
   status: 'draft' | 'published';
   createdAt: string;
   updatedAt: string;
+  contentFormat?: 'markdown' | 'html';
 }
 
 const DATA_FILE_PATH = path.join(process.cwd(), 'data', 'custom-news.json');
@@ -46,11 +47,20 @@ export function getRawAdminNewsRecords(): AdminNewsRecord[] {
 
 export function saveAdminNewsRecords(records: AdminNewsRecord[]): boolean {
   try {
+    if (!Array.isArray(records)) {
+      throw new Error('Payload is not an array.');
+    }
     ensureDataDirectory();
-    fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(records, null, 2), 'utf-8');
+    const tempPath = `${DATA_FILE_PATH}.tmp.${Date.now()}`;
+    const payloadStr = JSON.stringify(records, null, 2);
+    if (!payloadStr || payloadStr.length < 2) {
+      throw new Error('Payload is empty or invalid.');
+    }
+    fs.writeFileSync(tempPath, payloadStr, 'utf-8');
+    fs.renameSync(tempPath, DATA_FILE_PATH);
     return true;
   } catch (err) {
-    console.error('[Admin Local Store Error] Falha ao salvar notícias personalizadas:', err);
+    console.error('[Admin Local Store Error] Falha ao salvar notícias personalizadas de forma atômica:', err);
     return false;
   }
 }
@@ -77,6 +87,8 @@ export function getPublishedLocalArticles(): NewsArticle[] {
     imageAlt: r.title,
     featured: Boolean(r.featured),
     tags: r.tags || [],
+    contentFormat: r.contentFormat || 'html',
+    status: r.status === 'published' ? 'Publicado' : 'Rascunho',
   }));
 }
 
@@ -110,6 +122,7 @@ export function createAdminNewsRecord(input: Partial<AdminNewsRecord>): AdminNew
     status: input.status === 'published' ? 'published' : 'draft',
     createdAt: now,
     updatedAt: now,
+    contentFormat: input.contentFormat || 'markdown',
   };
 
   records.unshift(newRecord);
@@ -151,6 +164,7 @@ export function updateAdminNewsRecord(id: string, input: Partial<AdminNewsRecord
     featured: input.featured !== undefined ? Boolean(input.featured) : current.featured,
     status: input.status ? input.status : current.status,
     updatedAt: new Date().toISOString(),
+    contentFormat: input.contentFormat || current.contentFormat || 'html',
   };
 
   records[index] = updatedRecord;

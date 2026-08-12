@@ -37,12 +37,12 @@ export const AccessibilityToolbar: React.FC = () => {
               <Eye size={16} aria-hidden="true" />
               Acessibilidade
             </span>
-            <span className="text-[10px] text-slate-400">Alt+C, Alt++, Alt+R</span>
+            <span className="text-[10px] text-slate-500">Alt+C, Alt++, Alt+R</span>
           </div>
 
           {/* Temas / Contraste */}
           <div className="space-y-2">
-            <span className="text-[10px] font-extrabold uppercase text-slate-400">Modo de Exibição</span>
+            <span className="text-[10px] font-extrabold uppercase text-slate-500">Modo de Exibição</span>
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => setTheme('light')}
@@ -74,7 +74,7 @@ export const AccessibilityToolbar: React.FC = () => {
 
           {/* Tamanho da Fonte */}
           <div className="space-y-2">
-            <span className="text-[10px] font-extrabold uppercase text-slate-400">Tamanho do Texto</span>
+            <span className="text-[10px] font-extrabold uppercase text-slate-500">Tamanho do Texto</span>
             <div className="flex items-center gap-2">
               <button
                 onClick={decreaseFontSize}

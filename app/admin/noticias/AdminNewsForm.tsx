@@ -5,8 +5,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { AdminNewsRecord } from '@/lib/news/local-store';
 import { slugifyTitle } from '@/lib/airtable';
-import { ArrowLeft, Save, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Save, Sparkles, CheckCircle2, AlertCircle, Image as ImageIcon, Loader2 } from 'lucide-react';
 import { SectionBadge } from '@/components/SectionBadge';
+import MarkdownEditor from '@/components/MarkdownEditor';
 
 import { NewsCategory } from '@/lib/news-types';
 
@@ -38,6 +39,9 @@ export default function AdminNewsForm({ isEdit, initialData }: AdminNewsFormProp
   const [title, setTitle] = useState(initialData?.title || '');
   const [summary, setSummary] = useState(initialData?.summary || '');
   const [content, setContent] = useState(initialData?.content || '');
+  const [contentFormat, setContentFormat] = useState<'markdown' | 'html'>(
+    initialData?.contentFormat || (isEdit && !initialData?.contentFormat ? 'html' : 'markdown')
+  );
   const [category, setCategory] = useState<NewsCategory>(initialData?.category || 'Avanços Científicos');
   const [tagsStr, setTagsStr] = useState(initialData?.tags ? initialData.tags.join(', ') : '');
   const [author, setAuthor] = useState(initialData?.author || 'Redação ACADIM');
@@ -74,6 +78,7 @@ export default function AdminNewsForm({ isEdit, initialData }: AdminNewsFormProp
       title,
       summary,
       content,
+      contentFormat,
       category,
       tags,
       author,
@@ -110,6 +115,34 @@ export default function AdminNewsForm({ isEdit, initialData }: AdminNewsFormProp
     }
   };
 
+  const [isUploadingCover, setIsUploadingCover] = useState(false);
+  const coverInputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleCoverUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      setIsUploadingCover(true);
+      const formData = new FormData();
+      formData.append('file', file);
+      
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      if (!res.ok) throw new Error('Falha no upload da capa');
+      
+      const data = await res.json();
+      setImageUrl(data.url);
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao fazer upload da imagem de capa.');
+    } finally {
+      setIsUploadingCover(false);
+      if (coverInputRef.current) coverInputRef.current.value = '';
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Botão de Voltar */}
@@ -130,7 +163,7 @@ export default function AdminNewsForm({ isEdit, initialData }: AdminNewsFormProp
             {isEdit ? `Editar: ${initialData?.title}` : 'Cadastrar Nova Notícia no Portal'}
           </h1>
           <p className="text-xs text-slate-500 font-medium">
-            Preencha os campos editoriais abaixo. Ao marcar como &quot;Publicado&quot;, a matéria entrará imediatamente no site.
+            Preencha os campos editoriais abaixo. Ao clicar em "Publicar Notícia", a matéria entrará imediatamente no site.
           </p>
         </div>
 
@@ -183,23 +216,38 @@ export default function AdminNewsForm({ isEdit, initialData }: AdminNewsFormProp
             />
           </div>
 
-          {/* Corpo Completo (HTML sanitizado) */}
+          {/* Corpo Completo (Markdown ou HTML) */}
           <div>
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
               <label htmlFor="news-content" className="block text-xs font-black uppercase tracking-wider text-slate-700">
-                Corpo Editorial Completo (HTML Aceito) *
+                Corpo Editorial Completo *
               </label>
-              <span className="text-[10px] text-slate-400">Suporta HTML: &lt;p&gt;, &lt;h3&gt;, &lt;ul&gt;, &lt;strong&gt;</span>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] text-slate-500 font-bold uppercase">Formato:</span>
+                <select
+                  value={contentFormat}
+                  onChange={(e) => setContentFormat(e.target.value as 'markdown' | 'html')}
+                  className="bg-slate-100 border border-slate-200 text-xs px-2 py-1 rounded text-slate-700 focus:outline-none"
+                >
+                  <option value="markdown">Markdown (Padrão)</option>
+                  <option value="html">HTML (Legado/Avançado)</option>
+                </select>
+              </div>
             </div>
-            <textarea
-              id="news-content"
-              rows={12}
-              required
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="Escreva ou cole aqui o conteúdo completo da notícia. Exemplo: <p>Texto do artigo...</p> <h3>1. Seção Principal</h3>..."
-              className="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs font-mono text-slate-800 leading-relaxed focus:outline-none focus:ring-2 focus:ring-brand-blue"
-            />
+            
+            {contentFormat === 'markdown' ? (
+              <MarkdownEditor value={content} onChange={(v) => setContent(v || '')} />
+            ) : (
+              <textarea
+                id="news-content"
+                rows={12}
+                required
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="Escreva ou cole aqui o conteúdo HTML..."
+                className="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs font-mono text-slate-800 leading-relaxed focus:outline-none focus:ring-2 focus:ring-brand-blue"
+              />
+            )}
           </div>
 
           {/* Categoria e Data */}
@@ -228,11 +276,12 @@ export default function AdminNewsForm({ isEdit, initialData }: AdminNewsFormProp
               </label>
               <input
                 id="news-date"
-                type="date"
+                type="text"
                 value={publishedAt}
-                onChange={(e) => setPublishedAt(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-xl text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-blue"
+                readOnly
+                className="w-full bg-slate-100 border border-slate-200 p-3.5 rounded-xl text-xs font-bold text-slate-500 cursor-not-allowed"
               />
+              <p className="text-[10px] text-slate-400 mt-1">A data é definida automaticamente ao publicar.</p>
             </div>
           </div>
 
@@ -268,17 +317,45 @@ export default function AdminNewsForm({ isEdit, initialData }: AdminNewsFormProp
           </div>
 
           {/* URL da Imagem de Capa */}
-          <div>
-            <label htmlFor="news-image" className="block text-xs font-black uppercase tracking-wider text-slate-700 mb-2">
-              URL da Imagem de Capa
-            </label>
+          <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <label htmlFor="news-image" className="block text-xs font-black uppercase tracking-wider text-slate-700">
+                Imagem de Capa (Upload Local ou URL)
+              </label>
+              <div className="flex items-center gap-2">
+                <input 
+                  type="file" 
+                  accept="image/jpeg, image/png, image/jpg" 
+                  ref={coverInputRef}
+                  onChange={handleCoverUpload}
+                  className="hidden"
+                />
+                <button
+                  type="button"
+                  onClick={() => coverInputRef.current?.click()}
+                  disabled={isUploadingCover}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider bg-white hover:bg-slate-100 border border-slate-300 rounded-lg text-slate-700 transition-colors shadow-sm"
+                >
+                  {isUploadingCover ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ImageIcon className="w-3.5 h-3.5" />}
+                  <span>{isUploadingCover ? 'Enviando...' : 'Enviar Imagem'}</span>
+                </button>
+              </div>
+            </div>
+            
+            {imageUrl && (
+              <div className="w-full max-w-sm aspect-video relative rounded-lg overflow-hidden border border-slate-200 bg-slate-200">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={imageUrl} alt="Preview" className="w-full h-full object-cover" />
+              </div>
+            )}
+            
             <input
               id="news-image"
               type="text"
               value={imageUrl}
               onChange={(e) => setImageUrl(e.target.value)}
-              placeholder="/assets/community-bg.jpg ou https://..."
-              className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-blue"
+              placeholder="Ex: /uploads/news/arquivo.jpg ou https://..."
+              className="w-full bg-white border border-slate-300 p-3 rounded-lg text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-blue"
             />
           </div>
 
@@ -293,7 +370,7 @@ export default function AdminNewsForm({ isEdit, initialData }: AdminNewsFormProp
                 className="w-5 h-5 text-brand-red rounded border-slate-300 focus:ring-brand-red"
               />
               <label htmlFor="news-featured" className="text-xs font-bold text-slate-800 cursor-pointer">
-                Exibir com destaque prioritário na Hero da página inicial
+                Exibir com destaque prioritário na seção de Notícias
               </label>
             </div>
 

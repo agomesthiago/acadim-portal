@@ -1,44 +1,55 @@
-# ACADIM Architecture Audit
+# ACADIM PORTAL — ARQUITETURA DO SISTEMA (VERSÃO FINAL 1.0.0)
 
-## Real Stack
-- **Framework:** Next.js 15.1.0 (App Router)
-- **Library:** React 19.2.8
-- **Language:** TypeScript 5.0.0
-- **Styling:** Tailwind CSS v4.3.3 + PostCSS
-- **Icons:** Lucide React
-- **Fonts:** Figtree (Google Fonts variable font)
-- **Testing:** Playwright (Visual Regression & E2E)
+**Data:** 12 de Agosto de 2026  
+**Framework:** Next.js 16.3 (App Router - Turbopack)  
+**Linguagem:** TypeScript 5+ (Strict Mode)  
+**Estilização:** Tailwind CSS v4  
+**Modelo de Dados:** Local-First (JSON atômico) + Fallback Estático + Opcional Airtable  
 
-## Route Structure (App Router)
-- `/` — Home (SSG)
-- `/distrofias` — Índice de doenças (SSG)
-- `/distrofias/[slug]` — Condição individual (Dynamic, SSR - no generateStaticParams found)
-- `/noticias` — Índice de notícias (SSG)
-- `/noticias/[slug]` — Notícia individual (Dynamic, SSR - no generateStaticParams found)
-- `/redacao` — Política editorial e núcleo de ciências (SSG)
-- `/sitemap.xml` — Gerado por `app/sitemap.ts` via dynamic mapping.
-- `/robots.txt` — Gerado por `app/robots.ts` estaticamente.
+---
 
-## Components & Responsibilities
-- `HeaderNav.tsx` / `Footer.tsx` / `SecondaryNav.tsx`: Navegação principal, rodapé e menus secundários.
-- `AccessibilityToolbar.tsx` / `SkipLink.tsx`: Ferramentas flutuantes e atalhos de acessibilidade global.
-- `VLibras.tsx`: Widget de interpretação para LIBRAS.
-- `HeroSection.tsx` / `AboutSection.tsx` / `ServicesSection.tsx` / `ImpactSection.tsx` / `BazarSection.tsx` / `NewsSection.tsx`: Seções da landing page principal.
-- `ConditionSection.tsx`: Renderiza os subtipos e informações específicas das condições médicas listadas em `conditions-data.ts`.
-- `ContactSection.tsx` / `DonationCTA.tsx` / `PixModal.tsx` / `HelpSection.tsx`: Componentes focados em doações e suporte à ONG.
+## 1. ESTRUTURA DE CAMADAS E DESTRUTURAÇÃO DE COMPONENTES
 
-## Data Patterns
-Existem dois arquivos principais de dados médicos, o que causa uma leve sobreposição estrutural:
-1. `lib/distrofias-data.ts`: Contém o modelo `DiseaseDetail` com informações aprofundadas (herança, gene, fisiopatologia, fontes) e dita a estrutura da rota `/distrofias/[slug]`.
-2. `lib/conditions-data.ts`: Define a interface `Subtype` e `Condition`. Parecem dados criados para agrupamento na UI (ex: `<ConditionSection />`) destacando gravidade e sintomas pontuais.
-3. `lib/news-data.ts`: Contém a lista de publicações, artigos e autores do "Redação ACADIM".
+```
+┌─────────────────────────────────────────────────────────┐
+│                    PAGES / APP ROUTER                   │
+│ app/ (page.tsx, /sobre-nos, /distrofias, /noticias, /admin)
+└────────────────────────────┬────────────────────────────┘
+                             │
+┌────────────────────────────▼────────────────────────────┐
+│                    UI COMPONENTS                        │
+│ components/                                             │
+│   ├── distrofias/ (DistrofiaCard.tsx, DistrofiasGroupFilter.tsx)
+│   ├── AboutSection.tsx, MascotsSection.tsx, Footer.tsx   │
+│   └── MarkdownViewer.tsx, NewsImage.tsx                 │
+└────────────────────────────┬────────────────────────────┘
+                             │
+┌────────────────────────────▼────────────────────────────┐
+│                  DOMAIN SERVICES & TYPES                │
+│ lib/                                                    │
+│   ├── distrofias-types.ts, distrofias-data.ts           │
+│   ├── news/ (news-service.ts, news-repository.ts,       │
+│   │          local-store.ts, static-news.ts)            │
+│   └── admin-auth.ts, sanitize-html.ts                   │
+└────────────────────────────┬────────────────────────────┘
+                             │
+┌────────────────────────────▼────────────────────────────┐
+│                    DATA PERSISTENCE                     │
+│ data/custom-news.json (Escrita Atômica .tmp -> rename)  │
+└─────────────────────────────────────────────────────────┘
+```
 
-## Context
-- `AccessibilityContext.tsx`: Gerencia os temas (light, dark, high-contrast), tamanho de fonte e navegação com foco reduzido (reduced motion). Há mapeamento global de atalhos de teclado (Alt+C, Alt++, etc).
+---
 
-## CI/CD
-- GitHub Actions via `.github/workflows/ci.yml`. Instala dependências, roda lint, roda build e executa a suíte de testes E2E do Playwright (`test:qa`, `test:qa-dark`, `test:qa-regression`).
+## 2. REGRAS DE RENDERIZAÇÃO (SERVER VS CLIENT COMPONENTS)
 
-## External Dependencies
-- **Figtree:** Otimizada pelo `next/font/google`.
-- **VLibras:** Integrado via componente e provavelmente via script externo.
+- **Server Components (Default):** Todas as páginas (`app/page.tsx`, `app/sobre-nos/page.tsx`, `app/noticias/page.tsx`, `app/distrofias/page.tsx`, `app/distrofias/[slug]/page.tsx`, `app/noticias/[slug]/page.tsx`) são Server Components puramente pré-renderizados via SSG/ISR para máxima velocidade e SEO.
+- **Client Components (`'use client'`):** Estritamente restritos a componentes de interatividade no navegador (busca e filtros em `DistrofiasSearchClient.tsx`, reprodutor do `VLibras.tsx`, botões de compartilhamento `ShareButton.tsx` e formulários administrativos em `app/admin/`).
+
+---
+
+## 3. SEGURANÇA E HIGIENE DA ARQUITETURA
+
+1. **Sanitização de HTML e Markdown:** O Markdown das notícias é processado via `rehypeSanitize` em [`components/MarkdownViewer.tsx`](file:///d:/projetos/acadim/components/MarkdownViewer.tsx).
+2. **Local-First & Resiliência:** Caso tokens de API externa não estejam configurados, o portal utiliza instantaneamente o acervo estático e o repositório local JSON.
+3. **Equal Scale nos Fundadores:** Os containers visuais de Clara e Pedro em [`components/MascotsSection.tsx`](file:///d:/projetos/acadim/components/MascotsSection.tsx) são mantidos rigorosamente em **236px × 236px**.

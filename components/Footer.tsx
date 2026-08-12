@@ -68,14 +68,15 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="font-display font-bold text-sm text-white mb-4 uppercase tracking-wider">Participação</h4>
             <ul className="space-y-2 text-xs text-slate-400">
+              <li><Link href="/sobre-nos" className="hover:text-white transition-colors">Nossa História (Fundação 1998)</Link></li>
               <li><Link href="/#sobre" className="hover:text-white transition-colors">Sobre a ACADIM</Link></li>
               <li><Link href="/#servicos" className="hover:text-white transition-colors">Serviços Institucionais</Link></li>
-              <li><Link href="/#mascotes" className="hover:text-white transition-colors">Mascotes Clara e Pedro</Link></li>
+              <li><Link href="/#fundadores" className="hover:text-white transition-colors">Fundadores Clara e Pedro</Link></li>
               <li><Link href="/#impacto" className="hover:text-white transition-colors">Impacto Social & Transparência</Link></li>
               <li><Link href="/#bazar" className="hover:text-white transition-colors">Bazar Solidário</Link></li>
               <li>
                 <button onClick={openPixModal} className="text-brand-red font-bold hover:underline text-left cursor-pointer">
-                  Como Doar via PIX
+                  Fazer Doação via PIX
                 </button>
               </li>
             </ul>
@@ -128,7 +129,7 @@ export const Footer: React.FC = () => {
               className="w-full inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-hover text-white text-xs font-black uppercase tracking-wider py-2.5 px-4 rounded-xl shadow transition-colors min-h-[44px] cursor-pointer"
             >
               <Heart size={16} className="fill-current" />
-              <span>Apoiar com Doação</span>
+              <span>Fazer Doação</span>
             </button>
           </div>
 

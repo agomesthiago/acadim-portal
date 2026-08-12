@@ -54,7 +54,7 @@ export const InstagramSection: React.FC = () => {
       id: 'post-6',
       title: 'Campanhas de Conscientização e Inclusão',
       tag: '#Inclusão',
-      desc: 'Divulgação dos mascotes Clara e Pedro para combate ao preconceito e capacetismo.',
+      desc: 'Divulgação dos fundadores Clara e Pedro para combate ao preconceito e capacetismo.',
       date: 'Recente',
       link: 'https://www.instagram.com/acadimrj/',
     },

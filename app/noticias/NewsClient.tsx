@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
+import NewsImage from '@/components/NewsImage';
 import Link from 'next/link';
 import { formatDate } from '@/lib/date-utils';
 import { Calendar, Clock, ArrowRight, Search, Filter } from 'lucide-react';
@@ -41,12 +41,12 @@ export default function NewsClient({ allArticles }: { allArticles: NewsArticle[]
         
         {/* Categorias */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none" role="tablist" aria-label="Filtro por Categoria">
-          <Filter size={16} className="text-slate-400 shrink-0 hidden sm:block" aria-hidden="true" />
+          <Filter size={16} className="text-slate-500 shrink-0 hidden sm:block" aria-hidden="true" />
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 min-h-[44px] ${
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 whitespace-nowrap min-h-[44px] ${
                 selectedCategory === cat
                   ? 'bg-surface-inverse text-white shadow-md'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -68,9 +68,9 @@ export default function NewsClient({ allArticles }: { allArticles: NewsArticle[]
             placeholder="Buscar por termo ou CID..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-slate-50 border border-slate-200 pl-10 pr-4 py-2.5 rounded-xl text-xs font-semibold text-text-primary placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-border-focus"
+            className="w-full bg-slate-50 border border-slate-200 pl-10 pr-4 py-2.5 rounded-xl text-xs font-semibold text-text-primary placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-border-focus"
           />
-          <Search size={16} className="absolute left-3.5 top-3 text-slate-400" aria-hidden="true" />
+          <Search size={16} className="absolute left-3.5 top-3 text-slate-500" aria-hidden="true" />
         </div>
 
       </div>
@@ -85,7 +85,7 @@ export default function NewsClient({ allArticles }: { allArticles: NewsArticle[]
             >
               <div>
                 <div className="relative w-full h-52 bg-slate-100 overflow-hidden">
-                  <Image
+                  <NewsImage
                     src={article.coverImage}
                     alt={article.imageAlt}
                     fill
@@ -97,7 +97,7 @@ export default function NewsClient({ allArticles }: { allArticles: NewsArticle[]
                 </div>
 
                 <div className="p-6 space-y-3">
-                  <div className="flex items-center gap-4 text-xs font-semibold text-slate-400">
+                  <div className="flex items-center gap-4 text-xs font-semibold text-slate-500">
                     <span className="flex items-center gap-1.5">
                       <Calendar size={13} className="text-brand-red" aria-hidden="true" />
                       {formatDate(article.publishedAt)}

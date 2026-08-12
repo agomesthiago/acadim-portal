@@ -13,13 +13,34 @@ import { InstagramSection } from '../components/InstagramSection';
 import { DonationCTA } from '../components/DonationCTA';
 import { ScrollReveal } from '../components/ScrollReveal';
 
-import { getAllNewsAsync, sortNewsForHero } from '@/lib/news-data';
+import { getAllNewsAsync } from '@/lib/news-data';
+import { getHeroData } from '@/lib/hero/local-store';
 
-export const revalidate = 60;
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://acadim.org.br'),
+  title: 'ACADIM — Associação Carioca de Distrofia Muscular | Apoio, Saúde e Direitos',
+  description: 'Acolhimento, informação qualificada e defesa de direitos das pessoas com Distrofia Muscular e doenças neuromusculares no Rio de Janeiro. Fundada em 29 de julho de 1998.',
+  alternates: {
+    canonical: 'https://acadim.org.br',
+  },
+  openGraph: {
+    title: 'ACADIM — Associação Carioca de Distrofia Muscular',
+    description: 'Acolhimento, informação qualificada e defesa de direitos das pessoas com Distrofia Muscular no Rio de Janeiro.',
+    url: 'https://acadim.org.br',
+    siteName: 'ACADIM Portal',
+    locale: 'pt_BR',
+    type: 'website',
+  },
+};
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function Home() {
   const latestNews = await getAllNewsAsync();
-  const heroNews = sortNewsForHero(latestNews);
+  const heroData = await getHeroData();
 
   // Schema.org dados estruturados para SEO
   const jsonLd = {
@@ -28,7 +49,7 @@ export default async function Home() {
     name: 'ACADIM — Associação Carioca de Distrofia Muscular',
     alternateName: 'ACADIM RJ',
     url: 'https://acadim.org.br',
-    logo: 'https://acadim.org.br/mascotes.png',
+    logo: 'https://acadim.org.br/logo.svg',
     description: 'Acolhimento, informação qualificada e defesa de direitos das pessoas com Distrofia Muscular e doenças neuromusculares no Rio de Janeiro.',
     address: {
       '@type': 'PostalAddress',
@@ -57,7 +78,7 @@ export default async function Home() {
       <NavigationDots />
 
       {/* Seções da Home */}
-      <HeroSection latestNews={heroNews} />
+      <HeroSection heroData={heroData} />
       <ScrollReveal><AboutSection /></ScrollReveal>
       <ScrollReveal><MascotsSection /></ScrollReveal>
       <ScrollReveal><ServicesSection /></ScrollReveal>

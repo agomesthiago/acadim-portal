@@ -1,5 +1,6 @@
 import { NewsArticle, NewsCategory } from '../news-types';
 import { STATIC_BASE_NEWS } from './static-news';
+import { newsRepository } from './news-repository';
 import { fetchAirtableArticles } from '../airtable';
 
 export function sortNewsForHero(articles: NewsArticle[]): NewsArticle[] {
@@ -34,37 +35,37 @@ export function sortNewsForHero(articles: NewsArticle[]): NewsArticle[] {
 }
 
 export async function getAllNewsAsync(): Promise<NewsArticle[]> {
-  // 1. Notícias-base permanentes do código
-  const baseNews = [...STATIC_BASE_NEWS];
-  const occupiedSlugs = new Set(baseNews.map((item) => item.slug));
-
-  // 2. Notícias adicionadas via painel administrativo próprio (newsRepository)
-  const { newsRepository } = await import('./news-repository');
+  // 1. Notícias do CMS (custom-news.json) têm prioridade absoluta sobre notícias estáticas
   const customArticles = await newsRepository.getPublishedArticles();
-  const validCustomArticles = customArticles.filter((art) => !occupiedSlugs.has(art.slug));
+  const customSlugs = new Set(customArticles.map((art) => art.slug));
 
-  for (const art of validCustomArticles) {
-    occupiedSlugs.add(art.slug);
-  }
+  // 2. Notícias-base estáticas servem de fallback se a notícia ainda não existir no custom-news.json
+  const fallbackStaticNews = STATIC_BASE_NEWS.filter((item) => !customSlugs.has(item.slug));
 
-  const combinedNews = [...baseNews, ...validCustomArticles];
+  const occupiedSlugs = new Set([
+    ...customArticles.map((a) => a.slug),
+    ...fallbackStaticNews.map((a) => a.slug),
+  ]);
 
-  try {
-    // 3. Notícias adicionais do Airtable (se houver e forem válidas)
-    const airtableArticles = await fetchAirtableArticles();
+  const combinedNews = [...customArticles, ...fallbackStaticNews];
 
-    if (airtableArticles && Array.isArray(airtableArticles) && airtableArticles.length > 0) {
-      const validAirtableArticles = airtableArticles.filter(
-        (art) => art && art.slug && art.title && art.content && !occupiedSlugs.has(art.slug)
-      );
+  // 3. Notícias adicionais do Airtable (consultadas apenas se tokens estiverem explicitamente definidos)
+  if (process.env.AIRTABLE_TOKEN && process.env.AIRTABLE_BASE_ID) {
+    try {
+      const airtableArticles = await fetchAirtableArticles();
 
-      return sortNewsForHero([...combinedNews, ...validAirtableArticles]);
+      if (airtableArticles && Array.isArray(airtableArticles) && airtableArticles.length > 0) {
+        const validAirtableArticles = airtableArticles.filter(
+          (art) => art && art.slug && art.title && art.content && !occupiedSlugs.has(art.slug)
+        );
+
+        return sortNewsForHero([...combinedNews, ...validAirtableArticles]);
+      }
+    } catch (error) {
+      console.warn('[News Service Warning] Falha ao consultar o Airtable:', error);
     }
-  } catch (error) {
-    console.warn('[News Service Warning] Falha ao consultar o Airtable. Retornando notícias locais e base:', error);
   }
 
-  // Fallback seguro: Retorna as notícias-base + notícias locais do CMS sem quebrar o site
   return sortNewsForHero(combinedNews);
 }
 
@@ -85,3 +86,4 @@ export async function getNewsByCategoryAsync(category: NewsCategory): Promise<Ne
   const allArticles = await getAllNewsAsync();
   return allArticles.filter((art) => art.category === category);
 }
+

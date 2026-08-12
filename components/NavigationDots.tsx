@@ -6,7 +6,7 @@ import Link from 'next/link';
 const SECTIONS = [
   { id: 'hero', name: 'Início' },
   { id: 'sobre', name: 'Sobre Nós' },
-  { id: 'mascotes', name: 'Mascotes' },
+  { id: 'fundadores', name: 'Fundadores' },
   { id: 'servicos', name: 'Serviços' },
   { id: 'impacto', name: 'Impacto' },
   { id: 'bazar', name: 'Bazar Online' },

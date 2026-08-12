@@ -7,9 +7,9 @@ import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 
 const MASCOT_OPTIONS = [
-  { src: '/clara.svg', alt: 'Clara, mascote fundadora da ACADIM' },
-  { src: '/pedro.svg', alt: 'Pedro, mascote fundador da ACADIM' },
-  { src: '/mascotes.png', alt: 'Clara e Pedro, mascotes fundadores da ACADIM' },
+  { src: '/clara.svg', alt: 'Clara, fundadora da ACADIM' },
+  { src: '/pedro.svg', alt: 'Pedro, fundador da ACADIM' },
+  { src: '/mascotes.png', alt: 'Clara e Pedro, fundadores da ACADIM' },
 ];
 
 export default function NotFound() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -8,10 +8,14 @@ import { getNewsBySlugAsync, getAllNewsAsync } from '@/lib/news-data';
 import { formatDate } from '@/lib/date-utils';
 import { sanitizeHtml } from '@/lib/sanitize-html';
 import { Calendar, Clock, ArrowLeft, ArrowRight, ShieldCheck } from 'lucide-react';
+import MarkdownViewer from '@/components/MarkdownViewer';
+import NewsImage from '@/components/NewsImage';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
+
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const articles = await getAllNewsAsync();
@@ -31,10 +35,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
+    metadataBase: new URL('https://acadim.org.br'),
     title: `${article.title} | Notícias ACADIM`,
     description: article.excerpt,
+    alternates: {
+      canonical: `https://acadim.org.br/noticias/${article.slug}`,
+    },
     openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      url: `https://acadim.org.br/noticias/${article.slug}`,
       images: [article.coverImage],
+      siteName: 'ACADIM Portal',
+      locale: 'pt_BR',
+      type: 'article',
     },
   };
 }
@@ -153,11 +167,11 @@ export default async function NoticiaPage({ params }: PageProps) {
             <span className="bg-surface-inverse text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-md">
               {article.category}
             </span>
-            <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-400">
+            <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-500">
               <Calendar size={14} className="text-brand-red" aria-hidden="true" />
               {formatDate(article.publishedAt, { day: '2-digit', month: 'long', year: 'numeric' })}
             </span>
-            <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-400">
+            <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-500">
               <Clock size={14} aria-hidden="true" />
               {article.readTime}
             </span>
@@ -183,7 +197,7 @@ export default async function NoticiaPage({ params }: PageProps) {
                 <div className="text-xs font-extrabold text-text-primary group-hover:text-brand-red flex items-center gap-1">
                   <span>{article.author.name}</span>
                 </div>
-                <div className="text-[10px] font-semibold text-slate-400">{article.author.role}</div>
+                <div className="text-[10px] font-semibold text-slate-500">{article.author.role}</div>
               </div>
             </Link>
 
@@ -195,7 +209,7 @@ export default async function NoticiaPage({ params }: PageProps) {
 
         {/* Imagem de Destaque */}
         <div className="relative w-full h-72 sm:h-96 bg-slate-100">
-          <Image
+          <NewsImage
             src={article.coverImage}
             alt={article.imageAlt}
             fill
@@ -204,11 +218,17 @@ export default async function NoticiaPage({ params }: PageProps) {
           />
         </div>
 
-        {/* Conteúdo HTML do Artigo (Sanitizado) */}
-        <div
-          className="p-6 sm:p-10 prose prose-slate max-w-none prose-headings:font-black prose-headings:text-text-primary prose-p:text-slate-700 prose-p:leading-relaxed prose-p:text-base prose-strong:text-text-primary prose-li:text-slate-700 text-base"
-          dangerouslySetInnerHTML={{ __html: sanitizeHtml(article.content) }}
-        />
+        {/* Conteúdo do Artigo */}
+        <div className="p-6 sm:p-10">
+          {article.contentFormat === 'markdown' ? (
+            <MarkdownViewer source={article.content} />
+          ) : (
+            <div
+              className="prose prose-slate max-w-none prose-headings:font-black prose-headings:text-text-primary prose-p:text-slate-700 prose-p:leading-relaxed prose-p:text-base prose-strong:text-text-primary prose-li:text-slate-700 text-base"
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(article.content) }}
+            />
+          )}
+        </div>
 
         {/* Rodapé do Artigo & Tags */}
         <footer className="p-6 sm:p-10 bg-slate-50 border-t border-slate-200 space-y-6">
@@ -256,7 +276,7 @@ export default async function NoticiaPage({ params }: PageProps) {
                 className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-lg hover:border-border-default transition-all flex items-start gap-4 group"
               >
                 <div className="relative w-24 h-24 rounded-xl overflow-hidden shrink-0 bg-slate-100">
-                  <Image src={rel.coverImage} alt={rel.imageAlt} fill className="object-cover" />
+                  <NewsImage src={rel.coverImage} alt={rel.imageAlt} fill className="object-cover" />
                 </div>
                 <div className="space-y-1">
                   <span className="text-[10px] font-bold text-brand-red uppercase tracking-wider">
@@ -265,7 +285,7 @@ export default async function NoticiaPage({ params }: PageProps) {
                   <h3 className="text-sm font-extrabold text-text-primary group-hover:text-brand-red transition-colors line-clamp-2">
                     {rel.title}
                   </h3>
-                  <span className="text-xs font-bold text-slate-400 inline-flex items-center gap-1">
+                  <span className="text-xs font-bold text-slate-500 inline-flex items-center gap-1">
                     Ler <ArrowRight size={12} />
                   </span>
                 </div>

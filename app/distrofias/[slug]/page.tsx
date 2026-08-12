@@ -39,8 +39,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${disease.name} | Enciclopédia Médica ACADIM`,
+    metadataBase: new URL('https://acadim.org.br'),
+    title: `${disease.name} (${disease.shortName}) | Enciclopédia Médica ACADIM`,
     description: disease.summary,
+    alternates: {
+      canonical: `https://acadim.org.br/distrofias/${disease.slug}`,
+    },
+    openGraph: {
+      title: `${disease.name} (${disease.shortName}) — Sintomas, Causas e Cuidados`,
+      description: disease.summary,
+      url: `https://acadim.org.br/distrofias/${disease.slug}`,
+      siteName: 'ACADIM Portal',
+      locale: 'pt_BR',
+      type: 'article',
+    },
   };
 }
 
@@ -125,6 +137,15 @@ export default async function DistrofiaWikiPage({ params }: PageProps) {
   const otherDiseases = getAllDiseases()
     .filter((d) => d.slug !== disease.slug)
     .slice(0, 3);
+
+  const sections = [
+    { id: 'visao-geral', label: 'Visão Geral', icon: FileText },
+    { id: 'sintomas', label: 'Sintomas', icon: Stethoscope },
+    { id: 'diagnostico', label: 'Diagnóstico', icon: Dna },
+    { id: 'tratamento', label: 'Tratamento', icon: Activity },
+    ...(disease.faqs && disease.faqs.length > 0 ? [{ id: 'faq', label: 'FAQ', icon: HelpCircle }] : []),
+    ...(disease.references && disease.references.length > 0 ? [{ id: 'referencias', label: 'Referências', icon: FileText }] : [])
+  ];
 
   return (
     <div className="pt-28 pb-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -216,10 +237,30 @@ export default async function DistrofiaWikiPage({ params }: PageProps) {
         </div>
       </div>
 
+      {/* Índice / Navegação Interna */}
+      <div className="bg-surface-subtle border border-border-subtle rounded-2xl p-4 sm:p-6 mb-10 overflow-x-auto scrollbar-none sticky top-24 z-30 shadow-sm">
+        <span className="text-xs font-black text-text-primary uppercase tracking-wider block mb-3">Nesta Página:</span>
+        <nav className="flex items-center gap-2" aria-label="Índice da página">
+          {sections.map((sec) => {
+            const Icon = sec.icon;
+            return (
+              <a 
+                key={sec.id} 
+                href={`#${sec.id}`}
+                className="flex items-center gap-1.5 bg-white border border-border-default px-4 py-2.5 rounded-xl text-xs font-bold text-text-secondary hover:text-brand-red hover:border-brand-red transition-colors shrink-0 min-h-[44px]"
+              >
+                <Icon size={14} aria-hidden="true" />
+                <span>{sec.label}</span>
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+
       {/* Corpo do Artigo Médico Wiki */}
       <div className="space-y-10">
         {/* Visão Geral & Fisiopatologia */}
-        <section className="bg-surface-default border border-border-subtle p-6 sm:p-8 rounded-2xl shadow-sm space-y-4">
+        <section id="visao-geral" className="bg-surface-default border border-border-subtle p-6 sm:p-8 rounded-2xl shadow-sm space-y-4 scroll-mt-48">
           <h2 className="text-xl font-extrabold text-text-primary flex items-center gap-2">
             <FileText className="text-brand-red" size={20} />
             <span>Visão Geral & Mecanismo Molecular</span>
@@ -233,7 +274,7 @@ export default async function DistrofiaWikiPage({ params }: PageProps) {
         </section>
 
         {/* Sinais e Sintomas Clínicos */}
-        <section className="bg-surface-default border border-border-subtle p-6 sm:p-8 rounded-2xl shadow-sm space-y-4">
+        <section id="sintomas" className="bg-surface-default border border-border-subtle p-6 sm:p-8 rounded-2xl shadow-sm space-y-4 scroll-mt-48">
           <h2 className="text-xl font-extrabold text-text-primary flex items-center gap-2">
             <Stethoscope className="text-brand-blue" size={20} />
             <span>Sinais e Sintomas Principais</span>
@@ -278,7 +319,7 @@ export default async function DistrofiaWikiPage({ params }: PageProps) {
         </section>
 
         {/* Diagnóstico e Exames Complementares */}
-        <section className="bg-surface-default border border-border-subtle p-6 sm:p-8 rounded-2xl shadow-sm space-y-4">
+        <section id="diagnostico" className="bg-surface-default border border-border-subtle p-6 sm:p-8 rounded-2xl shadow-sm space-y-4 scroll-mt-48">
           <h2 className="text-xl font-extrabold text-text-primary flex items-center gap-2">
             <Dna className="text-brand-red" size={20} />
             <span>Diagnóstico & Exames Recomendados</span>
@@ -294,7 +335,7 @@ export default async function DistrofiaWikiPage({ params }: PageProps) {
         </section>
 
         {/* Tratamento, Manejo e Terapias Aprovadas */}
-        <section className="bg-surface-default border border-border-subtle p-6 sm:p-8 rounded-2xl shadow-sm space-y-6">
+        <section id="tratamento" className="bg-surface-default border border-border-subtle p-6 sm:p-8 rounded-2xl shadow-sm space-y-6 scroll-mt-48">
           <div>
             <h2 className="text-xl font-extrabold text-text-primary flex items-center gap-2 mb-3">
               <Stethoscope className="text-brand-blue" size={20} />
@@ -337,7 +378,7 @@ export default async function DistrofiaWikiPage({ params }: PageProps) {
 
         {/* Perguntas Frequentes (FAQ) */}
         {disease.faqs && disease.faqs.length > 0 && (
-          <section className="bg-surface-default border border-border-subtle p-6 sm:p-8 rounded-2xl shadow-sm space-y-4">
+          <section id="faq" className="bg-surface-default border border-border-subtle p-6 sm:p-8 rounded-2xl shadow-sm space-y-4 scroll-mt-48">
             <h2 className="text-xl font-extrabold text-text-primary flex items-center gap-2">
               <HelpCircle className="text-brand-red" size={20} />
               <span>Perguntas Frequentes</span>
@@ -355,7 +396,7 @@ export default async function DistrofiaWikiPage({ params }: PageProps) {
 
         {/* Referências Científicas */}
         {disease.references && disease.references.length > 0 && (
-          <section className="bg-surface-default border border-border-subtle p-6 rounded-2xl shadow-sm space-y-3 text-xs">
+          <section id="referencias" className="bg-surface-default border border-border-subtle p-6 rounded-2xl shadow-sm space-y-3 text-xs scroll-mt-48">
             <h3 className="font-extrabold text-text-tertiary uppercase tracking-wider">Referências & Diretrizes Consultadas</h3>
             <ul className="space-y-2">
               {disease.references.map((ref, idx) => (

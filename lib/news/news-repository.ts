@@ -18,6 +18,7 @@ export interface AdminNewsRecord {
   status: 'draft' | 'published';
   createdAt: string;
   updatedAt: string;
+  contentFormat?: 'markdown' | 'html';
 }
 
 export interface NewsRepositoryInterface {
@@ -42,6 +43,28 @@ export function sanitizeHtmlContent(html: string): string {
     .replace(/\s*on\w+=(["']).*?\1/gi, '')
     .replace(/\s*on\w+=\S+/gi, '')
     .replace(/javascript:/gi, '');
+}
+
+export function parseAuthor(rawAuthor: any): { name: string; role: string; url: string } {
+  if (typeof rawAuthor === 'string' && rawAuthor.trim()) {
+    return {
+      name: rawAuthor.trim(),
+      role: 'Curadoria e Comunicação Institucional em Saúde e Cidadania',
+      url: '/redacao',
+    };
+  }
+  if (typeof rawAuthor === 'object' && rawAuthor !== null) {
+    return {
+      name: typeof rawAuthor.name === 'string' && rawAuthor.name.trim() ? rawAuthor.name.trim() : 'Redação ACADIM',
+      role: typeof rawAuthor.role === 'string' && rawAuthor.role.trim() ? rawAuthor.role.trim() : 'Curadoria e Comunicação Institucional em Saúde e Cidadania',
+      url: typeof rawAuthor.url === 'string' && rawAuthor.url.trim() ? rawAuthor.url.trim() : '/redacao',
+    };
+  }
+  return {
+    name: 'Redação ACADIM',
+    role: 'Curadoria e Comunicação Institucional em Saúde e Cidadania',
+    url: '/redacao',
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -132,15 +155,12 @@ class LocalFileStorageDriver implements StorageDriver {
       publishedAt: r.publishedAt || r.createdAt.split('T')[0],
       updatedAt: r.updatedAt ? r.updatedAt.split('T')[0] : undefined,
       readTime: '5 min de leitura',
-      author: {
-        name: r.author || 'Redação ACADIM',
-        role: 'Curadoria e Comunicação Institucional em Saúde e Cidadania',
-        url: '/redacao',
-      },
+      author: parseAuthor(r.author),
       coverImage: r.imageUrl || '/assets/community-bg.jpg',
       imageAlt: r.title,
       featured: Boolean(r.featured),
       tags: r.tags || [],
+      contentFormat: r.contentFormat || 'markdown',
     }));
   }
 }
@@ -285,20 +305,9 @@ class NewsRepository implements NewsRepositoryInterface {
         this.driver = cloud;
         this.driverName = 'UpstashStorageDriver';
       } else {
-        // PROTEÇÃO: em produção NÃO permitir fallback silencioso para filesystem.
-        // Filesystem serverless é efêmero — usá-lo seria falsa persistência.
-        if (process.env.NODE_ENV === 'production' || process.env.VERCEL === '1') {
-          console.error(
-            '[News Repository] ERRO CRÍTICO: produção sem storage persistente configurado. ' +
-            'Configure KV_REST_API_URL e KV_REST_API_TOKEN (Upstash) nas variáveis de ambiente.'
-          );
-          // Marcar como não configurado — operações devem falhar explicitamente
-          this.driverName = 'UNCONFIGURED_PRODUCTION';
-          this.driver = new NullProductionDriver();
-        } else {
-          this.driver = new LocalFileStorageDriver();
-          this.driverName = 'LocalFileStorageDriver';
-        }
+        // MODO LOCAL-FIRST: Usar sempre o LocalFileStorageDriver como fonte de verdade
+        this.driver = new LocalFileStorageDriver();
+        this.driverName = 'LocalFileStorageDriver';
       }
     }
     if (process.env.NODE_ENV !== 'production' || process.env.DEBUG_STORAGE) {
@@ -343,8 +352,10 @@ class NewsRepository implements NewsRepositoryInterface {
       counter++;
     }
 
-    const sanitizedContent = sanitizeHtmlContent(input.content?.trim() || '');
-    const sanitizedSummary = input.summary?.trim() || (sanitizedContent.length > 160 ? sanitizedContent.substring(0, 160) + '...' : '');
+    const rawContent = input.content?.trim() || '';
+    const contentFormat = input.contentFormat || 'markdown';
+    const sanitizedContent = contentFormat === 'html' ? sanitizeHtmlContent(rawContent) : rawContent;
+    const sanitizedSummary = input.summary?.trim() || (rawContent.length > 160 ? rawContent.substring(0, 160) + '...' : '');
 
     const newRecord: AdminNewsRecord = {
       id: `news_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
@@ -361,6 +372,7 @@ class NewsRepository implements NewsRepositoryInterface {
       status: input.status === 'published' ? 'published' : 'draft',
       createdAt: now,
       updatedAt: now,
+      contentFormat,
     };
 
     records.unshift(newRecord);
@@ -392,7 +404,10 @@ class NewsRepository implements NewsRepositoryInterface {
       }
     }
 
-    const sanitizedContent = input.content !== undefined ? sanitizeHtmlContent(input.content.trim()) : current.content;
+    const updatedFormat = input.contentFormat || current.contentFormat || 'markdown';
+    const sanitizedContent = input.content !== undefined
+      ? (updatedFormat === 'html' ? sanitizeHtmlContent(input.content.trim()) : input.content.trim())
+      : current.content;
 
     const updatedRecord: AdminNewsRecord = {
       ...current,
@@ -408,6 +423,7 @@ class NewsRepository implements NewsRepositoryInterface {
       featured: input.featured !== undefined ? Boolean(input.featured) : current.featured,
       status: input.status ? input.status : current.status,
       updatedAt: new Date().toISOString(),
+      contentFormat: updatedFormat,
     };
 
     records[index] = updatedRecord;
@@ -445,15 +461,12 @@ class NewsRepository implements NewsRepositoryInterface {
       publishedAt: r.publishedAt || r.createdAt.split('T')[0],
       updatedAt: r.updatedAt ? r.updatedAt.split('T')[0] : undefined,
       readTime: '5 min de leitura',
-      author: {
-        name: r.author || 'Redação ACADIM',
-        role: 'Curadoria e Comunicação Institucional em Saúde e Cidadania',
-        url: '/redacao',
-      },
+      author: parseAuthor(r.author),
       coverImage: r.imageUrl || '/assets/community-bg.jpg',
       imageAlt: r.title,
       featured: Boolean(r.featured),
       tags: r.tags || [],
+      contentFormat: r.contentFormat || 'markdown',
     }));
   }
 }

@@ -6,8 +6,20 @@ import NewsClient from './NewsClient';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Notícias | ACADIM',
-  description: 'Acompanhe as últimas notícias, pesquisas e avanços científicos sobre distrofias musculares.',
+  metadataBase: new URL('https://acadim.org.br'),
+  title: 'Notícias, Ciência e Direitos em Distrofia Muscular | ACADIM',
+  description: 'Acompanhe as últimas notícias, pesquisas científicas, decisões da ANVISA/SUS e guias de direitos para pessoas com distrofias musculares.',
+  alternates: {
+    canonical: 'https://acadim.org.br/noticias',
+  },
+  openGraph: {
+    title: 'Central de Notícias & Ciência | ACADIM',
+    description: 'Avanços científicos, pesquisas, novos tratamentos e defesa de direitos nas doenças neuromusculares.',
+    url: 'https://acadim.org.br/noticias',
+    siteName: 'ACADIM Portal',
+    locale: 'pt_BR',
+    type: 'website',
+  },
 };
 
 export const revalidate = 60; // Força revalidação no servidor caso a configuração do fetch falhe
@@ -15,8 +27,26 @@ export const revalidate = 60; // Força revalidação no servidor caso a configu
 export default async function NoticiasPage() {
   const allArticles = await getAllNewsAsync();
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Notícias, Ciência e Direitos em Distrofia Muscular — ACADIM',
+    url: 'https://acadim.org.br/noticias',
+    description: 'Central de Notícias, pesquisas científicas e guias de direitos sobre distrofias musculares.',
+    itemListElement: allArticles.slice(0, 10).map((art, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      url: `https://acadim.org.br/noticias/${art.slug}`,
+      name: art.title,
+    })),
+  };
+
   return (
     <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumb */}
       <div className="mb-8">
         <Link
