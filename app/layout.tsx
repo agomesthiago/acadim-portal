@@ -8,6 +8,7 @@ import { SkipLink } from '@/components/SkipLink';
 import { HeaderNav } from '@/components/HeaderNav';
 import { Footer } from '@/components/Footer';
 import { VLibras } from '@/components/VLibras';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const figtree = Figtree({ 
   subsets: ['latin'],
@@ -75,6 +76,7 @@ export default function RootLayout({
             <VLibras />
           </PixProvider>
         </AccessibilityProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
