@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { safeJsonLd } from '@/lib/sanitize-html';
 import { MascotsSection } from '@/components/MascotsSection';
+import { HelpNavigation } from '@/components/HelpNavigation';
 import { ContactSection } from '@/components/ContactSection';
 
 export const metadata: Metadata = {
@@ -46,7 +47,7 @@ export default function SobreNosPage() {
     '@type': 'AboutPage',
     name: 'Sobre a ACADIM — Associação Carioca de Distrofia Muscular',
     url: 'https://acadim.org.br/sobre-nos',
-    description: 'História institucional, fundação em 29 de julho de 1998 e atuação da ACADIM em apoio às famílias e pessoas com distrofias musculares.',
+    description: 'Fundação em 29 de julho de 1998 e atuação da ACADIM em apoio às famílias e pessoas com distrofias musculares no RJ.',
     mainEntity: {
       '@type': 'NGO',
       name: 'Associação Carioca de Distrofia Muscular',
@@ -339,12 +340,15 @@ export default function SobreNosPage() {
         </div>
       </section>
 
-      {/* 5. MASCOTES / FUNDADORES CLARA E PEDRO (LIVRES E FLUTUANTES) */}
+      {/* 5. FUNDADORES CLARA E PEDRO (LIVRES E FLUTUANTES) */}
       <div className="mb-12">
         <MascotsSection />
       </div>
 
-      {/* 6. CONTATO E ATENDIMENTO DA ACADIM */}
+      {/* 6. COMO PODEMOS AJUDAR (CAMINHOS DE NAVEGAÇÃO PRÁTICA) */}
+      <HelpNavigation />
+
+      {/* 7. CONTATO E ATENDIMENTO DA ACADIM */}
       <ContactSection />
     </div>
   );

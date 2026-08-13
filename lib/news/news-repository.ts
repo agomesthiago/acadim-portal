@@ -29,6 +29,7 @@ export interface NewsRepositoryInterface {
   createRecord(input: Partial<AdminNewsRecord>): Promise<AdminNewsRecord>;
   updateRecord(id: string, input: Partial<AdminNewsRecord>): Promise<AdminNewsRecord | null>;
   deleteRecord(id: string): Promise<boolean>;
+  purgeAllTestRecords(): Promise<number>;
   getPublishedArticles(): Promise<NewsArticle[]>;
 }
 
@@ -80,11 +81,14 @@ interface StorageDriver {
 // Local File Storage Driver (Desenvolvimento Local)
 // ─────────────────────────────────────────────────────────────────────────────
 
-const DATA_FILE_PATH = path.join(process.cwd(), 'data', 'custom-news.json');
+function getStorageFilePath(): string {
+  const fileName = process.env.CUSTOM_NEWS_FILE || 'custom-news.json';
+  return path.join(process.cwd(), 'data', path.basename(fileName));
+}
 
-function ensureDataDirectory(): void {
+function ensureDataDirectory(filePath: string): void {
   try {
-    const dir = path.dirname(DATA_FILE_PATH);
+    const dir = path.dirname(filePath);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
@@ -97,10 +101,11 @@ class LocalFileStorageDriver implements StorageDriver {
   private isWriting = false;
 
   async loadRecords(): Promise<AdminNewsRecord[]> {
+    const filePath = getStorageFilePath();
     try {
-      ensureDataDirectory();
-      if (fs.existsSync(DATA_FILE_PATH)) {
-        const raw = fs.readFileSync(DATA_FILE_PATH, 'utf-8');
+      ensureDataDirectory(filePath);
+      if (fs.existsSync(filePath)) {
+        const raw = fs.readFileSync(filePath, 'utf-8');
         if (!raw || raw.trim() === '') {
           return [];
         }
@@ -121,11 +126,12 @@ class LocalFileStorageDriver implements StorageDriver {
     }
     this.isWriting = true;
 
+    const filePath = getStorageFilePath();
     try {
-      ensureDataDirectory();
-      const tmpPath = DATA_FILE_PATH + '.tmp';
+      ensureDataDirectory(filePath);
+      const tmpPath = filePath + '.tmp';
       fs.writeFileSync(tmpPath, JSON.stringify(records, null, 2), 'utf-8');
-      fs.renameSync(tmpPath, DATA_FILE_PATH);
+      fs.renameSync(tmpPath, filePath);
       return true;
     } catch (err) {
       console.error('[Storage Driver] Falha ao gravar disco local:', err);
@@ -426,8 +432,27 @@ class NewsRepository implements NewsRepositoryInterface {
     const index = records.findIndex((r) => r.id === id || r.slug === id);
 
     if (index !== -1) {
-      records[index].status = 'deleted';
-      records[index].updatedAt = new Date().toISOString();
+      const record = records[index];
+      const titleLower = (record.title || '').toLowerCase();
+      const slugLower = (record.slug || '').toLowerCase();
+      const isTestRecord = (
+        titleLower.includes('[e2e') ||
+        titleLower.includes('[rc') ||
+        titleLower.includes('[consistency') ||
+        titleLower.includes('[teste') ||
+        slugLower.includes('e2e') ||
+        slugLower.includes('rc-') ||
+        slugLower.includes('consistency') ||
+        id.startsWith('news_test_')
+      );
+
+      if (isTestRecord) {
+        // Remover completamente do storage para não deixar resíduo E2E
+        records.splice(index, 1);
+      } else {
+        records[index].status = 'deleted';
+        records[index].updatedAt = new Date().toISOString();
+      }
     } else {
       const staticMatch = STATIC_BASE_NEWS.find((item) => item.id === id || item.slug === id);
       if (staticMatch) {
@@ -454,6 +479,32 @@ class NewsRepository implements NewsRepositoryInterface {
 
     const saved = await this.saveRecords(records);
     return saved;
+  }
+
+  async purgeAllTestRecords(): Promise<number> {
+    const records = await this.loadRecords();
+    const cleanRecords = records.filter((r) => {
+      const titleLower = (r.title || '').toLowerCase();
+      const slugLower = (r.slug || '').toLowerCase();
+      const summaryLower = (r.summary || '').toLowerCase();
+      const contentLower = (r.content || '').toLowerCase();
+      return !(
+        titleLower.includes('[e2e') ||
+        titleLower.includes('[rc') ||
+        titleLower.includes('[consistency') ||
+        titleLower.includes('[teste') ||
+        slugLower.includes('e2e') ||
+        slugLower.includes('rc-') ||
+        slugLower.includes('consistency') ||
+        summaryLower.includes('e2e') ||
+        contentLower.includes('e2e')
+      );
+    });
+    const removedCount = records.length - cleanRecords.length;
+    if (removedCount > 0) {
+      await this.saveRecords(cleanRecords);
+    }
+    return removedCount;
   }
 
   async getPublishedArticles(): Promise<NewsArticle[]> {

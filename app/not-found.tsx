@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import React, { useState, useEffect } from 'react';
 
-const MASCOT_OPTIONS = [
+const FOUNDER_OPTIONS = [
   { src: '/clara.svg', alt: 'Clara, fundadora da ACADIM' },
   { src: '/pedro.svg', alt: 'Pedro, fundador da ACADIM' },
   { src: '/mascotes.png', alt: 'Clara e Pedro, fundadores da ACADIM' },
@@ -14,12 +14,12 @@ const MASCOT_OPTIONS = [
 
 export default function NotFound() {
   // Estado com valor determinístico inicial para evitar hydration mismatch
-  const [selectedMascot, setSelectedMascot] = useState(MASCOT_OPTIONS[2]);
+  const [selectedFounder, setSelectedFounder] = useState(FOUNDER_OPTIONS[2]);
 
   useEffect(() => {
     // Seleciona aleatoriamente no cliente após a montagem
-    const randomIndex = Math.floor(Math.random() * MASCOT_OPTIONS.length);
-    setSelectedMascot(MASCOT_OPTIONS[randomIndex]);
+    const randomIndex = Math.floor(Math.random() * FOUNDER_OPTIONS.length);
+    setSelectedFounder(FOUNDER_OPTIONS[randomIndex]);
   }, []);
 
   return (
@@ -27,8 +27,8 @@ export default function NotFound() {
       <div className="max-w-md w-full bg-surface-default p-8 sm:p-12 rounded-3xl border border-border-default shadow-xl text-center space-y-6">
         <div className="relative w-48 h-48 mx-auto">
           <Image
-            src={selectedMascot.src}
-            alt={selectedMascot.alt}
+            src={selectedFounder.src}
+            alt={selectedFounder.alt}
             fill
             className="object-contain"
             priority

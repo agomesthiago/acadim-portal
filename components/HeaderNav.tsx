@@ -67,7 +67,7 @@ export const HeaderNav: React.FC = () => {
         {/* Logo Institucional Oficial ACADIM (Transparente SVG) */}
         <Link href="/" className="flex items-center gap-2 sm:gap-3 group text-left min-h-[44px]">
           <div className="relative w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-105 transition-transform shrink-0">
-            <Image src="/logo.svg" alt="Símbolo Institucional ACADIM" fill className="object-contain" priority />
+            <Image src="/logo.svg" alt="Símbolo Institucional ACADIM" fill sizes="180px" className="object-contain" priority />
           </div>
           <div className="flex flex-col">
             <span className="text-white font-black text-lg sm:text-xl tracking-tight leading-none">

@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-3 group text-left min-h-[44px]">
               <div className="relative w-10 h-10 flex items-center justify-center shrink-0">
-                <Image src="/logo.svg" alt="Logo ACADIM" fill className="object-contain" />
+                <Image src="/logo.svg" alt="Logo ACADIM" fill sizes="180px" className="object-contain" />
               </div>
               <div className="flex flex-col">
                 <span className="text-white font-black text-xl tracking-tight leading-none">
@@ -72,7 +72,7 @@ export const Footer: React.FC = () => {
               <li><Link href="/sobre-nos" className="hover:text-white transition-colors">Nossa História (Fundação 1998)</Link></li>
               <li><Link href="/#sobre" className="hover:text-white transition-colors">Sobre a ACADIM</Link></li>
               <li><Link href="/#servicos" className="hover:text-white transition-colors">Serviços Institucionais</Link></li>
-              <li><Link href="/#fundadores" className="hover:text-white transition-colors">Fundadores Clara e Pedro</Link></li>
+              <li><Link href="/sobre-nos#fundadores" className="hover:text-white transition-colors">Fundadores Clara e Pedro</Link></li>
               <li><Link href="/#impacto" className="hover:text-white transition-colors">Impacto Social & Transparência</Link></li>
               <li><Link href="/#bazar" className="hover:text-white transition-colors">Bazar Solidário</Link></li>
               <li>

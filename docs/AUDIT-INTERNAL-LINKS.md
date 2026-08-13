@@ -1,0 +1,71 @@
+# Auditoria de Links Internos, Rotas e Assets — ACADIM
+
+Abaixo está o relatório de integridade de rotas executado via HTTP contra o servidor local de produção.
+
+| # | Rota / Endpoint | Status HTTP | Resultado | Observações |
+|---|---|---|---|---|
+| 1 | `/` | 200 | ✅ 200 OK | OK | 
+| 2 | `/sobre-nos` | 200 | ✅ 200 OK | OK | 
+| 3 | `/distrofias` | 200 | ✅ 200 OK | OK | 
+| 4 | `/alerta-medico` | 200 | ✅ 200 OK | OK | 
+| 5 | `/noticias` | 200 | ✅ 200 OK | OK | 
+| 6 | `/redacao` | 200 | ✅ 200 OK | OK | 
+| 7 | `/admin` | 200 | ✅ 200 OK | OK | 
+| 8 | `/admin/login` | 200 | ✅ 200 OK | OK | 
+| 9 | `/favicon.ico` | 200 | ✅ 200 OK | OK | 
+| 10 | `/sitemap.xml` | 200 | ✅ 200 OK | OK | 
+| 11 | `/robots.txt` | 200 | ✅ 200 OK | OK | 
+| 12 | `/distrofias/duchenne` | 200 | ✅ 200 OK | OK | 
+| 13 | `/distrofias/becker` | 200 | ✅ 200 OK | OK | 
+| 14 | `/distrofias/lgmd-r1-calpainopatia` | 200 | ✅ 200 OK | OK | 
+| 15 | `/distrofias/lgmd-r2-dysferlinopatia` | 200 | ✅ 200 OK | OK | 
+| 16 | `/distrofias/fshd` | 200 | ✅ 200 OK | OK | 
+| 17 | `/distrofias/steinert-dm1` | 200 | ✅ 200 OK | OK | 
+| 18 | `/distrofias/distrofia-miotonica-tipo-2-dm2` | 200 | ✅ 200 OK | OK | 
+| 19 | `/distrofias/distrofia-muscular-congenita-cmd` | 200 | ✅ 200 OK | OK | 
+| 20 | `/distrofias/distrofia-facioscapulohumeral-fshd` | 200 | ✅ 200 OK | OK | 
+| 21 | `/distrofias/distrofia-oculofaringea-opmd` | 200 | ✅ 200 OK | OK | 
+| 22 | `/noticias/avancos-terapia-genica-duchenne-2026` | 200 | ✅ 200 OK | OK | 
+| 23 | `/noticias/direitos-sus-medicamentos-orteses-guia` | 200 | ✅ 200 OK | OK | 
+| 24 | `/noticias/simposio-carioca-distrofia-muscular-2026` | 200 | ✅ 200 OK | OK | 
+| 25 | `/noticias/historia-superacao-autonomia-fshd` | 200 | ✅ 200 OK | OK | 
+| 26 | `/noticias/fda-expande-recomendacao-terapia-genica-microdistrofina-duchenne` | 200 | ✅ 200 OK | OK | 
+| 27 | `/noticias/avancos-salto-de-exon-oligonucleotideos-duchenne` | 200 | ✅ 200 OK | OK | 
+| 28 | `/noticias/vamorolona-novo-corticosteroide-com-menos-efeitos-colaterais` | 200 | ✅ 200 OK | OK | 
+| 29 | `/noticias/saude-do-coracao-na-distrofia-de-duchenne-exames-e-cuidados` | 200 | ✅ 200 OK | OK | 
+| 30 | `/noticias/givinostat-pesquisa-para-preservar-forca-muscular-em-becker` | 200 | ✅ 200 OK | OK | 
+| 31 | `/noticias/crispr-edicao-genetica-pesquisas-para-corrigir-o-dna` | 200 | ✅ 200 OK | OK | 
+| 32 | `/noticias/diretrizes-anvisa-conitec-diagnostico-molecular-sus` | 200 | ✅ 200 OK | OK | 
+| 33 | `/noticias/terapia-genica-lgmd-r1-calpainopatia-estudo-clinico` | 200 | ✅ 200 OK | OK | 
+| 34 | `/noticias/disferlinopatia-lgmd-r2-reparo-da-membrana-muscular` | 200 | ✅ 200 OK | OK | 
+| 35 | `/noticias/sarcoglicanopatias-lgmd-r3-r6-estudos-com-vetores-aav` | 200 | ✅ 200 OK | OK | 
+| 36 | `/noticias/mapeamento-genetico-distrofia-de-cinturas-no-brasil` | 200 | ✅ 200 OK | OK | 
+| 37 | `/noticias/inibidores-de-dux4-fshd1-pesquisa-com-losmapimod` | 200 | ✅ 200 OK | OK | 
+| 38 | `/noticias/marcadores-epigeneticos-e-diagnostico-de-fshd2` | 200 | ✅ 200 OK | OK | 
+| 39 | `/noticias/registro-internacional-de-pacientes-com-fshd` | 200 | ✅ 200 OK | OK | 
+| 40 | `/noticias/terapia-de-substituicao-de-laminina-na-distrofia-congenita-mdc1a` | 200 | ✅ 200 OK | OK | 
+| 41 | `/noticias/saude-mitocondrial-e-autofagia-na-distrofia-de-colageno-vi` | 200 | ✅ 200 OK | OK | 
+| 42 | `/noticias/silenciamento-do-gene-dmpk-na-distrofia-miotonica-dm1` | 200 | ✅ 200 OK | OK | 
+| 43 | `/noticias/cuidados-cardiacos-e-arritmias-na-distrofia-miotonica` | 200 | ✅ 200 OK | OK | 
+| 44 | `/noticias/terapia-silence-and-replace-na-distrofia-oculofaringea-opmd` | 200 | ✅ 200 OK | OK | 
+| 45 | `/noticias/laminopatias-e-distrofia-de-emery-dreifuss-cuidados` | 200 | ✅ 200 OK | OK | 
+| 46 | `/noticias/triagem-neonatal-teste-do-pezinho-expandido-para-distrofias` | 200 | ✅ 200 OK | OK | 
+| 47 | `/noticias/passo-a-passo-para-solicitar-cadeira-de-rodas-e-orteses-no-rj` | 200 | ✅ 200 OK | OK | 
+| 48 | `/noticias/fisioterapia-respiratoria-e-vni-preservando-a-capacidade-pulmonar` | 200 | ✅ 200 OK | OK | 
+| 49 | `/noticias/inteligencia-artificial-e-regeneracao-muscular-em-doencas-raras` | 200 | ✅ 200 OK | OK | 
+| 50 | `/noticias/biorrepositorio-e-rebrar-importancia-dos-cadastros-de-doencas-raras` | 200 | ✅ 200 OK | OK | 
+| 51 | `/noticias/consistency-test-materia-em-rede-1786618186565` | 200 | ✅ 200 OK | OK | 
+| 52 | `/noticias/e2e-delete-noticia-exclusiva-para-deletar-1786618179027` | 200 | ✅ 200 OK | OK | 
+| 53 | `/noticias/e2e-update-orig-noticia-para-edicao-1786618174137` | 200 | ✅ 200 OK | OK | 
+| 54 | `/noticias/e2e-create-noticia-de-teste-automatizado-1786618170571` | 200 | ✅ 200 OK | OK | 
+| 55 | `/noticias/consistency-test-materia-em-rede-1786618134814` | 200 | ✅ 200 OK | OK | 
+| 56 | `/noticias/e2e-delete-noticia-exclusiva-para-deletar-1786618127214` | 200 | ✅ 200 OK | OK | 
+| 57 | `/noticias/e2e-update-orig-noticia-para-edicao-1786618117180` | 200 | ✅ 200 OK | OK | 
+| 58 | `/noticias/e2e-create-noticia-de-teste-automatizado-1786618113947` | 200 | ✅ 200 OK | OK | 
+| 59 | `/noticias/consistency-test-materia-em-rede-1786618035480` | 200 | ✅ 200 OK | OK | 
+| 60 | `/noticias/e2e-delete-noticia-exclusiva-para-deletar-1786618001544` | 200 | ✅ 200 OK | OK | 
+| 61 | `/noticias/e2e-update-orig-noticia-para-edicao-1786617970852` | 200 | ✅ 200 OK | OK | 
+| 62 | `/noticias/e2e-create-noticia-de-teste-automatizado-1786617962294` | 200 | ✅ 200 OK | OK | 
+| 63 | `/noticias/e2e-delete-noticia-exclusiva-para-deletar-1786617956827` | 200 | ✅ 200 OK | OK | 
+| 64 | `/noticias/e2e-update-orig-noticia-para-edicao-1786617926052` | 200 | ✅ 200 OK | OK | 
+| 65 | `/noticias/e2e-create-noticia-de-teste-automatizado-1786617915525` | 200 | ✅ 200 OK | OK | 

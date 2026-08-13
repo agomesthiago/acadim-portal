@@ -1,107 +1,5 @@
 [
   {
-    "id": "news_1786597795446_wbfhi",
-    "title": "[E2E UPDATE ORIG] Notícia para Edição 1786597793698",
-    "slug": "e2e-update-orig-noticia-para-edicao-1786597793698",
-    "summary": "Resumo inicial",
-    "content": "Conteúdo inicial",
-    "category": "Avanços Científicos",
-    "tags": [],
-    "author": "Redação ACADIM",
-    "publishedAt": "2026-08-13",
-    "imageUrl": "/assets/acadim-default-banner.jpg",
-    "featured": false,
-    "status": "draft",
-    "createdAt": "2026-08-13T05:09:55.446Z",
-    "updatedAt": "2026-08-13T05:09:55.446Z",
-    "contentFormat": "markdown"
-  },
-  {
-    "id": "news_1786597786897_48w6h",
-    "title": "[E2E CREATE] Notícia de Teste Automatizado 1786597785320",
-    "slug": "e2e-create-noticia-de-teste-automatizado-1786597785320",
-    "summary": "Resumo de teste automatizado E2E gerado no timestamp 1786597785320.",
-    "content": "Este é o corpo editorial completo da notícia de teste E2E 1786597785320.",
-    "category": "Avanços Científicos",
-    "tags": [],
-    "author": "Redação ACADIM",
-    "publishedAt": "2026-08-13",
-    "imageUrl": "/assets/acadim-default-banner.jpg",
-    "featured": false,
-    "status": "draft",
-    "createdAt": "2026-08-13T05:09:46.897Z",
-    "updatedAt": "2026-08-13T05:09:46.897Z",
-    "contentFormat": "markdown"
-  },
-  {
-    "id": "news_1786597727818_8ag28",
-    "title": "[CONSISTENCY TEST] Matéria em Rede 1786597726911",
-    "slug": "consistency-test-materia-em-rede-1786597726911",
-    "summary": "Resumo de integridade de consistência 1786597726911.",
-    "content": "Corpo completo de validação de persistência cruzada 1786597726911.",
-    "category": "Avanços Científicos",
-    "tags": [],
-    "author": "Redação ACADIM",
-    "publishedAt": "2026-08-13",
-    "imageUrl": "/assets/acadim-default-banner.jpg",
-    "featured": false,
-    "status": "draft",
-    "createdAt": "2026-08-13T05:08:47.818Z",
-    "updatedAt": "2026-08-13T05:08:47.818Z",
-    "contentFormat": "markdown"
-  },
-  {
-    "id": "news_1786597717398_sjsnv",
-    "title": "[E2E DELETE] Notícia Exclusiva para Deletar 1786597715688",
-    "slug": "e2e-delete-noticia-exclusiva-para-deletar-1786597715688",
-    "summary": "Será deletada",
-    "content": "Conteúdo que será deletado",
-    "category": "Avanços Científicos",
-    "tags": [],
-    "author": "Redação ACADIM",
-    "publishedAt": "2026-08-13",
-    "imageUrl": "/assets/acadim-default-banner.jpg",
-    "featured": false,
-    "status": "draft",
-    "createdAt": "2026-08-13T05:08:37.398Z",
-    "updatedAt": "2026-08-13T05:08:37.398Z",
-    "contentFormat": "markdown"
-  },
-  {
-    "id": "news_1786597687100_3m2bx",
-    "title": "[E2E UPDATE ORIG] Notícia para Edição 1786597684819",
-    "slug": "e2e-update-orig-noticia-para-edicao-1786597684819",
-    "summary": "Resumo inicial",
-    "content": "Conteúdo inicial",
-    "category": "Avanços Científicos",
-    "tags": [],
-    "author": "Redação ACADIM",
-    "publishedAt": "2026-08-13",
-    "imageUrl": "/assets/acadim-default-banner.jpg",
-    "featured": false,
-    "status": "draft",
-    "createdAt": "2026-08-13T05:08:07.100Z",
-    "updatedAt": "2026-08-13T05:08:07.100Z",
-    "contentFormat": "markdown"
-  },
-  {
-    "id": "news_1786597678081_dgwlu",
-    "title": "[E2E CREATE] Notícia de Teste Automatizado 1786597676451",
-    "slug": "e2e-create-noticia-de-teste-automatizado-1786597676451",
-    "summary": "Resumo de teste automatizado E2E gerado no timestamp 1786597676451.",
-    "content": "Este é o corpo editorial completo da notícia de teste E2E 1786597676451.",
-    "category": "Avanços Científicos",
-    "tags": [],
-    "author": "Redação ACADIM",
-    "publishedAt": "2026-08-13",
-    "imageUrl": "/assets/acadim-default-banner.jpg",
-    "featured": false,
-    "status": "draft",
-    "createdAt": "2026-08-13T05:07:58.081Z",
-    "updatedAt": "2026-08-13T05:07:58.081Z",
-    "contentFormat": "markdown"
-  },
-  {
     "id": "news_01_dmd_genica",
     "slug": "avancos-terapia-genica-duchenne-2026",
     "title": "Avanços na Terapia Gênica para Duchenne: O que as Famílias Precisam Saber",
@@ -279,41 +177,6 @@
     "imageUrl": "/assets/acadim-default-banner.jpg"
   },
   {
-    "id": "news_06_dmd_exon_skipping",
-    "slug": "avancos-salto-de-exon-oligonucleotideos-duchenne",
-    "title": "Entenda como Funciona o 'Salto de Éxon': Remédios Genéticos em Teste para Duchenne",
-    "summary": "Saiba o que são os medicamentos de salto de éxon (pulos genéticos) e como eles tentam corrigir o erro na receita do DNA do músculo.",
-    "category": "Avanços Científicos",
-    "publishedAt": "2024-11-17",
-    "readTime": "5 min de leitura",
-    "featured": false,
-    "status": "published",
-    "author": {
-      "name": "Redação ACADIM",
-      "role": "Curadoria Científica em Saúde"
-    },
-    "primarySource": {
-      "name": "Nature Reviews Drug Discovery & PPMD",
-      "title": "Advances in antisense oligonucleotide exon skipping for Duchenne",
-      "url": "https://www.nature.com/nrd/",
-      "originalPublishedAt": "15/11/2024"
-    },
-    "coverImage": "/assets/acadim-default-banner.jpg",
-    "imageAlt": "Representação esquemática do RNA e mecanismo de salto de éxon",
-    "imageCredit": "Biotechnology & Nature Reviews",
-    "tags": [
-      "Duchenne",
-      "Salto de Éxon",
-      "DNA",
-      "Pesquisa"
-    ],
-    "relatedDiseaseSlug": "duchenne",
-    "contentFormat": "markdown",
-    "content": "## Como Funciona o \"Salto de Éxon\"?\n\nImagine que a receita para fabricar a proteína do músculo é um texto longo com 79 capítulos (chamados de **éxons**). Na Distrofia Muscular de Duchenne, um desses capítulos está faltando ou com defeito, fazendo com que a leitura da receita pare no meio.\n\nA técnica do **Salto de Éxon** usa pequenos \"adesivos genéticos\" (chamados oligonucleotídeos) que mandam a célula **pular o capítulo estragado** e continuar lendo o resto da receita.\n\n---\n\n### 1. Quais Éxons Podem Ser \"Pulados\" Hoje?\n\nAtualmente, existem remédios desenvolvidos para pular capítulos específicos:\n- **Salto do Éxon 51** (atende cerca de 13% dos pacientes com Duchenne);\n- **Salto do Éxon 53** (atende cerca de 8% dos pacientes);\n- **Salto do Éxon 45** (atende cerca de 8% dos pacientes).\n\n---\n\n### 2. O Que o Remédio Faz no Corpo?\n\nAo pular a parte estragada da receita, o corpo consegue fabricar uma proteína um pouco menor, parecida com a proteína de quem tem Distrofia de Becker (que é um tipo mais leve de distrofia). Isso ajuda o músculo a ficar mais resistente.\n\n---\n\n### 3. O Que Ainda Não Sabemos?\n\n- **Remédio Semanal:** Esses medicamentos atuais precisam ser aplicados na veia toda semana no hospital.\n- **Novas Versões em Teste:** Cientistas estão testando uma nova tecnologia (chamada PPMO) para fazer o remédio grudar melhor no músculo e precisar de doses menos frequentes.\n\n---\n\n> **Aviso Institucional (Situação no Brasil):** Remédios de salto de éxon requerem um exame de DNA detalhado para saber se o paciente tem exatamente a mutação que encaixa no remédio. Consulte sempre o neuropediatra responsável.\n\n---\n\n### Fonte original\n- **Periódico Científico:** Nature Reviews Drug Discovery\n- **Título Original:** Advances in antisense oligonucleotide exon skipping for Duchenne\n- **Link:** [https://www.nature.com/nrd/](https://www.nature.com/nrd/)",
-    "updatedAt": "2024-11-17",
-    "imageUrl": "/assets/acadim-default-banner.jpg"
-  },
-  {
     "id": "news_07_vamorolone_dmd",
     "slug": "vamorolona-novo-corticosteroide-com-menos-efeitos-colaterais",
     "title": "Vamorolona (Agamree): O Novo Anti-inflamatório Terapêutico para Distrofia de Duchenne",
@@ -382,41 +245,6 @@
     "contentFormat": "markdown",
     "content": "## Por Que Cuidar do Coração?\n\nMuitas pessoas pensam na distrofia muscular apenas nos braços e pernas, mas **o coração também é feito de músculo** (chamado músculo cardíaco). Na Distrofia de Duchenne, a falta da proteína distrofina também afeta a parede do coração ao longo dos anos.\n\nA boa notícia é que, com o acompanhamento médico desde cedo, existem remédios que ajudam o coração a bater com menos esforço e a se proteger.\n\n---\n\n### 1. Quais Exames Devem Ser Feitos?\n\nAs diretrizes médicas recomendam os seguintes cuidados:\n\n- **Ecocardiograma (Ultrassom do Coração):** Deve ser feito uma vez por ano a partir do momento do diagnóstico.\n- **Ressonância Magnética do Coração:** Exame muito detalhado recomendado a partir dos 6 a 10 anos de idade para enxergar pequenas alterações antes de causarem sintomas.\n- **Holter de 24 Horas:** Exame que mede os batimentos cardíacos durante um dia inteiro para conferir se há palpitações ou arritmias.\n\n---\n\n### 2. Medicamentos Protetores do Coração\n\nMesmo que o jovem não sinta cansaço ou dor no peito, os cardiologistas costumam prescrever remédios protetores (como inibidores da ECA ou betabloqueadores) por volta dos 10 anos de idade. Esses remédios funcionam como um \"escudo\" para evitar que o coração dilate.\n\n---\n\n> **Dica Institucional ACADIM:** Todo paciente com distrofia muscular deve ter um cardiologista na sua equipe de saúde. Leve sempre seus exames anteriores em cada consulta!\n\n---\n\n### Fonte original\n- **Publicação:** Journal of the American College of Cardiology (JACC)\n- **Título:** Cardiovascular management in Duchenne muscular dystrophy\n- **Link:** [https://www.jacc.org/](https://www.jacc.org/)",
     "updatedAt": "2023-09-20",
-    "imageUrl": "/assets/acadim-default-banner.jpg"
-  },
-  {
-    "id": "news_09_becker_givinostat",
-    "slug": "givinostat-pesquisa-para-preservar-forca-muscular-em-becker",
-    "title": "Givinostat em Teste para Distrofia Muscular de Becker: Estudo Busca Proteger os Músculos",
-    "summary": "Pesquisa internacional estuda o medicamento Givinostat para diminuir a inflamação e a fibrose muscular na Distrofia de Becker.",
-    "category": "Pesquisa & Ensaios Clínicos",
-    "publishedAt": "2024-03-23",
-    "readTime": "4 min de leitura",
-    "featured": false,
-    "status": "published",
-    "author": {
-      "name": "Redação ACADIM",
-      "role": "Curadoria Científica em Saúde"
-    },
-    "primarySource": {
-      "name": "Italfarmaco & The New England Journal of Medicine",
-      "title": "Phase 3 trial of Givinostat in muscular dystrophy",
-      "url": "https://www.nejm.org/",
-      "originalPublishedAt": "21/03/2024"
-    },
-    "coverImage": "/assets/acadim-default-banner.jpg",
-    "imageAlt": "Acompanhamento de paciente com distrofia muscular de Becker",
-    "imageCredit": "ClinicalTrials.gov / Italfarmaco",
-    "tags": [
-      "Becker",
-      "Givinostat",
-      "Pesquisa",
-      "Músculo"
-    ],
-    "relatedDiseaseSlug": "becker",
-    "contentFormat": "markdown",
-    "content": "## O Que é a Distrofia Muscular de Becker?\n\nA Distrofia Muscular de Becker (BMD) é parecida com a de Duchenne, mas o corpo consegue fabricar a proteína distrofina em menor quantidade ou em um tamanho alterado. Por isso, os sintomas costumam surgir mais tarde e progridem de forma mais lenta.\n\nCientistas estão testando um medicamento chamado **Givinostat**, que atua bloqueando enzimas que causam cicatrizes (fibrose) no músculo.\n\n---\n\n### 1. Como o Remédio Funciona?\n\nQuando o músculo sofre pequenas lesões, o corpo tenta cicatrizar o local. Se houver muita inflamação, o tecido muscular é substituído por gordura e fibrose. \nO Givinostat age como um **fio condutor que avisa as células para não formarem gordura**, preservando a massa muscular viva por mais tempo.\n\n---\n\n### 2. Resultados Apresentados nos Ensaios Clínicos\n\n- Nos testes de fase 3 com homens e jovens que têm Becker e Duchenne, o remédio ajudou a diminuir a gordura infiltrada nos músculos das coxas (medida por exame de ressonância).\n- Os participantes que tomaram o medicamento mantiveram melhor a velocidade nos testes de caminhada de 6 minutos.\n\n---\n\n> **Aviso Institucional (Situação no Brasil):** O Givinostat é um medicamento sob estudo e análise regulatória internacional. Ele **não está disponível comercialmente ou no SUS no Brasil**.\n\n---\n\n### Fonte original\n- **Periódico Científico:** The New England Journal of Medicine (NEJM)\n- **Título Original:** Phase 3 trial of Givinostat in muscular dystrophy\n- **Link:** [https://www.nejm.org/](https://www.nejm.org/)",
-    "updatedAt": "2024-03-23",
     "imageUrl": "/assets/acadim-default-banner.jpg"
   },
   {
@@ -938,40 +766,6 @@
     "contentFormat": "markdown",
     "content": "## O Que é a Distrofia de Emery-Dreifuss (EDMD)?\n\nA Distrofia Muscular de Emery-Dreifuss é um tipo raro de distrofia que pode ser causada por alterações no gene *EMD* (chamada de forma ligada ao X) ou no gene *LMNA* (chamada de laminopatia).\n\nEla é caracterizada por uma tríade de sinais:\n1. **Contraturas Precoces:** Encurtamento dos tendões do calcanhar (tendão de Aquiles), dos cotovelos e da nuca;\n2. **Fraqueza Muscular:** Fraqueza nos braços e pernas de progressão lenta;\n3. **Envolvimento Cardíaco:** Alterações no ritmo elétrico do coração.\n\n---\n\n### 1. Prevenção de Contraturas Articulares\n\nA fisioterapia motora diária e o uso de órteses noturnas para os pés ajudam a manter a elasticidade dos tendões, prevenindo que as articulações fiquem endurecidas em posições desconfortáveis.\n\n---\n\n### 2. Cuidados Cardíacos Rigorosos\n\nEm pessoas com mutação no gene *LMNA*, o acompanhamento com cardiologista deve ser feito sem falta **a cada 6 meses**, acompanhado de eletrocardiograma e ecocardiograma, pois a colocação de marcapasso ou desfibrilador automático pode ser indicada precocemente.\n\n---\n\n### Fonte original\n- **Periódico:** Neuromuscular Disorders Journal\n- **Link:** [https://www.nmd-journal.com/](https://www.nmd-journal.com/)",
     "updatedAt": "2024-01-19",
-    "imageUrl": "/assets/acadim-default-banner.jpg"
-  },
-  {
-    "id": "news_25_triagem_neonatal_ck",
-    "slug": "triagem-neonatal-teste-do-pezinho-expandido-para-distrofias",
-    "title": "Teste do Pezinho Expandido e CK Neonatal: Identificando Distrofias nos Primeiros Dias",
-    "summary": "Saiba como a dosagem de Creatina Quinase (CK) no teste do pezinho pode permitir o diagnóstico precoce e proteger o futuro dos bebês.",
-    "category": "Direitos no SUS",
-    "publishedAt": "2025-03-10",
-    "readTime": "4 min de leitura",
-    "featured": false,
-    "status": "published",
-    "author": {
-      "name": "Redação ACADIM",
-      "role": "Saúde Pública e Triagem Neonatal"
-    },
-    "primarySource": {
-      "name": "Ministério da Saúde & Sociedade Brasileira de Triagem Neonatal",
-      "title": "Expansion of newborn screening program for neuromuscular disorders",
-      "url": "https://www.gov.br/saude/",
-      "originalPublishedAt": "08/03/2025"
-    },
-    "coverImage": "/assets/acadim-default-banner.jpg",
-    "imageAlt": "Banner do Teste do Pezinho Expandido com Logo ACADIM e Fundadores Clara e Pedro",
-    "imageCredit": "Ilustração Institucional ACADIM com Fundadores Clara & Pedro",
-    "tags": [
-      "Teste do Pezinho",
-      "CK Neonatal",
-      "Diagnóstico Precoce",
-      "SUS"
-    ],
-    "contentFormat": "markdown",
-    "content": "## O Que é a Dosagem de CK no Recém-Nascido?\n\nA Creatina Quinase (CK) é uma enzima que fica dentro das células do músculo. Quando o bebê nasce com distrofia muscular, os músculos deixam vazar uma quantidade enorme de CK para a corrente sanguínea desde os primeiros dias de vida.\n\nColocar a dosagem de CK nas gotinhas de sangue do **Teste do Pezinho Expandido** permite descobrir a doença antes mesmo de a criança apresentar qualquer fraqueza visual.\n\n---\n\n### 1. Por Que o Diagnóstico Precoce Muda Tudo?\n\nDescobrir a distrofia muscular nos primeiros meses de vida permite que o bebê comece o acompanhamento com fisioterapia, neurologista e terapias protetoras **antes de perder fibras musculares preciosas**.\n\n---\n\n### 2. A Luta pela Inclusão no SUS\n\nA Lei do Teste do Pezinho Expandido (Lei nº 14.154) prevê o aumento gradual de doenças testadas na rede pública. A ACADIM e entidades de Doenças Raras trabalham para que a dosagem de CK seja universalizada em todos os maternidades e postos do Rio de Janeiro e do Brasil.\n\n---\n\n### Fonte original\n- **Órgão:** Ministério da Saúde do Brasil / Sociedade Brasileira de Triagem Neonatal\n- **Link Oficial:** [https://www.gov.br/saude/](https://www.gov.br/saude/)",
-    "updatedAt": "2025-03-10",
     "imageUrl": "/assets/acadim-default-banner.jpg"
   },
   {

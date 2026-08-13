@@ -43,6 +43,11 @@ export const metadata: Metadata = {
     description: 'Acolhimento e apoio às famílias com distrofia muscular no Rio de Janeiro.',
     images: ['/assets/hero-bg.jpg'],
   },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.png',
+  },
 };
 
 export default function RootLayout({

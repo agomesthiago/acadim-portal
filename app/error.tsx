@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { RefreshCcw, Home } from 'lucide-react';
 
-const MASCOT_OPTIONS = [
+const FOUNDER_OPTIONS = [
   { src: '/clara.svg', alt: 'Clara, fundadora da ACADIM' },
   { src: '/pedro.svg', alt: 'Pedro, fundador da ACADIM' },
   { src: '/mascotes.png', alt: 'Clara e Pedro, fundadores da ACADIM' },
@@ -18,12 +18,12 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  const [selectedMascot, setSelectedMascot] = useState(MASCOT_OPTIONS[2]);
+  const [selectedFounder, setSelectedFounder] = useState(FOUNDER_OPTIONS[2]);
 
   useEffect(() => {
     console.error('ACADIM Error Boundary Caught:', error);
-    const randomIndex = Math.floor(Math.random() * MASCOT_OPTIONS.length);
-    setSelectedMascot(MASCOT_OPTIONS[randomIndex]);
+    const randomIndex = Math.floor(Math.random() * FOUNDER_OPTIONS.length);
+    setSelectedFounder(FOUNDER_OPTIONS[randomIndex]);
   }, [error]);
 
   return (
@@ -31,8 +31,8 @@ export default function Error({
       <div className="max-w-md w-full bg-surface-default p-8 sm:p-12 rounded-3xl border border-border-default shadow-xl text-center space-y-6">
         <div className="relative w-40 h-40 mx-auto">
           <Image
-            src={selectedMascot.src}
-            alt={selectedMascot.alt}
+            src={selectedFounder.src}
+            alt={selectedFounder.alt}
             fill
             className="object-contain"
             priority

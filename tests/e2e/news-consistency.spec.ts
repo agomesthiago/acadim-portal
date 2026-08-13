@@ -1,6 +1,14 @@
 import { test, expect, Page } from '@playwright/test';
 
 async function loginAsAdmin(page: Page) {
+  const context = page.context();
+  await context.addCookies([
+    {
+      name: 'acadim_admin_token',
+      value: '123@abc',
+      url: 'http://localhost:3000',
+    },
+  ]);
   await page.goto('/admin/login');
   await page.waitForLoadState('domcontentloaded');
   if (await page.locator('input[type="password"]').isVisible()) {
@@ -40,22 +48,22 @@ test.describe('NEWS_PUBLICATION_CONSISTENCY - Teste de Consistência e Persistê
     await expect(publicPage.locator(`text=${testTitle}`)).toBeVisible();
 
     // 4. PUBLIC DETAIL
-    await publicPage.click(`text=${testTitle}`);
+    await publicPage.click(`a[aria-label="Ler matéria completa: ${testTitle}"]`);
     await publicPage.waitForLoadState('networkidle');
     await expect(publicPage.locator('h1')).toContainText(testTitle);
-    await expect(publicPage.locator('article, main')).toContainText(testContent);
+    await expect(publicPage.locator('article').first()).toContainText(testContent);
 
     // 5. HARD RELOAD
     await publicPage.reload({ waitUntil: 'networkidle' });
     await expect(publicPage.locator('h1')).toContainText(testTitle);
 
     // 6. UPDATE no Admin
-    const updatedTitle = `[teste] ${testTitle}`;
+    const updatedTitle = `[CONSISTENCY EDITED] Matéria Editada ${timestamp}`;
     const updatedContent = `[EDITADO] ${testContent}`;
 
     await adminPage.goto('/admin/noticias');
     await adminPage.waitForLoadState('networkidle');
-    const editBtn = adminPage.locator(`tr:has-text("${testTitle}") a:has-text("Editar")`).first();
+    const editBtn = adminPage.locator(`tr:has-text("${testTitle}") a[title="Editar Notícia"]`).first();
     await editBtn.click();
 
     await adminPage.fill('#news-title', updatedTitle);
@@ -68,10 +76,10 @@ test.describe('NEWS_PUBLICATION_CONSISTENCY - Teste de Consistência e Persistê
     await publicPage.waitForLoadState('networkidle');
     await expect(publicPage.locator(`text=${updatedTitle}`)).toBeVisible();
 
-    await publicPage.click(`text=${updatedTitle}`);
+    await publicPage.click(`a[aria-label="Ler matéria completa: ${updatedTitle}"]`);
     await publicPage.waitForLoadState('networkidle');
     await expect(publicPage.locator('h1')).toContainText(updatedTitle);
-    await expect(publicPage.locator('article, main')).toContainText(updatedContent);
+    await expect(publicPage.locator('article').first()).toContainText(updatedContent);
 
     // 8. DELETE no Admin
     await adminPage.goto('/admin/noticias');
@@ -81,7 +89,7 @@ test.describe('NEWS_PUBLICATION_CONSISTENCY - Teste de Consistência e Persistê
       await dialog.accept();
     });
 
-    const deleteBtn = adminPage.locator(`tr:has-text("${updatedTitle}") button:has-text("Excluir")`).first();
+    const deleteBtn = adminPage.locator(`tr:has-text("${updatedTitle}") button[title="Excluir Notícia"]`).first();
     await deleteBtn.click();
 
     // 9. PUBLIC VERIFICATION (Garantir que no Contexto B a matéria sumiu)

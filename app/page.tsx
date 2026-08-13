@@ -3,7 +3,6 @@ import React from 'react';
 import { NavigationDots } from '../components/NavigationDots';
 import { HeroSection } from '../components/HeroSection';
 import { AboutSection } from '../components/AboutSection';
-import { MascotsSection } from '../components/MascotsSection';
 import { ServicesSection } from '../components/ServicesSection';
 import { DualTargetImpact } from '../components/DualTargetImpact';
 import { BazarSection } from '../components/BazarSection';
@@ -82,7 +81,6 @@ export default async function Home() {
       {/* Seções da Home */}
       <HeroSection heroData={heroData} />
       <ScrollReveal><AboutSection /></ScrollReveal>
-      <ScrollReveal><MascotsSection /></ScrollReveal>
       <ScrollReveal><ServicesSection /></ScrollReveal>
       <ScrollReveal><DualTargetImpact /></ScrollReveal>
       <ScrollReveal><BazarSection /></ScrollReveal>
