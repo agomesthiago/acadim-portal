@@ -22,8 +22,8 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "originalPublishedAt": "28/07/2024"
     },
     "coverImage": "/assets/community-bg.jpg",
-    "imageAlt": "Pesquisador em laboratório examinando dados médicos",
-    "imageCredit": "Divulgação Institucional / NIH",
+    "imageAlt": "Pesquisador em laboratório examinando dados de terapia gênica",
+    "imageCredit": "Divulgação Institucional / Nature & MDA",
     "tags": [
       "Duchenne",
       "Terapia Gênica",
@@ -56,9 +56,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.defensoria.rj.def.br",
       "originalPublishedAt": "10/06/2026"
     },
-    "coverImage": "/assets/hero-bg-3.jpg",
-    "imageAlt": "Orientação de famílias sobre direitos em saúde no Rio de Janeiro",
-    "imageCredit": "Acervo Institucional ACADIM",
+    "coverImage": "/assets/banners/acadim-banner-direitos-sus.svg",
+    "imageAlt": "Banner Guia Prático de Direitos no SUS da ACADIM com Logo e Fundadores Clara e Pedro",
+    "imageCredit": "Ilustração Institucional ACADIM com Fundadores Clara & Pedro",
     "tags": [
       "SUS",
       "Direitos",
@@ -90,9 +90,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://acadim.org.br",
       "originalPublishedAt": "15/06/2026"
     },
-    "coverImage": "/assets/hero-bg-4.jpg",
-    "imageAlt": "Participantes do Encontro da ACADIM reunidos em auditório no Rio de Janeiro",
-    "imageCredit": "Fotografia Oficial ACADIM",
+    "coverImage": "/assets/banners/acadim-banner-eventos.svg",
+    "imageAlt": "Banner Oficial do Encontro de Famílias ACADIM com o Logo e os Fundadores Clara e Pedro",
+    "imageCredit": "Ilustração Institucional ACADIM com Fundadores Clara & Pedro",
     "tags": [
       "Evento",
       "ACADIM",
@@ -124,9 +124,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://acadim.org.br",
       "originalPublishedAt": "10/05/2026"
     },
-    "coverImage": "/assets/hero-bg-2.jpg",
-    "imageAlt": "Ricardo sorrindo em momento de reabilitação e trabalho",
-    "imageCredit": "Arquivo Pessoal / ACADIM",
+    "coverImage": "/assets/banners/acadim-banner-historias-vida.svg",
+    "imageAlt": "Banner de Historias de Vida da ACADIM com Logo e os Fundadores Clara e Pedro",
+    "imageCredit": "Ilustração Institucional ACADIM com Fundadores Clara & Pedro",
     "tags": [
       "FSHD",
       "Depoimento",
@@ -157,9 +157,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.fda.gov/news-events/press-announcements",
       "originalPublishedAt": "20/06/2024"
     },
-    "coverImage": "/assets/community-bg.jpg",
-    "imageAlt": "Laboratório farmacêutico e frasco de terapia gênica",
-    "imageCredit": "Divulgação / FDA Public Domain",
+    "coverImage": "/assets/hero-bg.jpg",
+    "imageAlt": "Sede da FDA e laboratório de desenvolvimento farmacêutico",
+    "imageCredit": "U.S. Food and Drug Administration (FDA)",
     "tags": [
       "Duchenne",
       "FDA",
@@ -191,9 +191,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.nature.com/nrd/",
       "originalPublishedAt": "15/11/2024"
     },
-    "coverImage": "/assets/community-bg.jpg",
-    "imageAlt": "Ilustração didática de fita de DNA e salto de éxon",
-    "imageCredit": "Ilustração Científica Institucional",
+    "coverImage": "/assets/hero-bg-2.jpg",
+    "imageAlt": "Representação esquemática do RNA e mecanismo de salto de éxon",
+    "imageCredit": "Biotechnology & Nature Reviews",
     "tags": [
       "Duchenne",
       "Salto de Éxon",
@@ -224,9 +224,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.thelancet.com/journals/laneur/",
       "originalPublishedAt": "12/01/2024"
     },
-    "coverImage": "/assets/hero-bg.jpg",
-    "imageAlt": "Médico conversando com criança e família em consulta",
-    "imageCredit": "Acervo Institucional ACADIM",
+    "coverImage": "/assets/hero-bg-3.jpg",
+    "imageAlt": "Medicamento Vamorolona em avaliação clínica na Europa",
+    "imageCredit": "European Medicines Agency (EMA)",
     "tags": [
       "Duchenne",
       "Vamorolona",
@@ -257,9 +257,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.jacc.org/",
       "originalPublishedAt": "18/09/2023"
     },
-    "coverImage": "/assets/community-bg.jpg",
-    "imageAlt": "Exame de ecocardiograma e monitor de batimentos cardíacos",
-    "imageCredit": "Divulgação Médica Institucional",
+    "coverImage": "/assets/hero-bg-4.jpg",
+    "imageAlt": "Exame de ressonância magnética e eletrocardiograma cardíaco",
+    "imageCredit": "PPMD & Sociedade de Cardiologia",
     "tags": [
       "Duchenne",
       "Coração",
@@ -291,9 +291,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.nejm.org/",
       "originalPublishedAt": "21/03/2024"
     },
-    "coverImage": "/assets/hero-bg-2.jpg",
-    "imageAlt": "Pessoa em esteira realizando teste de caminhada com acompanhamento médico",
-    "imageCredit": "Arquivo Institucional / Medicina do Esporte",
+    "coverImage": "/assets/cadeirante.jpg",
+    "imageAlt": "Acompanhamento de paciente com distrofia muscular de Becker",
+    "imageCredit": "ClinicalTrials.gov / Italfarmaco",
     "tags": [
       "Becker",
       "Givinostat",
@@ -325,8 +325,8 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "originalPublishedAt": "05/10/2024"
     },
     "coverImage": "/assets/community-bg.jpg",
-    "imageAlt": "Ilustração de molécula de DNA sendo cortada por tesoura genética CRISPR",
-    "imageCredit": "Ilustração Científica / Broad Institute",
+    "imageAlt": "Modelagem 3D da dupla hélice de DNA sob edição genômica",
+    "imageCredit": "Genome Research Institute",
     "tags": [
       "CRISPR",
       "Edição Genética",
@@ -356,9 +356,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.gov.br/conitec/",
       "originalPublishedAt": "14/02/2025"
     },
-    "coverImage": "/assets/hero-bg-3.jpg",
-    "imageAlt": "Profissional de saúde segurando resultado de exame laboratorial",
-    "imageCredit": "Acervo Institucional ACADIM",
+    "coverImage": "/assets/banners/acadim-banner-direitos-sus.svg",
+    "imageAlt": "Banner de Diretrizes do SUS e Diagnostico Molecular com Logo ACADIM e Fundadores",
+    "imageCredit": "Ilustração Institucional ACADIM com Fundadores Clara & Pedro",
     "tags": [
       "SUS",
       "Exame de DNA",
@@ -389,9 +389,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.cell.com/molecular-therapy-family/molecular-therapy",
       "originalPublishedAt": "08/04/2024"
     },
-    "coverImage": "/assets/community-bg.jpg",
-    "imageAlt": "Cientista manuseando tubos de ensaio em laboratório de biologia molecular",
-    "imageCredit": "Divulgação Institucional / NIH",
+    "coverImage": "/assets/hero-bg.jpg",
+    "imageAlt": "Laboratório de pesquisas genéticas em distrofias de cinturas",
+    "imageCredit": "PubMed & LGMD Foundation",
     "tags": [
       "LGMD",
       "Cinturas",
@@ -423,8 +423,8 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "originalPublishedAt": "19/07/2024"
     },
     "coverImage": "/assets/hero-bg-2.jpg",
-    "imageAlt": "Exame de imagem de fibra muscular sob microscópio",
-    "imageCredit": "Jain Foundation / Divulgação Científica",
+    "imageAlt": "Microscopia de membrana muscular sob estudo de disferlina",
+    "imageCredit": "Jain Foundation & NIH",
     "tags": [
       "LGMD",
       "Disferlina",
@@ -455,9 +455,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://pubmed.ncbi.nlm.nih.gov/",
       "originalPublishedAt": "11/02/2024"
     },
-    "coverImage": "/assets/community-bg.jpg",
-    "imageAlt": "Cientista analisando dados de sequenciamento genético",
-    "imageCredit": "Divulgação Científica / NIH",
+    "coverImage": "/assets/hero-bg-3.jpg",
+    "imageAlt": "Análise de vetores adenoassociados em biologia molecular",
+    "imageCredit": "Vector Biology Journal",
     "tags": [
       "LGMD",
       "Sarcoglicano",
@@ -487,9 +487,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.scielo.br/j/anp/",
       "originalPublishedAt": "09/09/2024"
     },
-    "coverImage": "/assets/hero-bg-3.jpg",
-    "imageAlt": "Profissional de saúde e paciente em consulta de genética médica",
-    "imageCredit": "Acervo Institucional ACADIM",
+    "coverImage": "/assets/hero-bg-4.jpg",
+    "imageAlt": "Sequenciador genético utilizado no mapeamento da população brasileira",
+    "imageCredit": "Genômica USP & Fiocruz",
     "tags": [
       "LGMD",
       "Brasil",
@@ -520,9 +520,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.fshdsociety.org/",
       "originalPublishedAt": "30/10/2024"
     },
-    "coverImage": "/assets/community-bg.jpg",
-    "imageAlt": "Ilustração de células musculares sob tratamento experimental",
-    "imageCredit": "FSHD Society / Divulgação Científica",
+    "coverImage": "/assets/cadeirante.jpg",
+    "imageAlt": "Pesquisadores analisando expressão da proteína DUX4",
+    "imageCredit": "FSHD Society & Fulcrum Therapeutics",
     "tags": [
       "FSHD",
       "DUX4",
@@ -553,9 +553,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://academic.oup.com/hmg",
       "originalPublishedAt": "18/06/2024"
     },
-    "coverImage": "/assets/hero-bg-2.jpg",
-    "imageAlt": "Ilustração de fita de DNA e modificações epigenéticas",
-    "imageCredit": "Divulgação Científica / Leiden University",
+    "coverImage": "/assets/community-bg.jpg",
+    "imageAlt": "Análise epigenética de metilação de DNA em laboratório",
+    "imageCredit": "Human Molecular Genetics",
     "tags": [
       "FSHD",
       "FSHD2",
@@ -586,9 +586,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.fshdsociety.org/",
       "originalPublishedAt": "04/01/2025"
     },
-    "coverImage": "/assets/hero-bg-4.jpg",
-    "imageAlt": "Pessoa em computador preenchendo cadastro de saúde",
-    "imageCredit": "Acervo Institucional ACADIM",
+    "coverImage": "/assets/banners/acadim-banner-institucional.svg",
+    "imageAlt": "Banner do Registro Internacional de Pacientes com Logo ACADIM e Fundadores Clara e Pedro",
+    "imageCredit": "Ilustração Institucional ACADIM com Fundadores Clara & Pedro",
     "tags": [
       "FSHD",
       "Cadastro",
@@ -618,9 +618,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.curecmd.org/",
       "originalPublishedAt": "14/05/2024"
     },
-    "coverImage": "/assets/community-bg.jpg",
-    "imageAlt": "Criança em sessão de fisioterapia com acompanhamento profissional",
-    "imageCredit": "Cure CMD / Divulgação Institucional",
+    "coverImage": "/assets/hero-bg.jpg",
+    "imageAlt": "Cultura de células musculares e proteína laminina-211",
+    "imageCredit": "Cure CMD & NIH",
     "tags": [
       "Distrofia Congênita",
       "MDC1A",
@@ -652,8 +652,8 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "originalPublishedAt": "22/02/2024"
     },
     "coverImage": "/assets/hero-bg-2.jpg",
-    "imageAlt": "Ilustração médica de fibra muscular e matriz de colágeno",
-    "imageCredit": "Divulgação Científica / University of Padova",
+    "imageAlt": "Mitocôndrias e estruturas de colágeno em microscopia eletrônica",
+    "imageCredit": "Matrix Biology International",
     "tags": [
       "Colágeno VI",
       "Ullrich",
@@ -684,9 +684,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.myotonic.org/",
       "originalPublishedAt": "12/12/2024"
     },
-    "coverImage": "/assets/community-bg.jpg",
-    "imageAlt": "Modelo de fita de RNA e anticorpo em entrega de medicação",
-    "imageCredit": "Divulgação / Avidity Biosciences",
+    "coverImage": "/assets/hero-bg-3.jpg",
+    "imageAlt": "Fita de RNA antisentido atuando no silenciamento do gene DMPK",
+    "imageCredit": "Myotonic Dystrophy Foundation (MDF)",
     "tags": [
       "Distrofia Miotônica",
       "DM1",
@@ -717,9 +717,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.ahajournals.org/journal/circ",
       "originalPublishedAt": "03/05/2024"
     },
-    "coverImage": "/assets/hero-bg.jpg",
-    "imageAlt": "Médico analisando gráfico de eletrocardiograma",
-    "imageCredit": "Divulgação Médica Institucional",
+    "coverImage": "/assets/hero-bg-4.jpg",
+    "imageAlt": "Monitor Holter e gráfico de ritmo cardíaco em paciente",
+    "imageCredit": "Sociedade Brasileira de Arritmias Cardíacas",
     "tags": [
       "Distrofia Miotônica",
       "DM1",
@@ -750,9 +750,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.nature.com/nbt/",
       "originalPublishedAt": "29/08/2024"
     },
-    "coverImage": "/assets/community-bg.jpg",
-    "imageAlt": "Ilustração de células de garganta e pálpebra em estudo biológico",
-    "imageCredit": "Divulgação Científica / Nature",
+    "coverImage": "/assets/cadeirante.jpg",
+    "imageAlt": "Estudo clínico de terapia gênica em distrofia oculofaríngea",
+    "imageCredit": "OPMD Consortium Europe",
     "tags": [
       "OPMD",
       "Oculofaríngea",
@@ -782,9 +782,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.nmd-journal.com/",
       "originalPublishedAt": "17/01/2024"
     },
-    "coverImage": "/assets/hero-bg-2.jpg",
-    "imageAlt": "Fisioterapeuta realizando mobilização articular em paciente",
-    "imageCredit": "Acervo Institucional ACADIM",
+    "coverImage": "/assets/community-bg.jpg",
+    "imageAlt": "Fisioterapia articular e monitoramento em Emery-Dreifuss",
+    "imageCredit": "Cardio-Neurology Review",
     "tags": [
       "EDMD",
       "Emery-Dreifuss",
@@ -815,9 +815,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.gov.br/saude/",
       "originalPublishedAt": "08/03/2025"
     },
-    "coverImage": "/assets/hero-bg-3.jpg",
-    "imageAlt": "Bebê realizando teste do pezinho no posto de saúde",
-    "imageCredit": "Divulgação / Ministério da Saúde",
+    "coverImage": "/assets/banners/acadim-banner-direitos-sus.svg",
+    "imageAlt": "Banner do Teste do Pezinho Expandido com Logo ACADIM e Fundadores Clara e Pedro",
+    "imageCredit": "Ilustração Institucional ACADIM com Fundadores Clara & Pedro",
     "tags": [
       "Teste do Pezinho",
       "CK Neonatal",
@@ -847,9 +847,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.saude.rj.gov.br",
       "originalPublishedAt": "02/05/2026"
     },
-    "coverImage": "/assets/hero-bg-3.jpg",
-    "imageAlt": "Cadeira de rodas adaptada e formulários de atendimento público",
-    "imageCredit": "Acervo Institucional ACADIM",
+    "coverImage": "/assets/banners/acadim-banner-direitos-sus.svg",
+    "imageAlt": "Banner de Solicitacao de Cadeira de Rodas e Orteses pelo SUS no RJ com Logo ACADIM e Fundadores",
+    "imageCredit": "Ilustração Institucional ACADIM com Fundadores Clara & Pedro",
     "tags": [
       "Cadeira de Rodas",
       "Órteses",
@@ -880,9 +880,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://assobrafir.com.br/",
       "originalPublishedAt": "11/11/2024"
     },
-    "coverImage": "/assets/hero-bg-4.jpg",
-    "imageAlt": "Aparelho de ventilação não invasiva VNI e máscara adaptada",
-    "imageCredit": "Divulgação Médica / ASSOBRAFIR",
+    "coverImage": "/assets/banners/acadim-banner-guias-manejo.svg",
+    "imageAlt": "Banner de Fisioterapia Respiratoria e VNI com Logo ACADIM e Fundadores Clara e Pedro",
+    "imageCredit": "Ilustração Institucional ACADIM com Fundadores Clara & Pedro",
     "tags": [
       "Fisioterapia",
       "Respiração",
@@ -913,9 +913,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://www.nature.com/nbt/",
       "originalPublishedAt": "04/04/2026"
     },
-    "coverImage": "/assets/community-bg.jpg",
-    "imageAlt": "Gráfico em computador de modelo 3D celular e inteligência artificial",
-    "imageCredit": "Divulgação Científica / Nature",
+    "coverImage": "/assets/hero-bg.jpg",
+    "imageAlt": "Processamento de inteligência artificial sobre regeneração celular",
+    "imageCredit": "AI in Health & Medicine",
     "tags": [
       "Inteligência Artificial",
       "Pesquisa",
@@ -945,9 +945,9 @@ export const STATIC_BASE_NEWS: NewsArticle[] = [
       "url": "https://distrofiabrasil.org.br/",
       "originalPublishedAt": "20/01/2026"
     },
-    "coverImage": "/assets/hero-bg-4.jpg",
-    "imageAlt": "Membros de associação de pacientes reunidos em evento institucional",
-    "imageCredit": "Acervo Institucional ACADIM",
+    "coverImage": "/assets/banners/acadim-banner-institucional.svg",
+    "imageAlt": "Banner do Registro Nacional de Doencas Raras com Logo ACADIM e Fundadores Clara e Pedro",
+    "imageCredit": "Ilustração Institucional ACADIM com Fundadores Clara & Pedro",
     "tags": [
       "Registros",
       "Doenças Raras",

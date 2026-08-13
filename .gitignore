@@ -56,3 +56,6 @@ test-results/
 $null
 Thumbs.db
 Desktop.ini
+
+.vercel
+.env*
