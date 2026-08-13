@@ -10,6 +10,7 @@ import { sanitizeHtml } from '@/lib/sanitize-html';
 import { Calendar, Clock, ArrowLeft, ArrowRight, ShieldCheck } from 'lucide-react';
 import MarkdownViewer from '@/components/MarkdownViewer';
 import NewsImage from '@/components/NewsImage';
+import { safeJsonLd } from '@/lib/sanitize-html';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -132,11 +133,11 @@ export default async function NoticiaPage({ params }: PageProps) {
     <div className="pt-28 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }}
       />
 
       {/* Breadcrumb */}

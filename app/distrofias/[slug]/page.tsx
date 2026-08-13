@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getDiseaseBySlug, getAllDiseases } from '@/lib/distrofias-data';
+import { safeJsonLd } from '@/lib/sanitize-html';
 import {
   ArrowLeft,
   Dna,
@@ -151,7 +152,7 @@ export default async function DistrofiaWikiPage({ params }: PageProps) {
     <div className="pt-28 pb-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
 
       {/* Breadcrumb & Voltar */}

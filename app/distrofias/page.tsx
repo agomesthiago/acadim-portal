@@ -4,6 +4,7 @@ import { getAllDiseases, getAllMedicalGroups } from '@/lib/distrofias-data';
 import { DistrofiasSearchClient } from '@/components/DistrofiasSearchClient';
 import { ContactSection } from '@/components/ContactSection';
 import { BookOpen, HelpCircle, HeartPulse, Dna, ShieldCheck, Stethoscope } from 'lucide-react';
+import { safeJsonLd } from '@/lib/sanitize-html';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://acadim.org.br'),
@@ -70,7 +71,7 @@ export default function DistrofiasPage() {
     <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
 
       {/* Header Cognitivo da Enciclopédia */}

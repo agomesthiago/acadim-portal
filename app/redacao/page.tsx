@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ShieldCheck, BookOpen, CheckCircle2, FileText, ArrowLeft } from 'lucide-react';
+import { safeJsonLd } from '@/lib/sanitize-html';
 
 export default function RedacaoPage() {
   const jsonLd = {
@@ -20,7 +21,7 @@ export default function RedacaoPage() {
       {/* Script JSON-LD */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
 
       {/* Breadcrumb & Botão Voltar */}

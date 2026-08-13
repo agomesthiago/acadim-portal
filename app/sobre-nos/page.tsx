@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ShieldCheck, Heart, BookOpen, Calendar, Award, Building2, FileText, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { safeJsonLd } from '@/lib/sanitize-html';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://acadim.org.br'),
@@ -84,7 +85,7 @@ export default function SobreNosPage() {
     <main id="main-content" className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
 
       {/* Hero Institucional em Tom Claro com Espaçamento Correto */}

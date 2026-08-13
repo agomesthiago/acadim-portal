@@ -17,6 +17,7 @@ import { getAllNewsAsync } from '@/lib/news-data';
 import { getHeroData } from '@/lib/hero/local-store';
 
 import type { Metadata } from 'next';
+import { safeJsonLd } from '@/lib/sanitize-html';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://acadim.org.br'),
@@ -71,7 +72,7 @@ export default async function Home() {
       {/* Dados Estruturados JSON-LD */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
 
       {/* Indicadores Laterais (Dots) */}

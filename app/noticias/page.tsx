@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { getAllNewsAsync } from '@/lib/news-data';
 import NewsClient from './NewsClient';
 import { Metadata } from 'next';
+import { safeJsonLd } from '@/lib/sanitize-html';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://acadim.org.br'),
@@ -45,7 +46,7 @@ export default async function NoticiasPage() {
     <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
       {/* Breadcrumb */}
       <div className="mb-8">

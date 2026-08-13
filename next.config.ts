@@ -22,17 +22,27 @@ const securityHeaders = [
     value: 'strict-origin-when-cross-origin',
   },
   {
-    // Restrict browser feature access — camera/mic/geo not needed for this portal
     key: 'Permissions-Policy',
     value: 'camera=(), microphone=(), geolocation=()',
   },
-  // NOTE: Content-Security-Policy is MANUAL REQUIRED.
-  // The app uses dangerouslySetInnerHTML for JSON-LD schema and loads VLibras
-  // from an external script (humanitec.gov.br). A CSP must be designed to
-  // allow these without blocking, and tested before deployment.
-  //
-  // NOTE: HSTS (Strict-Transport-Security) is BLOCKED at Next.js config level.
-  // It should be set at the CDN/reverse-proxy layer (Vercel, Nginx, Cloudflare).
+  {
+    // Content-Security-Policy: hardened for this portal.
+    // Allows VLibras (humanitec.gov.br) and trusted CDNs.
+    // 'unsafe-inline' for styles is required by Tailwind v4 runtime.
+    key: 'Content-Security-Policy',
+    value: [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' vlibras.gov.br *.vlibras.gov.br",
+      "style-src 'self' 'unsafe-inline' fonts.googleapis.com",
+      "font-src 'self' fonts.gstatic.com",
+      "img-src 'self' data: blob: https: *.scielo.br *.ncbi.nlm.nih.gov *.wixstatic.com *.myotonic.org *.curecmd.org *.mda.org *.parentprojectmd.org *.fshdsociety.org *.genome.gov *.jain-foundation.org *.muscular-dystrophy.org *.musculardystrophynews.com *.rarediseases.org *.heart.org *.fda.gov",
+      "connect-src 'self'",
+      "frame-src 'none'",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+    ].join('; '),
+  },
 ];
 
 const nextConfig: NextConfig = {

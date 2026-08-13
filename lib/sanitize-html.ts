@@ -39,3 +39,20 @@ export function sanitizeHtml(html: string): string {
 
   return sanitized;
 }
+
+/**
+ * Serializa dados estruturados JSON-LD para uso em dangerouslySetInnerHTML.
+ *
+ * JSON.stringify() não escapa `</script>`, o que permite que conteúdo
+ * controlado pelo usuário quebre a tag <script> e injete HTML arbitrário.
+ * Esta função aplica o escaping necessário após a serialização.
+ *
+ * @param data Objeto a ser serializado como JSON-LD
+ * @returns String segura para uso em dangerouslySetInnerHTML
+ */
+export function safeJsonLd(data: Record<string, unknown>): string {
+  return JSON.stringify(data)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026');
+}
