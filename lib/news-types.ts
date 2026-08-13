@@ -44,6 +44,7 @@ export interface NewsArticle {
   author: NewsAuthor;
   primarySource?: PrimarySource;
   coverImage: string;
+  imageUrl?: string;
   imageAlt: string;
   imageCredit?: string;
   featured?: boolean;
