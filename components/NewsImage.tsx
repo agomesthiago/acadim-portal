@@ -14,7 +14,9 @@ export default function NewsImage({ src, fallbackSrc = '/assets/community-bg.jpg
   const currentSrc = error ? fallbackSrc : (src || fallbackSrc);
   const isLocal = currentSrc.startsWith('/');
 
-  if (isLocal) {
+  const isSvg = currentSrc.toLowerCase().endsWith('.svg');
+
+  if (isLocal && !isSvg) {
     return (
       <Image
         src={currentSrc}
@@ -25,8 +27,7 @@ export default function NewsImage({ src, fallbackSrc = '/assets/community-bg.jpg
     );
   }
 
-  // Fallback seguro para imagens externas usando <img> padrão
-  // Evita crash do next/image por domínios não configurados
+  // Fallback seguro para SVG e imagens externas usando <img> padrão
   return (
     /* eslint-disable-next-line @next/next/no-img-element */
     <img
