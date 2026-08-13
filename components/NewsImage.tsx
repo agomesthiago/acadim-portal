@@ -2,13 +2,14 @@
 
 import React, { useState } from 'react';
 import Image, { ImageProps } from 'next/image';
+import { DEFAULT_NEWS_BANNER } from '@/lib/news-types';
 
 interface NewsImageProps extends Omit<ImageProps, 'src'> {
   src: string;
   fallbackSrc?: string;
 }
 
-export default function NewsImage({ src, fallbackSrc = '/assets/community-bg.jpg', alt, ...props }: NewsImageProps) {
+export default function NewsImage({ src, fallbackSrc = DEFAULT_NEWS_BANNER, alt, ...props }: NewsImageProps) {
   const [error, setError] = useState(false);
 
   const currentSrc = error ? fallbackSrc : (src || fallbackSrc);

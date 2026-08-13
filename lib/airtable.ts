@@ -160,7 +160,7 @@ export async function fetchAirtableArticles(): Promise<NewsArticle[] | null> {
             : 'Avanços Científicos';
 
         // 6. Imagem de capa
-        let coverImage = '/assets/community-bg.jpg';
+        let coverImage = '/assets/acadim-default-banner.jpg';
         const rawImage = f['Imagem de capa'] || f['Attachments'];
         if (Array.isArray(rawImage) && rawImage[0] && typeof rawImage[0] === 'object' && 'url' in rawImage[0]) {
           coverImage = String((rawImage[0] as { url: string }).url);

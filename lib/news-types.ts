@@ -1,5 +1,9 @@
 // lib/news-types.ts
 
+/** Imagem padrão usada como fallback em notícias sem capa definida. */
+export const DEFAULT_NEWS_BANNER = '/assets/acadim-default-banner.jpg';
+
+
 export type NewsCategory =
   | 'Avanços Científicos'
   | 'Direitos no SUS'

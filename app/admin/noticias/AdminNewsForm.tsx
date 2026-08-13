@@ -48,7 +48,7 @@ export default function AdminNewsForm({ isEdit, initialData }: AdminNewsFormProp
   const [publishedAt, setPublishedAt] = useState(
     initialData?.publishedAt || new Date().toISOString().split('T')[0]
   );
-  const [imageUrl, setImageUrl] = useState(initialData?.imageUrl || '/assets/community-bg.jpg');
+  const [imageUrl, setImageUrl] = useState(initialData?.imageUrl || '/assets/acadim-default-banner.jpg');
   const [featured, setFeatured] = useState(Boolean(initialData?.featured));
   const [status, setStatus] = useState<'draft' | 'published'>(initialData?.status || 'published');
 

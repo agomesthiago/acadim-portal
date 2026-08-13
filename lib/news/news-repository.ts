@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { NewsArticle, NewsCategory } from '../news-types';
+import { NewsArticle, NewsCategory, DEFAULT_NEWS_BANNER } from '../news-types';
 import { slugifyTitle } from '../airtable';
 
 export interface AdminNewsRecord {
@@ -156,7 +156,7 @@ class LocalFileStorageDriver implements StorageDriver {
       updatedAt: r.updatedAt ? r.updatedAt.split('T')[0] : undefined,
       readTime: '5 min de leitura',
       author: parseAuthor(r.author),
-      coverImage: (r as any).coverImage || r.imageUrl || '/assets/acadim-default-banner.jpg',
+      coverImage: (r as any).coverImage || r.imageUrl || DEFAULT_NEWS_BANNER,
       imageAlt: (r as any).imageAlt || r.title,
       imageCredit: (r as any).imageCredit,
       featured: Boolean(r.featured),
@@ -368,7 +368,7 @@ class NewsRepository implements NewsRepositoryInterface {
       tags: input.tags || [],
       author: input.author?.trim() || 'Redação ACADIM',
       publishedAt: input.publishedAt || now.split('T')[0],
-      imageUrl: input.imageUrl?.trim() || '/assets/community-bg.jpg',
+      imageUrl: input.imageUrl?.trim() || DEFAULT_NEWS_BANNER,
       featured: Boolean(input.featured),
       status: input.status === 'published' ? 'published' : 'draft',
       createdAt: now,
@@ -463,7 +463,7 @@ class NewsRepository implements NewsRepositoryInterface {
       updatedAt: r.updatedAt ? r.updatedAt.split('T')[0] : undefined,
       readTime: '5 min de leitura',
       author: parseAuthor(r.author),
-      coverImage: (r as any).coverImage || r.imageUrl || '/assets/acadim-default-banner.jpg',
+      coverImage: (r as any).coverImage || r.imageUrl || DEFAULT_NEWS_BANNER,
       imageAlt: (r as any).imageAlt || r.title,
       imageCredit: (r as any).imageCredit,
       featured: Boolean(r.featured),
