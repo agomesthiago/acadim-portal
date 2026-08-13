@@ -28,7 +28,7 @@
     "publishedAt": "2024-07-30",
     "updatedAt": "2024-07-30",
     "readTime": "5 min de leitura",
-    "featured": true,
+    "featured": false,
     "status": "published",
     "author": {
       "name": "Redação ACADIM",
@@ -64,7 +64,7 @@
     "publishedAt": "2026-06-12",
     "updatedAt": "2026-06-12",
     "readTime": "6 min de leitura",
-    "featured": true,
+    "featured": false,
     "status": "published",
     "author": {
       "name": "Redação ACADIM",
@@ -168,7 +168,7 @@
     "category": "Aprovações Terapêuticas",
     "publishedAt": "2024-06-22",
     "readTime": "5 min de leitura",
-    "featured": true,
+    "featured": false,
     "status": "published",
     "author": {
       "name": "Redação ACADIM",
