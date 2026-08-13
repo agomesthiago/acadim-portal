@@ -24,7 +24,8 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 60; // Revalidação periódica
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function NoticiasPage() {
   const allArticles = await getAllNewsAsync();
