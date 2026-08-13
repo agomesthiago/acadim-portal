@@ -11,7 +11,11 @@ export async function GET(request: Request) {
     }
 
     const records = await newsRepository.listAllRecords();
-    return NextResponse.json(records);
+    return NextResponse.json(records, {
+      headers: {
+        'Cache-Control': 'private, no-store, no-cache, must-revalidate, max-age=0',
+      },
+    });
   } catch (error) {
     console.error('[API Admin GET Error]:', error);
     return NextResponse.json({ error: 'Erro ao listar notícias do painel' }, { status: 500 });

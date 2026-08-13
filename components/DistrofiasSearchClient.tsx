@@ -111,20 +111,20 @@ export const DistrofiasSearchClient: React.FC<DistrofiasSearchClientProps> = ({ 
           <span>Não sabe o nome exato? Digite uma palavra que você conhece (ex: criança, coração, deglutição, braço, DMD, G71.0).</span>
         </p>
 
-        {/* Filtros por Grupo (Scroll horizontal em mobile) */}
+        {/* Filtros por Grupo (Flex Wrap Responsivo) */}
         <div className="space-y-3 pt-2 border-t border-border-subtle">
           <span className="text-xs font-extrabold uppercase tracking-wider text-text-tertiary flex items-center gap-1.5">
             <Filter size={14} />
             <span>Selecione um Grupo para Filtrar:</span>
           </span>
 
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none snap-x">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() => setSelectedGroup('todos')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all min-h-[44px] snap-start cursor-pointer ${
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all min-h-[44px] cursor-pointer ${
                 selectedGroup === 'todos'
-                  ? 'bg-brand-red text-white shadow-sm'
-                  : 'bg-surface-subtle text-text-secondary hover:bg-border-subtle'
+                  ? 'bg-brand-red text-white shadow-sm ring-2 ring-brand-red/30'
+                  : 'bg-surface-subtle text-text-secondary hover:bg-border-subtle hover:text-text-primary'
               }`}
             >
               Todas as Doenças ({diseases.length})
@@ -137,10 +137,10 @@ export const DistrofiasSearchClient: React.FC<DistrofiasSearchClientProps> = ({ 
                 <button
                   key={group}
                   onClick={() => setSelectedGroup(group)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all min-h-[44px] snap-start cursor-pointer ${
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all min-h-[44px] cursor-pointer ${
                     isSelected
-                      ? 'bg-brand-red text-white shadow-sm'
-                      : 'bg-surface-subtle text-text-secondary hover:bg-border-subtle'
+                      ? 'bg-brand-red text-white shadow-sm ring-2 ring-brand-red/30'
+                      : 'bg-surface-subtle text-text-secondary hover:bg-border-subtle hover:text-text-primary'
                   }`}
                 >
                   {group} ({count})

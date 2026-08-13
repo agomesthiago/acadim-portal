@@ -37,40 +37,55 @@ export default function NewsClient({ allArticles }: { allArticles: NewsArticle[]
   return (
     <>
       {/* Filtros e Busca */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm mb-10 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm mb-10 space-y-6">
         
-        {/* Categorias */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none" role="tablist" aria-label="Filtro por Categoria">
-          <Filter size={16} className="text-slate-500 shrink-0 hidden sm:block" aria-hidden="true" />
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 whitespace-nowrap min-h-[44px] ${
-                selectedCategory === cat
-                  ? 'bg-surface-inverse text-white shadow-md'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-              role="tab"
-              aria-selected={selectedCategory === cat}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Barra Superior: Busca */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+          <div className="relative flex-1">
+            <label htmlFor="search-input" className="sr-only">Buscar Notícias</label>
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Buscar notícias por palavra-chave, autor ou tema..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-slate-50 border border-slate-200 pl-11 pr-4 py-3.5 rounded-2xl text-xs sm:text-sm font-semibold text-text-primary placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:bg-white transition-all"
+            />
+            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true" />
+          </div>
+
+          <div className="text-xs font-extrabold text-slate-600 bg-slate-100 px-4 py-3.5 rounded-2xl border border-slate-200 text-center shrink-0">
+            {filteredArticles.length} {filteredArticles.length === 1 ? 'matéria encontrada' : 'matérias encontradas'}
+          </div>
         </div>
 
-        {/* Busca por Palavra */}
-        <div className="relative md:w-72 shrink-0">
-          <label htmlFor="search-input" className="sr-only">Buscar Notícias</label>
-          <input
-            id="search-input"
-            type="text"
-            placeholder="Buscar por termo ou CID..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-slate-50 border border-slate-200 pl-10 pr-4 py-2.5 rounded-xl text-xs font-semibold text-text-primary placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-border-focus"
-          />
-          <Search size={16} className="absolute left-3.5 top-3 text-slate-500" aria-hidden="true" />
+        {/* Categorias (Flex Wrap Chips) */}
+        <div className="space-y-3 pt-3 border-t border-slate-100">
+          <div className="flex items-center gap-2 text-xs font-extrabold text-slate-600 uppercase tracking-wider">
+            <Filter size={14} className="text-brand-red shrink-0" aria-hidden="true" />
+            <span>Filtrar por Categoria:</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filtro por Categoria">
+            {categories.map((cat) => {
+              const isSelected = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer min-h-[44px] ${
+                    isSelected
+                      ? 'bg-brand-red text-white shadow-sm ring-2 ring-brand-red/30'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
+                  }`}
+                  role="tab"
+                  aria-selected={isSelected}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
       </div>
