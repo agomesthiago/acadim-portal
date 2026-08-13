@@ -1,5 +1,7 @@
 import type { NextConfig } from 'next';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 // Security headers applied to all routes
 const securityHeaders = [
   {
@@ -27,17 +29,16 @@ const securityHeaders = [
   },
   {
     // Content-Security-Policy: hardened for this portal.
-    // Allows VLibras (humanitec.gov.br) and trusted CDNs.
-    // 'unsafe-inline' for styles is required by Tailwind v4 runtime.
+    // Explicitly allows VLibras (vlibras.gov.br e cdn.jsdelivr.net) script, connect, style, img e frame sources.
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' vlibras.gov.br *.vlibras.gov.br",
-      "style-src 'self' 'unsafe-inline' fonts.googleapis.com",
-      "font-src 'self' fonts.gstatic.com",
-      "img-src 'self' data: blob: https: *.scielo.br *.ncbi.nlm.nih.gov *.wixstatic.com *.myotonic.org *.curecmd.org *.mda.org *.parentprojectmd.org *.fshdsociety.org *.genome.gov *.jain-foundation.org *.muscular-dystrophy.org *.musculardystrophynews.com *.rarediseases.org *.heart.org *.fda.gov",
-      "connect-src 'self'",
-      "frame-src 'none'",
+      `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ''} https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net`.replace(/\s+/g, ' ').trim(),
+      "style-src 'self' 'unsafe-inline' fonts.googleapis.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net",
+      "font-src 'self' fonts.gstatic.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net",
+      "img-src 'self' data: blob: https: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net *.scielo.br *.ncbi.nlm.nih.gov *.wixstatic.com *.myotonic.org *.curecmd.org *.mda.org *.parentprojectmd.org *.fshdsociety.org *.genome.gov *.jain-foundation.org *.muscular-dystrophy.org *.musculardystrophynews.com *.rarediseases.org *.heart.org *.fda.gov",
+      "connect-src 'self' ws: wss: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net",
+      "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",

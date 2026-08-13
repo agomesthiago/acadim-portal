@@ -1,3 +1,4 @@
+/* Desenvolvido por Thiago Gomes (https://www.instagram.com/agomes.thiago83/) / Nix Society (https://www.instagram.com/nixsociety) para a ACADIM. */
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {

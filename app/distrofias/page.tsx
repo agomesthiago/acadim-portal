@@ -1,9 +1,22 @@
+/* Desenvolvido por Thiago Gomes (https://www.instagram.com/agomes.thiago83/) / Nix Society (https://www.instagram.com/nixsociety) para a ACADIM. */
 import React from 'react';
+import Link from 'next/link';
 import { Metadata } from 'next';
 import { getAllDiseases, getAllMedicalGroups } from '@/lib/distrofias-data';
 import { DistrofiasSearchClient } from '@/components/DistrofiasSearchClient';
 import { ContactSection } from '@/components/ContactSection';
-import { BookOpen, HelpCircle, HeartPulse, Dna, ShieldCheck, Stethoscope } from 'lucide-react';
+import {
+  BookOpen,
+  HelpCircle,
+  HeartPulse,
+  Dna,
+  ShieldCheck,
+  Stethoscope,
+  ShieldAlert,
+  ArrowRight,
+  ExternalLink,
+  Users
+} from 'lucide-react';
 import { safeJsonLd } from '@/lib/sanitize-html';
 
 export const metadata: Metadata = {
@@ -68,14 +81,14 @@ export default function DistrofiasPage() {
   };
 
   return (
-    <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
 
       {/* Header Cognitivo da Enciclopédia */}
-      <div className="bg-surface-inverse text-white rounded-3xl p-8 sm:p-12 shadow-2xl mb-12 relative overflow-hidden">
+      <div className="bg-surface-inverse text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
         <div className="max-w-4xl space-y-5">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-red/20 text-brand-red font-extrabold text-xs uppercase tracking-wider">
             <BookOpen size={14} />
@@ -92,8 +105,35 @@ export default function DistrofiasPage() {
         </div>
       </div>
 
-      {/* 1. PRINCÍPIO CENTRAL: "O QUE É UMA DISTROFIA MUSCULAR?" (Linguagem Acessível) */}
-      <section id="o-que-e" className="bg-surface-default border border-border-subtle p-8 sm:p-10 rounded-3xl shadow-sm mb-12 space-y-8 scroll-mt-28">
+      {/* BANNER DE DESTAQUE: ALERTA MÉDICO DE EMERGÊNCIA */}
+      <div className="bg-gradient-to-r from-red-950 via-slate-900 to-slate-950 border border-red-500/30 text-white p-6 sm:p-8 rounded-3xl shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="space-y-2">
+          <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-red-400 bg-red-950/80 border border-red-500/40 px-3 py-1 rounded-full">
+            <ShieldAlert size={14} />
+            <span>Recurso Vital de Emergência</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+            Alerta Médico para Pronto-Socorro e Anestesia
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl font-medium">
+            Diretrizes críticas formuladas pela <strong>Dra. Ana Lúcia Langer (CRM 43507)</strong> e mantidas pela <strong>Aliança Distrofia Brasil (ADB)</strong>. Orientações contra uso de Halotano, Succinilcolina e suplementação isolada de oxigênio sem ventilação.
+          </p>
+          <p className="text-[11px] text-slate-400 pt-1">
+            Fonte original: <a href="https://www.distrofiabrasil.org.br/alerta-medico" target="_blank" rel="noopener noreferrer" className="underline hover:text-white inline-flex items-center gap-1">www.distrofiabrasil.org.br/alerta-medico <ExternalLink size={10} /></a>
+          </p>
+        </div>
+
+        <Link
+          href="/alerta-medico"
+          className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-hover text-white font-extrabold text-xs uppercase tracking-wider px-6 py-4 rounded-2xl shadow-lg shadow-brand-red/25 hover:shadow-brand-red/45 transition-all shrink-0 min-h-[44px]"
+        >
+          <span>Acessar Alerta Médico</span>
+          <ArrowRight size={16} />
+        </Link>
+      </div>
+
+      {/* 1. PRINCÍPIO CENTRAL: "O QUE É UMA DISTROFIA MUSCULAR?" (Linguagem Acessível e Conteúdo Enriquecido) */}
+      <section id="o-que-e" className="bg-surface-default border border-border-subtle p-8 sm:p-10 rounded-3xl shadow-sm space-y-8 scroll-mt-28">
         <div className="space-y-3">
           <span className="text-xs font-black text-brand-red uppercase tracking-wider flex items-center gap-1.5">
             <HelpCircle size={16} />
@@ -103,7 +143,7 @@ export default function DistrofiasPage() {
             O que é uma distrofia muscular?
           </h2>
           <p className="text-base sm:text-lg text-text-secondary leading-relaxed font-medium">
-            Distrofia muscular é o nome dado a um grupo de doenças genéticas que causam enfraquecimento progressivo dos músculos do corpo. Elas acontecem porque o organismo possui uma alteração no DNA que impede a produção correta de proteínas essenciais para manter as fibras musculares fortes e protegidas.
+            As distrofias musculares (DM) englobam um grupo de doenças genéticas raras caracterizadas pela degeneração e fraqueza progressiva do tecido muscular. Atualmente, a literatura médica identifica <strong>mais de 30 formas diferentes de distrofia muscular</strong>, variando de formas mais benignas a quadros mais graves, atingindo crianças e adultos de ambos os sexos. Todas elas comprometem a <strong>musculatura estriada</strong> (responsável pelos movimentos voluntários) com o envolvimento de diferentes grupos musculares conforme o tipo específico.
           </p>
         </div>
 
@@ -112,30 +152,30 @@ export default function DistrofiasPage() {
           <div className="bg-surface-subtle p-6 rounded-2xl border border-border-subtle space-y-2">
             <h3 className="font-extrabold text-sm text-text-primary flex items-center gap-2">
               <HeartPulse size={18} className="text-brand-red shrink-0" />
-              <span>O que acontece no músculo?</span>
+              <span>O que acontece no músculo estriado?</span>
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
-              Sem a proteína protetora (como a distrofina ou disferlina), as células do músculo sofrem pequenas lesões durante os movimentos do dia a dia e se desgastam com mais facilidade, gerando perda gradual de força.
+              Sem a proteína protetora (como a distrofina ou disferlina), as células do músculo sofrem pequenas lesões durante os movimentos habituais e se desgastam com facilidade, gerando perda gradual de força e substituição do tecido muscular por fibrose e gordura.
             </p>
           </div>
 
           <div className="bg-surface-subtle p-6 rounded-2xl border border-border-subtle space-y-2">
             <h3 className="font-extrabold text-sm text-text-primary flex items-center gap-2">
               <Dna size={18} className="text-brand-blue shrink-0" />
-              <span>Por que existem diferentes tipos?</span>
+              <span>Por que a progressão varia entre pessoas?</span>
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
-              Porque existem diferentes genes responsáveis pela saúde muscular. Cada tipo de distrofia é provocado por uma alteração em um gene específico, afetando proteínas e grupos musculares distintos.
+              Cada pessoa apresenta uma progressão diferente da doença, <strong>mesmo entre irmãos</strong>. Isso deve-se a múltiplos fatores genéticos, mutações específicas, modificadores epigenéticos e grupos musculares acometidos.
             </p>
           </div>
 
           <div className="bg-surface-subtle p-6 rounded-2xl border border-border-subtle space-y-2">
             <h3 className="font-extrabold text-sm text-text-primary flex items-center gap-2">
-              <ShieldCheck size={18} className="text-emerald-600 shrink-0" />
-              <span>Por que o início varia com a idade?</span>
+              <Users size={18} className="text-emerald-600 shrink-0" />
+              <span>Qual o impacto do tratamento multidisciplinar?</span>
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
-              Algumas distrofias (como Duchenne) manifestam sinais já na primeira infância, enquanto outras (como Becker, FSHD ou OPMD) surgem na adolescência ou na vida adulta, dependendo da quantidade de proteína que o corpo ainda produz.
+              Embora ainda não haja terapia curativa definitiva, o tratamento multidisciplinar adequado (fisioterapia, suporte ventilatório, manejo cardiológico e nutrição) aliado às novas terapias gênicas tem demonstrado eficácia comprovada na <strong>melhoria substancial da qualidade e expectativa de vida</strong>.
             </p>
           </div>
 
@@ -145,7 +185,7 @@ export default function DistrofiasPage() {
               <span>Por que o exame genético é vital?</span>
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
-              O diagnóstico genético preciso identifica exatamente qual gene foi alterado. Isso é indispensável para orientar o tratamento adequado, evitar medicamentos inapropriados e planejar o acompanhamento médico correto.
+              O diagnóstico genético preciso identifica exatamente qual gene foi alterado. Isso é indispensável para orientar o tratamento adequado, evitar medicamentos contraindicados no pronto-socorro e planejar o acompanhamento de saúde.
             </p>
           </div>
         </div>

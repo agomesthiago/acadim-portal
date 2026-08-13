@@ -2,29 +2,6 @@ import { NewsArticle } from '../news-types';
 
 export const STATIC_BASE_NEWS: NewsArticle[] = [
   {
-    "id": "news_1786587967401_x2v1s",
-    "title": "Esta é uma notícia teste",
-    "slug": "esta-e-uma-noticia-teste",
-    "content": "Esta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia teste\n\n\nEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia teste",
-    "category": "Avanços Científicos",
-    "tags": [
-      "teste"
-    ],
-    "author": {
-      "name": "Redação ACADIM",
-      "role": "Curadoria e Comunicação Institucional em Saúde e Cidadania",
-      "url": "/redacao"
-    },
-    "publishedAt": "2026-08-13",
-    "status": "Publicado",
-    "contentFormat": "markdown",
-    "coverImage": "/assets/acadim-default-banner.jpg",
-    "excerpt": "Esta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia teste",
-    "featured": false,
-    "readTime": "5 min de leitura",
-    "imageAlt": "Esta é uma notícia teste"
-  },
-  {
     "id": "news_01_dmd_genica",
     "slug": "avancos-terapia-genica-duchenne-2026",
     "title": "Avanços na Terapia Gênica para Duchenne: O que as Famílias Precisam Saber",

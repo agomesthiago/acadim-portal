@@ -29,7 +29,18 @@ export default async function AdminNewsPage() {
     redirect('/admin/login');
   }
 
-  const customRecords = await newsRepository.listAllRecords();
+  const allRecords = await newsRepository.listAllRecords();
+  const deletedSlugs = new Set(
+    allRecords.filter((r) => r.status === 'deleted').map((r) => r.slug)
+  );
+  const deletedIds = new Set(
+    allRecords.filter((r) => r.status === 'deleted').map((r) => r.id)
+  );
+
+  const activeCustomRecords = allRecords.filter((r) => r.status !== 'deleted');
+  const activeBaseArticles = STATIC_BASE_NEWS.filter(
+    (item) => !deletedSlugs.has(item.slug) && (item.id ? !deletedIds.has(item.id) : true)
+  );
 
   return (
     <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-8">
@@ -63,13 +74,13 @@ export default async function AdminNewsPage() {
       </div>
 
       {/* Tabela Interativa de Notícias */}
-      <AdminNewsClient initialRecords={customRecords} baseArticles={STATIC_BASE_NEWS} />
+      <AdminNewsClient initialRecords={activeCustomRecords} baseArticles={activeBaseArticles} />
 
       {/* Aviso de Governança */}
       <div className="bg-slate-100 rounded-2xl p-4 border border-slate-200 text-xs text-slate-600 flex items-center gap-2">
         <ShieldCheck size={16} className="text-brand-red shrink-0" />
         <span>
-          O acervo histórico (4 notícias-base) é mantido permanentemente no código-fonte para segurança e SEO. Notícias criadas no painel entram instantaneamente no site.
+          As exclusões realizadas no painel têm efeito imediato e permanente no site público e na API.
         </span>
       </div>
     </div>

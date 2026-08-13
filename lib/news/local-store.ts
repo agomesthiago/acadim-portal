@@ -15,7 +15,7 @@ export interface AdminNewsRecord {
   publishedAt: string;
   imageUrl?: string;
   featured: boolean;
-  status: 'draft' | 'published';
+  status: 'draft' | 'published' | 'deleted';
   createdAt: string;
   updatedAt: string;
   contentFormat?: 'markdown' | 'html';

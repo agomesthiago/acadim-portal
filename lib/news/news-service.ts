@@ -4,40 +4,56 @@ import { newsRepository } from './news-repository';
 import { fetchAirtableArticles } from '../airtable';
 
 export function sortNewsForHero(articles: NewsArticle[]): NewsArticle[] {
-  // Ordenação: data de publicação mais recente SEMPRE vem primeiro.
-  // featured, categoria e tags são desempate secundário para artigos com a mesma data.
   return [...articles].sort((a, b) => {
     const dateA = new Date(a.publishedAt).getTime();
     const dateB = new Date(b.publishedAt).getTime();
 
-    // Prioridade 1: Data mais recente
     if (dateB !== dateA) return dateB - dateA;
-
-    // Desempate 2: Destaque explícito (mesma data)
     if (a.featured && !b.featured) return -1;
     if (!a.featured && b.featured) return 1;
 
-    // Desempate 3: Ordem de inserção original (estável)
     return 0;
   });
 }
 
 export async function getAllNewsAsync(): Promise<NewsArticle[]> {
-  // 1. Notícias do CMS (custom-news.json) têm prioridade absoluta sobre notícias estáticas
-  const customArticles = await newsRepository.getPublishedArticles();
-  const customSlugs = new Set(customArticles.map((art) => art.slug));
+  // 1. Carrega todos os registros do repositório
+  const allCustomRecords = await newsRepository.listAllRecords();
 
-  // 2. Notícias-base estáticas servem de fallback se a notícia ainda não existir no custom-news.json
-  const fallbackStaticNews = STATIC_BASE_NEWS.filter((item) => !customSlugs.has(item.slug));
+  const customIds = new Set(allCustomRecords.map((r) => r.id));
+  const customSlugs = new Set(allCustomRecords.map((r) => r.slug));
+
+  const deletedSlugs = new Set(
+    allCustomRecords.filter((r) => r.status === 'deleted').map((r) => r.slug)
+  );
+  const deletedIds = new Set(
+    allCustomRecords.filter((r) => r.status === 'deleted').map((r) => r.id)
+  );
+
+  // 2. Notícias publicadas ativas no CMS
+  const customArticles = await newsRepository.getPublishedArticles();
+  const activeCustomArticles = customArticles.filter(
+    (art) => !deletedSlugs.has(art.slug)
+  );
+
+  // 3. Notícias-base estáticas servem de fallback SE NÃO tiverem registro customizado (por ID ou slug) E NEM tiverem sido DELETADAS
+  const fallbackStaticNews = STATIC_BASE_NEWS.filter((item) => {
+    const isOverriddenById = item.id ? customIds.has(item.id) : false;
+    const isOverriddenBySlug = customSlugs.has(item.slug);
+    const isDeletedBySlug = deletedSlugs.has(item.slug);
+    const isDeletedById = item.id ? deletedIds.has(item.id) : false;
+
+    return !isOverriddenById && !isOverriddenBySlug && !isDeletedBySlug && !isDeletedById;
+  });
+
+  const combinedNews = [...activeCustomArticles, ...fallbackStaticNews];
 
   const occupiedSlugs = new Set([
-    ...customArticles.map((a) => a.slug),
-    ...fallbackStaticNews.map((a) => a.slug),
+    ...combinedNews.map((a) => a.slug),
+    ...deletedSlugs,
   ]);
 
-  const combinedNews = [...customArticles, ...fallbackStaticNews];
-
-  // 3. Notícias adicionais do Airtable (consultadas apenas se tokens estiverem explicitamente definidos)
+  // 4. Notícias do Airtable (se configurado)
   if (process.env.AIRTABLE_TOKEN && process.env.AIRTABLE_BASE_ID) {
     try {
       const airtableArticles = await fetchAirtableArticles();
@@ -74,4 +90,3 @@ export async function getNewsByCategoryAsync(category: NewsCategory): Promise<Ne
   const allArticles = await getAllNewsAsync();
   return allArticles.filter((art) => art.category === category);
 }
-

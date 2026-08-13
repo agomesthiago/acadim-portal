@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { formatDate } from '@/lib/date-utils';
-import { AdminNewsRecord } from '@/lib/news/local-store';
+import { AdminNewsRecord } from '@/lib/news/news-repository';
 import { NewsArticle } from '@/lib/news-types';
 import { Edit2, Trash2, Eye, FileText, CheckCircle2, Clock, Star, ExternalLink } from 'lucide-react';
 
@@ -13,7 +14,9 @@ interface AdminNewsClientProps {
 }
 
 export default function AdminNewsClient({ initialRecords, baseArticles }: AdminNewsClientProps) {
+  const router = useRouter();
   const [records, setRecords] = useState<AdminNewsRecord[]>(initialRecords);
+  const [baseList, setBaseList] = useState<NewsArticle[]>(baseArticles);
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const toggleStatus = async (record: AdminNewsRecord) => {
@@ -27,6 +30,7 @@ export default function AdminNewsClient({ initialRecords, baseArticles }: AdminN
       if (res.ok) {
         const updated = await res.json();
         setRecords((prev) => prev.map((r) => (r.id === record.id ? updated : r)));
+        router.refresh();
       }
     } catch (err) {
       console.error('Erro ao alterar status:', err);
@@ -34,7 +38,7 @@ export default function AdminNewsClient({ initialRecords, baseArticles }: AdminN
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Tem certeza que deseja excluir esta notícia permanentemente?')) return;
+    if (!confirm('Tem certeza que deseja excluir esta notícia permanentemente? Ela será removida do site público e das APIs.')) return;
     setDeletingId(id);
 
     try {
@@ -42,10 +46,16 @@ export default function AdminNewsClient({ initialRecords, baseArticles }: AdminN
         method: 'DELETE',
       });
       if (res.ok) {
-        setRecords((prev) => prev.filter((r) => r.id !== id));
+        setRecords((prev) => prev.filter((r) => r.id !== id && r.slug !== id));
+        setBaseList((prev) => prev.filter((b) => b.id !== id && b.slug !== id));
+        router.refresh();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(`Erro ao excluir: ${data.error || 'Falha na requisição'}`);
       }
     } catch (err) {
       console.error('Erro ao excluir notícia:', err);
+      alert('Erro inesperado ao excluir notícia.');
     } finally {
       setDeletingId(null);
     }
@@ -53,7 +63,7 @@ export default function AdminNewsClient({ initialRecords, baseArticles }: AdminN
 
   return (
     <div className="space-y-6">
-      {/* Seção 1: Notícias Personalizadas Criadas no Painel */}
+      {/* Seção 1: Notícias Cadastradas no Painel */}
       <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -154,28 +164,28 @@ export default function AdminNewsClient({ initialRecords, baseArticles }: AdminN
           </div>
         ) : (
           <div className="p-12 text-center text-slate-500 space-y-3">
-            <p className="text-sm font-semibold">Nenhuma notícia criada no painel ainda.</p>
+            <p className="text-sm font-semibold">Nenhuma notícia personalizada criada no painel ainda.</p>
             <Link
               href="/admin/noticias/nova"
               className="inline-flex items-center gap-1.5 text-xs font-black text-brand-red uppercase tracking-wider hover:underline"
             >
-              + Clique aqui para criar a primeira notícia
+              + Clique aqui para criar uma notícia
             </Link>
           </div>
         )}
       </div>
 
-      {/* Seção 2: Acervo Histórico Permanente do Código */}
+      {/* Seção 2: Acervo Histórico da Plataforma */}
       <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <CheckCircle2 size={18} className="text-emerald-600" />
             <h2 className="text-lg font-black text-text-primary">
-              Acervo Histórico Permanente ({baseArticles.length})
+              Acervo Histórico de Notícias ({baseList.length})
             </h2>
           </div>
           <span className="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 uppercase">
-            Código-Fonte Permanente
+            Acervo Base
           </span>
         </div>
 
@@ -187,11 +197,11 @@ export default function AdminNewsClient({ initialRecords, baseArticles }: AdminN
                 <th className="py-3.5 px-6">Categoria</th>
                 <th className="py-3.5 px-6">Status</th>
                 <th className="py-3.5 px-6">Data</th>
-                <th className="py-3.5 px-6 text-right">Ver</th>
+                <th className="py-3.5 px-6 text-right">Ações</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-xs font-medium text-slate-700">
-              {baseArticles.map((art) => (
+              {baseList.map((art) => (
                 <tr key={art.slug} className="hover:bg-slate-50/80 transition-colors">
                   <td className="py-4 px-6 font-bold text-text-primary max-w-xs sm:max-w-md truncate">
                     <span className="truncate">{art.title}</span>
@@ -204,13 +214,13 @@ export default function AdminNewsClient({ initialRecords, baseArticles }: AdminN
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap">
                     <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black uppercase bg-emerald-100 text-emerald-800">
-                      Permanente
+                      Publicado
                     </span>
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap text-slate-500 font-semibold">
                     {formatDate(art.publishedAt)}
                   </td>
-                  <td className="py-4 px-6 whitespace-nowrap text-right">
+                  <td className="py-4 px-6 whitespace-nowrap text-right space-x-2">
                     <Link
                       href={`/noticias/${art.slug}`}
                       target="_blank"
@@ -219,6 +229,14 @@ export default function AdminNewsClient({ initialRecords, baseArticles }: AdminN
                     >
                       <ExternalLink size={15} />
                     </Link>
+                    <button
+                      onClick={() => handleDelete(art.id || art.slug)}
+                      disabled={deletingId === (art.id || art.slug)}
+                      className="inline-flex items-center justify-center p-2 rounded-lg bg-red-50 hover:bg-red-100 text-brand-red transition-colors cursor-pointer"
+                      title="Excluir Notícia"
+                    >
+                      <Trash2 size={15} />
+                    </button>
                   </td>
                 </tr>
               ))}

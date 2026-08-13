@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { validatePassword, ADMIN_COOKIE_NAME } from '@/lib/admin-auth';
+import { validatePassword, ADMIN_COOKIE_NAME, getAdminSecret } from '@/lib/admin-auth';
 
 export async function POST(request: Request) {
   try {
@@ -11,7 +11,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Senha de acesso administrativa inválida.' }, { status: 401 });
     }
 
-    const { getAdminSecret } = await import('@/lib/admin-auth');
     const secret = getAdminSecret();
     if (!secret) {
       return NextResponse.json(
@@ -20,11 +19,14 @@ export async function POST(request: Request) {
       );
     }
 
+    const host = request.headers.get('host') || '';
+    const isLocalhost = host.includes('localhost') || host.includes('127.0.0.1');
+
     const cookieStore = await cookies();
 
     cookieStore.set(ADMIN_COOKIE_NAME, secret, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: process.env.NODE_ENV === 'production' && !isLocalhost,
       sameSite: 'lax',
       path: '/',
       maxAge: 60 * 60 * 24 * 30, // 30 dias

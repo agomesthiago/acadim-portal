@@ -50,7 +50,7 @@ export default function AdminNewsForm({ isEdit, initialData }: AdminNewsFormProp
   );
   const [imageUrl, setImageUrl] = useState(initialData?.imageUrl || '/assets/acadim-default-banner.jpg');
   const [featured, setFeatured] = useState(Boolean(initialData?.featured));
-  const [status, setStatus] = useState<'draft' | 'published'>(initialData?.status || 'published');
+  const [status, setStatus] = useState<'draft' | 'published'>(initialData?.status === 'published' ? 'published' : 'draft');
 
   const slugPreview = slugifyTitle(title || 'titulo-da-noticia');
 

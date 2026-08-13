@@ -1,64 +1,71 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
+import Script from 'next/script';
 
 declare global {
   interface Window {
     VLibras: {
-      Widget: new (url: string) => void;
+      Widget: new (url?: string) => void;
     };
   }
 }
 
 export const VLibras: React.FC = () => {
-  const initialized = useRef(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (initialized.current) return;
-
-    // Check if script already exists to avoid duplicates during HMR or StrictMode
-    const existingScript = document.querySelector('script[src="https://vlibras.gov.br/app/vlibras-plugin.js"]');
-    
-    if (existingScript) {
-      // Script already loaded, just initialize if not already done
-      if (window.VLibras) {
-        // The widget usually creates elements inside the wrapper
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-      }
-      initialized.current = true;
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
-    script.async = true;
-    script.onload = () => {
-      if (window.VLibras) {
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-      }
-    };
-    document.body.appendChild(script);
-    initialized.current = true;
+    setMounted(true);
   }, []);
+
+  const initVLibras = () => {
+    if (typeof window !== 'undefined' && window.VLibras) {
+      try {
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      } catch (err) {
+        console.warn('[VLibras Init Warning]:', err);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (mounted && typeof window !== 'undefined' && window.VLibras) {
+      initVLibras();
+    }
+  }, [mounted]);
 
   return (
     <>
-      <style>{`
+      <Script
+        src="https://vlibras.gov.br/app/vlibras-plugin.js"
+        strategy="afterInteractive"
+        onLoad={initVLibras}
+      />
+
+      {/* Ajuste de Z-Index e Posição do Botão Flutuante do VLibras */}
+      <style jsx global>{`
+        [vw] {
+          z-index: 99999 !important;
+        }
+        [vw] [vw-access-button] {
+          z-index: 99999 !important;
+        }
         @media (max-width: 768px) {
           [vw] [vw-access-button] {
-            bottom: 80px !important;
+            bottom: 85px !important;
             right: 16px !important;
             transform: scale(0.85);
           }
           [vw] [vw-plugin-wrapper] {
-            bottom: 80px !important;
+            bottom: 85px !important;
           }
         }
       `}</style>
-      {/* @ts-expect-error VLibras custom attributes */}
-      <div vw="true" className="enabled">
-        <div vw-access-button="true" className="active" />
-        <div vw-plugin-wrapper="true">
+
+      {/* Container Oficial do Widget VLibras */}
+      <div {...{ vw: 'true' }} className="enabled">
+        <div {...{ 'vw-access-button': 'true' }} className="active" />
+        <div {...{ 'vw-plugin-wrapper': 'true' }}>
           <div className="vw-plugin-top-wrapper" />
         </div>
       </div>

@@ -22,9 +22,11 @@ export async function PUT(request: Request, { params }: RouteParams) {
       return NextResponse.json({ error: 'Notícia não encontrada' }, { status: 404 });
     }
 
-    // Revalidação Instantânea de Cache ISR
+    // Revalidação Instantânea de Cache ISR em todas as rotas públicas
     revalidatePath('/', 'layout');
     revalidatePath('/noticias');
+    revalidatePath(`/noticias/${updated.slug}`);
+    revalidatePath('/api/noticias');
     revalidatePath('/sitemap.xml');
 
     return NextResponse.json(updated);
@@ -48,9 +50,10 @@ export async function DELETE(request: Request, { params }: RouteParams) {
       return NextResponse.json({ error: 'Notícia não encontrada para exclusão' }, { status: 404 });
     }
 
-    // Revalidação Instantânea de Cache ISR
+    // Revalidação Instantânea de Cache ISR em todas as rotas afetadas
     revalidatePath('/', 'layout');
     revalidatePath('/noticias');
+    revalidatePath('/api/noticias');
     revalidatePath('/sitemap.xml');
 
     return NextResponse.json({ success: true, message: 'Notícia excluída com sucesso' });

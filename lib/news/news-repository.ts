@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { NewsArticle, NewsCategory, DEFAULT_NEWS_BANNER } from '../news-types';
 import { slugifyTitle } from '../airtable';
+import { STATIC_BASE_NEWS } from './static-news';
 
 export interface AdminNewsRecord {
   id: string;
@@ -15,7 +16,7 @@ export interface AdminNewsRecord {
   publishedAt: string;
   imageUrl?: string;
   featured: boolean;
-  status: 'draft' | 'published';
+  status: 'draft' | 'published' | 'deleted';
   createdAt: string;
   updatedAt: string;
   contentFormat?: 'markdown' | 'html';
@@ -36,7 +37,6 @@ export interface NewsRepositoryInterface {
  */
 export function sanitizeHtmlContent(html: string): string {
   if (!html) return '';
-  // Remove scripts, evencallbacks on* e tags de iFrames maliciosas
   return html
     .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
     .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
@@ -89,7 +89,6 @@ function ensureDataDirectory(): void {
       fs.mkdirSync(dir, { recursive: true });
     }
   } catch (err) {
-    // No Vercel Serverless o sistema de arquivos pode ser somente leitura
     console.warn('[Storage Driver] Diretório de dados não gravável no filesystem:', err);
   }
 }
@@ -102,7 +101,6 @@ class LocalFileStorageDriver implements StorageDriver {
       ensureDataDirectory();
       if (fs.existsSync(DATA_FILE_PATH)) {
         const raw = fs.readFileSync(DATA_FILE_PATH, 'utf-8');
-        // Tolerar arquivo vazio ou corrompido
         if (!raw || raw.trim() === '') {
           return [];
         }
@@ -125,7 +123,6 @@ class LocalFileStorageDriver implements StorageDriver {
 
     try {
       ensureDataDirectory();
-      // Escrita atômica: escreve em tmp e renomeia
       const tmpPath = DATA_FILE_PATH + '.tmp';
       fs.writeFileSync(tmpPath, JSON.stringify(records, null, 2), 'utf-8');
       fs.renameSync(tmpPath, DATA_FILE_PATH);
@@ -137,84 +134,19 @@ class LocalFileStorageDriver implements StorageDriver {
       this.isWriting = false;
     }
   }
-
-  async getPublishedArticles(): Promise<NewsArticle[]> {
-    // O site deve funcionar mesmo sem storage externo configurado.
-    // Retorna as notícias-base (static) e custom published news do filesystem local.
-    const records = await this.loadRecords();
-    const published = records.filter(
-      (r) => r.status === 'published' && r.title && r.title.trim() !== '' && r.content && r.content.trim() !== ''
-    );
-
-    return published.map((r) => ({
-      slug: r.slug || slugifyTitle(r.title),
-      title: r.title,
-      excerpt: r.summary || (r.content.length > 160 ? r.content.substring(0, 160) + '...' : r.content),
-      content: r.content,
-      category: r.category || 'Avanços Científicos',
-      publishedAt: r.publishedAt || r.createdAt.split('T')[0],
-      updatedAt: r.updatedAt ? r.updatedAt.split('T')[0] : undefined,
-      readTime: '5 min de leitura',
-      author: parseAuthor(r.author),
-      coverImage: (r as any).coverImage || r.imageUrl || DEFAULT_NEWS_BANNER,
-      imageAlt: (r as any).imageAlt || r.title,
-      imageCredit: (r as any).imageCredit,
-      featured: Boolean(r.featured),
-      tags: r.tags || [],
-      contentFormat: r.contentFormat || 'markdown',
-    }));
-  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Upstash Redis Storage Driver (Produção — Plano Gratuito, REST/HTTP)
-// ─────────────────────────────────────────────────────────────────────────────
-//
-// Compatível com Vercel Hobby (Serverless, sem filesystem persistente).
-// Usa a REST API do Upstash Redis via fetch nativo (nenhum SDK necessário).
-// Tier gratuito: 10.000 comandos/dia, 256MB storage, sem cartão de crédito.
-//
-// Variáveis (server-only, NUNCA prefixar com NEXT_PUBLIC_):
-//   KV_REST_API_URL   — ex.: https://your-db.upstash.io
-//   KV_REST_API_TOKEN — bearer token
-//
-// Também aceita aliases comuns de integração:
-//   UPSTASH_REDIS_REST_URL
-//   UPSTASH_REDIS_REST_TOKEN
+// Upstash Redis Storage Driver (Produção REST/HTTP)
 // ─────────────────────────────────────────────────────────────────────────────
 
 const UPSTASH_KEY = 'acadim_custom_news';
-
-/**
- * Driver que falha explicitamente em produção quando storage não está configurado.
- * Impede falsa persistência: filesystem serverless não é durável entre instâncias.
- */
-class NullProductionDriver implements StorageDriver {
-  async loadRecords(): Promise<AdminNewsRecord[]> {
-    // Leitura tolerante: retorna vazio para que o site (SSG/ISR) funcione
-    // usando apenas STATIC_BASE_NEWS. Não quebra o build público.
-    console.warn(
-      '[Storage] Produção sem storage persistente. Apenas notícias-base estáticas serão exibidas.'
-    );
-    return [];
-  }
-
-  async saveRecords(): Promise<boolean> {
-    // Escrita FALHA explicitamente — não fingir persistência
-    throw new Error(
-      '[Storage] Produção sem storage persistente configurado. ' +
-      'Configure KV_REST_API_URL e KV_REST_API_TOKEN nas variáveis de ambiente. ' +
-      'A notícia NÃO foi salva.'
-    );
-  }
-}
 
 class UpstashStorageDriver implements StorageDriver {
   private url: string;
   private token: string;
 
   constructor(url: string, token: string) {
-    // Remove trailing slash para construir URLs consistentes
     this.url = url.replace(/\/+$/, '');
     this.token = token;
   }
@@ -233,8 +165,6 @@ class UpstashStorageDriver implements StorageDriver {
   }
 
   async loadRecords(): Promise<AdminNewsRecord[]> {
-    // Sem cache em memória entre chamadas: serverless = instâncias efêmeras.
-    // Sempre ler do Redis é a única garantia de consistência entre instâncias.
     const res = await fetch(`${this.url}/get/${UPSTASH_KEY}`, {
       method: 'GET',
       headers: { Authorization: `Bearer ${this.token}` },
@@ -250,20 +180,11 @@ class UpstashStorageDriver implements StorageDriver {
       return [];
     }
 
-    // Upstash retorna string JSON serializada; aceitar também objeto direto
     const parsed = typeof data.result === 'string' ? JSON.parse(data.result) : data.result;
     return Array.isArray(parsed) ? parsed : [];
   }
 
   async saveRecords(records: AdminNewsRecord[]): Promise<boolean> {
-    // IMPORTANTE: NÃO mentir sobre persistência. Se a gravação falhar, retornar false
-    // para que a API reporte erro ao editor em vez de sucesso falso.
-    //
-    // Escrita via SET simples — Upstash SET é atômico por chave no servidor.
-    // Race condition entre duas instâncias serverless simultâneas é LAST-WRITE-WINS.
-    // Limitação conhecida e documentada: para este volume editorial (baixo),
-    // o risco de colisão é aceitável; para writes concorrentes frequentes seria
-    // necessário WATCH/MULTI/EXEC (transação), disponível no tier gratuito.
     const payload = JSON.stringify(records);
     const res = await fetch(`${this.url}/set/${UPSTASH_KEY}`, {
       method: 'POST',
@@ -271,7 +192,6 @@ class UpstashStorageDriver implements StorageDriver {
         Authorization: `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       },
-      // O endpoint /set/<key> aceita o valor como body JSON-encoded (string)
       body: JSON.stringify(payload),
       cache: 'no-store',
     });
@@ -288,31 +208,22 @@ class UpstashStorageDriver implements StorageDriver {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// News Repository (Lógica Editorial + Storage Driver)
+// News Repository Implementation
 // ─────────────────────────────────────────────────────────────────────────────
 
 class NewsRepository implements NewsRepositoryInterface {
   private driver: StorageDriver;
-  private driverName: string;
 
   constructor(driver?: StorageDriver) {
     if (driver) {
       this.driver = driver;
-      this.driverName = driver.constructor.name;
     } else {
-      // Seleção automática: Upstash (quando configurado), senão arquivo local
       const cloud = UpstashStorageDriver.fromEnv();
       if (cloud) {
         this.driver = cloud;
-        this.driverName = 'UpstashStorageDriver';
       } else {
-        // MODO LOCAL-FIRST: Usar sempre o LocalFileStorageDriver como fonte de verdade
         this.driver = new LocalFileStorageDriver();
-        this.driverName = 'LocalFileStorageDriver';
       }
-    }
-    if (process.env.NODE_ENV !== 'production' || process.env.DEBUG_STORAGE) {
-      console.log(`[News Repository] Storage driver ativo: ${this.driverName}`);
     }
   }
 
@@ -330,12 +241,59 @@ class NewsRepository implements NewsRepositoryInterface {
 
   async getRecordById(id: string): Promise<AdminNewsRecord | null> {
     const records = await this.loadRecords();
-    return records.find((r) => r.id === id) || null;
+    const found = records.find((r) => r.id === id || r.slug === id);
+    if (found) return found;
+
+    // Se não encontrou no custom-news.json, busca no acervo estático base
+    const staticMatch = STATIC_BASE_NEWS.find((item) => item.id === id || item.slug === id);
+    if (staticMatch) {
+      return {
+        id: staticMatch.id || id,
+        slug: staticMatch.slug,
+        title: staticMatch.title,
+        summary: staticMatch.excerpt || '',
+        content: staticMatch.content || '',
+        category: staticMatch.category,
+        tags: staticMatch.tags || [],
+        author: typeof staticMatch.author === 'string' ? staticMatch.author : staticMatch.author?.name || 'Redação ACADIM',
+        publishedAt: staticMatch.publishedAt,
+        imageUrl: staticMatch.coverImage,
+        featured: Boolean(staticMatch.featured),
+        status: 'published',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        contentFormat: staticMatch.contentFormat || 'markdown',
+      };
+    }
+    return null;
   }
 
   async getRecordBySlug(slug: string): Promise<AdminNewsRecord | null> {
     const records = await this.loadRecords();
-    return records.find((r) => r.slug === slug) || null;
+    const found = records.find((r) => r.slug === slug);
+    if (found) return found;
+
+    const staticMatch = STATIC_BASE_NEWS.find((item) => item.slug === slug);
+    if (staticMatch) {
+      return {
+        id: staticMatch.id || slug,
+        slug: staticMatch.slug,
+        title: staticMatch.title,
+        summary: staticMatch.excerpt || '',
+        content: staticMatch.content || '',
+        category: staticMatch.category,
+        tags: staticMatch.tags || [],
+        author: typeof staticMatch.author === 'string' ? staticMatch.author : staticMatch.author?.name || 'Redação ACADIM',
+        publishedAt: staticMatch.publishedAt,
+        imageUrl: staticMatch.coverImage,
+        featured: Boolean(staticMatch.featured),
+        status: 'published',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        contentFormat: staticMatch.contentFormat || 'markdown',
+      };
+    }
+    return null;
   }
 
   async createRecord(input: Partial<AdminNewsRecord>): Promise<AdminNewsRecord> {
@@ -344,7 +302,6 @@ class NewsRepository implements NewsRepositoryInterface {
     const title = input.title?.trim() || 'Nova Notícia Sem Título';
     const baseSlug = slugifyTitle(title);
 
-    // Garantia de unicidade de slug com tratamento concorrente
     const existingSlugs = new Set(records.map((r) => r.slug));
     let finalSlug = baseSlug;
     let counter = 2;
@@ -379,7 +336,6 @@ class NewsRepository implements NewsRepositoryInterface {
     records.unshift(newRecord);
     const saved = await this.saveRecords(records);
     if (!saved) {
-      // NÃO fingir sucesso. Se a persistência falhou, propagar erro explícito.
       throw new Error('[News Repository] Falha ao persistir nova notícia no storage. Nada foi gravado.');
     }
     return newRecord;
@@ -387,16 +343,46 @@ class NewsRepository implements NewsRepositoryInterface {
 
   async updateRecord(id: string, input: Partial<AdminNewsRecord>): Promise<AdminNewsRecord | null> {
     const records = await this.loadRecords();
-    const index = records.findIndex((r) => r.id === id);
-    if (index === -1) return null;
+    let index = records.findIndex((r) => r.id === id || r.slug === id);
 
-    const current = records[index];
+    let current: AdminNewsRecord;
+
+    if (index === -1) {
+      // Se não estava no custom-news.json ainda, busca no acervo estático base e inicializa
+      const staticMatch = STATIC_BASE_NEWS.find((item) => item.id === id || item.slug === id);
+      if (!staticMatch) {
+        return null;
+      }
+      current = {
+        id: staticMatch.id || id,
+        slug: staticMatch.slug,
+        title: staticMatch.title,
+        summary: staticMatch.excerpt || '',
+        content: staticMatch.content || '',
+        category: staticMatch.category,
+        tags: staticMatch.tags || [],
+        author: typeof staticMatch.author === 'string' ? staticMatch.author : staticMatch.author?.name || 'Redação ACADIM',
+        publishedAt: staticMatch.publishedAt,
+        imageUrl: staticMatch.coverImage,
+        featured: Boolean(staticMatch.featured),
+        status: 'published',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        contentFormat: staticMatch.contentFormat || 'markdown',
+      };
+      // Adiciona o novo registro inicializado
+      records.unshift(current);
+      index = 0;
+    } else {
+      current = records[index];
+    }
+
     const updatedTitle = input.title?.trim() || current.title;
     let updatedSlug = current.slug;
 
-    if (input.title && input.title.trim() !== current.title) {
-      const baseSlug = slugifyTitle(updatedTitle);
-      const existingSlugs = new Set(records.filter((r) => r.id !== id).map((r) => r.slug));
+    if (input.slug && input.slug.trim() && input.slug.trim() !== current.slug) {
+      const baseSlug = slugifyTitle(input.slug.trim());
+      const existingSlugs = new Set(records.filter((r) => r.id !== id && r.slug !== id).map((r) => r.slug));
       updatedSlug = baseSlug;
       let counter = 2;
       while (existingSlugs.has(updatedSlug)) {
@@ -430,30 +416,54 @@ class NewsRepository implements NewsRepositoryInterface {
     records[index] = updatedRecord;
     const saved = await this.saveRecords(records);
     if (!saved) {
-      throw new Error('[News Repository] Falha ao persistir atualização no storage. Nada foi gravado.');
+      throw new Error('[News Repository] Falha ao persistir atualização no storage.');
     }
     return updatedRecord;
   }
 
   async deleteRecord(id: string): Promise<boolean> {
     const records = await this.loadRecords();
-    const filtered = records.filter((r) => r.id !== id);
-    if (filtered.length === records.length) return false;
-    const saved = await this.saveRecords(filtered);
-    if (!saved) {
-      throw new Error('[News Repository] Falha ao persistir exclusão no storage.');
+    const index = records.findIndex((r) => r.id === id || r.slug === id);
+
+    if (index !== -1) {
+      records[index].status = 'deleted';
+      records[index].updatedAt = new Date().toISOString();
+    } else {
+      const staticMatch = STATIC_BASE_NEWS.find((item) => item.id === id || item.slug === id);
+      if (staticMatch) {
+        records.unshift({
+          id: staticMatch.id || id,
+          slug: staticMatch.slug,
+          title: staticMatch.title,
+          summary: staticMatch.excerpt || '',
+          content: staticMatch.content || '',
+          category: staticMatch.category,
+          tags: staticMatch.tags || [],
+          author: typeof staticMatch.author === 'string' ? staticMatch.author : staticMatch.author?.name || 'Redação ACADIM',
+          publishedAt: staticMatch.publishedAt,
+          imageUrl: staticMatch.coverImage,
+          featured: staticMatch.featured || false,
+          status: 'deleted',
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        });
+      } else {
+        return false;
+      }
     }
-    return true;
+
+    const saved = await this.saveRecords(records);
+    return saved;
   }
 
   async getPublishedArticles(): Promise<NewsArticle[]> {
     const records = await this.loadRecords();
-    // Filtro estrito de integridade: somente publicadas com título e conteúdo real
     const published = records.filter(
       (r) => r.status === 'published' && r.title && r.title.trim() !== '' && r.content && r.content.trim() !== ''
     );
 
     return published.map((r) => ({
+      id: r.id,
       slug: r.slug || slugifyTitle(r.title),
       title: r.title,
       excerpt: r.summary || (r.content.length > 160 ? r.content.substring(0, 160) + '...' : r.content),
@@ -473,5 +483,4 @@ class NewsRepository implements NewsRepositoryInterface {
   }
 }
 
-// Exporta instância singleton do repositório
 export const newsRepository: NewsRepositoryInterface = new NewsRepository();

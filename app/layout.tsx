@@ -1,3 +1,4 @@
+/* Desenvolvido por Thiago Gomes (https://www.instagram.com/agomes.thiago83/) / Nix Society (https://www.instagram.com/nixsociety) para a ACADIM. */
 import { Figtree } from 'next/font/google';
 import type { Metadata } from 'next';
 import './globals.css';
@@ -51,6 +52,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`scroll-smooth ${figtree.variable}`}>
+      <head>
+        {/* Desenvolvido por Thiago Gomes (https://www.instagram.com/agomes.thiago83/) / Nix Society (https://www.instagram.com/nixsociety) para a ACADIM. */}
+      </head>
       <body className={`${figtree.className} antialiased min-h-screen flex flex-col justify-between bg-surface-subtle text-text-primary`}>
         <AccessibilityProvider>
           <PixProvider>

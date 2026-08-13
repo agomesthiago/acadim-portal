@@ -22,6 +22,7 @@ export default function NewsImage({ src, fallbackSrc = DEFAULT_NEWS_BANNER, alt,
       <Image
         src={currentSrc}
         alt={alt || 'Imagem'}
+        sizes={props.sizes || (props.fill ? "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" : undefined)}
         onError={() => setError(true)}
         {...props}
       />

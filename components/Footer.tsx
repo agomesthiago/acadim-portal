@@ -55,6 +55,7 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="font-display font-bold text-sm text-white mb-4 uppercase tracking-wider">Conhecimento</h4>
             <ul className="space-y-2 text-xs text-slate-400">
+              <li><Link href="/alerta-medico" className="text-brand-red font-extrabold hover:underline flex items-center gap-1">🚨 Alerta Médico de Emergência</Link></li>
               <li><Link href="/distrofias" className="hover:text-white transition-colors">Enciclopédia de Distrofias</Link></li>
               <li><Link href="/distrofias/duchenne" className="hover:text-white transition-colors">Distrofia Muscular de Duchenne (DMD)</Link></li>
               <li><Link href="/distrofias/becker" className="hover:text-white transition-colors">Distrofia Muscular de Becker (DMB)</Link></li>

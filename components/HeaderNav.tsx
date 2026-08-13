@@ -15,6 +15,7 @@ export const HeaderNav: React.FC = () => {
     { name: 'Início', href: '/#hero' },
     { name: 'Nossa História', href: '/sobre-nos' },
     { name: 'Distrofias', href: '/distrofias' },
+    { name: 'Alerta Médico', href: '/alerta-medico' },
     { name: 'Notícias', href: '/noticias' },
   ];
 
