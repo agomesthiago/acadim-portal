@@ -13,7 +13,6 @@ export const HeaderNav: React.FC = () => {
 
   const links = [
     { name: 'Início', href: '/#hero' },
-    { name: 'Sobre', href: '/#sobre' },
     { name: 'Nossa História', href: '/sobre-nos' },
     { name: 'Distrofias', href: '/distrofias' },
     { name: 'Notícias', href: '/noticias' },

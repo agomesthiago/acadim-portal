@@ -41,9 +41,8 @@ screenshot*.png
 capture_screenshot.mjs
 test_*.mjs
 
-# CMS Local Development Data (NOT for production persistence)
-data/custom-news.json
-public/uploads/
+# CMS Local Development Data
+# public/uploads/
 
 # Scratch / local-only utilities (audits, manual exports, test artifacts)
 scratch/

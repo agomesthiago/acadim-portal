@@ -30,6 +30,7 @@ export interface PrimarySource {
 }
 
 export interface NewsArticle {
+  id?: string;
   slug: string;
   title: string;
   excerpt: string;
@@ -44,6 +45,7 @@ export interface NewsArticle {
   primarySource?: PrimarySource;
   coverImage: string;
   imageAlt: string;
+  imageCredit?: string;
   featured?: boolean;
   tags?: string[];
   relatedDiseaseSlug?: string;

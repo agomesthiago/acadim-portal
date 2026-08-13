@@ -87,19 +87,19 @@ export default function SobreNosPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero Institucional */}
-      <header className="bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-200 text-xs font-semibold uppercase tracking-wider border border-blue-400/30">
-            <Building2 className="w-4 h-4 text-blue-400" />
+      {/* Hero Institucional em Tom Claro com Espaçamento Correto */}
+      <header className="bg-gradient-to-br from-blue-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950 border-b border-slate-200 dark:border-slate-800 pt-28 sm:pt-36 pb-14 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto space-y-5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 text-xs font-bold uppercase tracking-wider border border-blue-200 dark:border-blue-800">
+            <Building2 className="w-4 h-4 text-blue-600 dark:text-blue-400" />
             História e Atuação Institucional
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
             Sobre a ACADIM
           </h1>
 
-          <p className="text-lg sm:text-xl text-blue-100/90 leading-relaxed font-normal">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
             A história da Associação Carioca de Distrofia Muscular, sua atuação em doenças neuromusculares, defesa de direitos e apoio às pessoas e famílias no Rio de Janeiro.
           </p>
         </div>
