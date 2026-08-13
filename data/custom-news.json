@@ -1,5 +1,25 @@
 [
   {
+    "id": "news_1786587967401_x2v1s",
+    "title": "Esta é uma notícia teste",
+    "slug": "esta-e-uma-noticia-teste",
+    "summary": "Esta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia teste",
+    "content": "Esta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia teste\n\n\nEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia testeEsta é uma notícia teste",
+    "category": "Avanços Científicos",
+    "tags": [
+      "teste"
+    ],
+    "author": "Redação ACADIM",
+    "publishedAt": "2026-08-13",
+    "imageUrl": "/assets/acadim-default-banner.png",
+    "featured": false,
+    "status": "published",
+    "createdAt": "2026-08-13T02:26:07.401Z",
+    "updatedAt": "2026-08-13T02:26:07.401Z",
+    "contentFormat": "markdown",
+    "coverImage": "/assets/acadim-default-banner.png"
+  },
+  {
     "id": "news_01_dmd_genica",
     "slug": "avancos-terapia-genica-duchenne-2026",
     "title": "Avanços na Terapia Gênica para Duchenne: O que as Famílias Precisam Saber",
@@ -20,7 +40,7 @@
       "url": "https://www.nature.com/articles/s41582-018-0001-4",
       "originalPublishedAt": "28/07/2024"
     },
-    "coverImage": "/assets/community-bg.jpg",
+    "coverImage": "https://www.mda.org/sites/default/files/styles/image_text_desktop/public/2024-06/gene-therapy-1.jpg",
     "imageAlt": "Pesquisador em laboratório examinando dados de terapia gênica",
     "imageCredit": "Divulgação Institucional / Nature & MDA",
     "tags": [
@@ -33,7 +53,7 @@
     "relatedDiseaseSlug": "duchenne",
     "contentFormat": "markdown",
     "content": "## Resumo Simples para as Famílias\n\nA Distrofia Muscular de Duchenne acontece porque o corpo não produz uma proteína muito importante chamada **distrofina**. Pense na distrofina como se fosse a \"cola\" ou a \"mola de amortecimento\" que protege os nossos músculos. Sem essa cola, toda vez que a criança se movimenta, o músculo sofre pequenas feridas e vai ficando fraco com o tempo.\n\nA **terapia gênica** é uma técnica da medicina que tenta colocar dentro das células musculares uma receita genética para o corpo voltar a fabricar essa proteína protetora.\n\n---\n\n### 1. O Que Aconteceu nos Estudos Recentes?\n\nOs cientistas criaram uma versão menor dessa proteína, chamada de **microdistrofina** (como se fosse uma cópia resumida da receita original, mas que cabe dentro do remédio). \n\nEstudos em vários países mostraram que essa microdistrofina consegue entrar no músculo e ajudar a proteger a força das crianças que receberam a aplicação.\n\n- **O \"carrinho de entrega\" (Vetor AAV9):** Para levar essa receita genética até o músculo, os médicos usam um vírus inofensivo adaptado no laboratório, que funciona como um entregador.\n- **Teste de DNA Obrigatório:** Nem todas as crianças podem receber a mesma terapia. É preciso fazer o teste genético completo (exame de DNA) para saber a mutação exata do paciente.\n\n---\n\n### 2. O Que Isso Significa para os Pacientes?\n\nA terapia de microdistrofina ajuda a **desacelerar** a perda de força muscular. Isso significa ajudar a criança a manter a caminhada por mais tempo e proteger os músculos do coração e do pulmão.\n\n**Importante entender:** A terapia gênica não é uma cura total que devolve o músculo que já se perdeu, mas sim um tratamento para proteger a musculatura e diminuir a progressão da doença.\n\n---\n\n### 3. O Que Ainda Não Sabemos?\n\n- **Quanto tempo dura o efeito?** Como os músculos vão crescendo conforme a criança desenvolve, os médicos ainda acompanham os pacientes para saber se o remédio dura por muitos anos ou se será preciso repetir a dose no futuro.\n- **Segurança da Imunidade:** O corpo pode tentar combater o \"carrinho de entrega\" (vírus AAV). Por isso, os médicos dão remédios protetores para o fígado e imunidade durante a aplicação.\n\n---\n\n> **Aviso Institucional (Situação no Brasil):** Este avanço refere-se a ensaios e aprovações nos Estados Unidos e Europa. Este tratamento **não está disponível automaticamente no SUS**. No Brasil, qualquer remédio novo precisa primeiro ser aprovado pela Anvisa e depois ser avaliado pela CONITEC para saber se entrará na rede pública.\n\n---\n\n### Fonte original\n- **Instituição / Publicação:** Nature Reviews Neurology & Muscular Dystrophy Association (MDA)\n- **Título Original:** Gene therapy and exon skipping developments in Duchenne muscular dystrophy\n- **Data de Publicação Original:** 28 de Julho de 2024\n- **Link da Fonte:** [https://www.nature.com/articles/s41582-018-0001-4](https://www.nature.com/articles/s41582-018-0001-4)",
-    "imageUrl": "/assets/community-bg.jpg"
+    "imageUrl": "https://www.mda.org/sites/default/files/styles/image_text_desktop/public/2024-06/gene-therapy-1.jpg"
   },
   {
     "id": "news_02_sus_guiadireitos",
@@ -160,7 +180,7 @@
       "url": "https://www.fda.gov/news-events/press-announcements",
       "originalPublishedAt": "20/06/2024"
     },
-    "coverImage": "/assets/hero-bg.jpg",
+    "coverImage": "https://www.fda.gov/files/FDA-Social-Share-1200x630.jpg",
     "imageAlt": "Sede da FDA e laboratório de desenvolvimento farmacêutico",
     "imageCredit": "U.S. Food and Drug Administration (FDA)",
     "tags": [
@@ -174,7 +194,7 @@
     "contentFormat": "markdown",
     "content": "## Resumo Simples da Notícia\n\nA agência de saúde dos Estados Unidos (FDA, que funciona como a Anvisa nos EUA) decidiu **ampliar a aprovação** de uma terapia gênica chamada *delandistrogene moxeparvovec* (nome comercial Elevidys) para mais faixas etárias de crianças com Distrofia Muscular de Duchenne.\n\nPense nessa terapia como colocar uma \"instalação de emergência\" dentro das células musculares para que elas consigam fabricar uma versão menor da proteína distrofina.\n\n---\n\n### 1. O Que Ficou Provado no Estudo?\n\n- **Proteção da Força:** As crianças que receberam a aplicação em dose única demonstraram maior facilidade para se levantar do chão e subir degraus quando comparadas às crianças que não receberam o remédio.\n- **Uso do Vírus Entregador:** A receita genética é transportada dentro de uma cápsula de vírus inofensivo (AAV9) que entrega o material direto no músculo.\n\n---\n\n### 2. O Que Isso Significa para os Pacientes?\n\nÉ um passo importante na medicina porque confirma que a terapia gênica em dose única pode diminuir a velocidade de perda muscular em meninos com Duchenne.\n\n**Importante saber:** A medicação exige um teste genético prévio completo. Meninos com mutações específicas nos éxons 8 e 9 do gene DMD não podem receber o remédio devido ao risco de reações alérgicas graves.\n\n---\n\n### 3. O Que Ainda Não Sabemos?\n\n- Os cientistas continuam acompanhando os meninos vacinados para verificar quantos anos o efeito benéfico dura no corpo.\n- Como o coração é um músculo muito importante, os estudos continuam medindo a proteção cardíaca ao longo da adolescência.\n\n---\n\n> **Aviso Institucional (Situação no Brasil):** Esta aprovação ocorreu nos Estados Unidos pela agência FDA. **Este remédio não está disponível no SUS do Brasil.** Para que um tratamento chegue aos postos e hospitais públicos brasileiros, ele precisa primeiro ser registrado na Anvisa e depois aprovado pela comissão de incorporação do SUS (CONITEC).\n\n---\n\n### Fonte original\n- **Instituição:** U.S. Food and Drug Administration (FDA)\n- **Título Original:** FDA expands approval of gene therapy for Duchenne muscular dystrophy\n- **Data de Publicação Original:** 20 de Junho de 2024\n- **Link Oficial:** [https://www.fda.gov/news-events/press-announcements](https://www.fda.gov/news-events/press-announcements)",
     "updatedAt": "2024-06-22",
-    "imageUrl": "/assets/hero-bg.jpg"
+    "imageUrl": "https://www.fda.gov/files/FDA-Social-Share-1200x630.jpg"
   },
   {
     "id": "news_06_dmd_exon_skipping",
@@ -196,7 +216,7 @@
       "url": "https://www.nature.com/nrd/",
       "originalPublishedAt": "15/11/2024"
     },
-    "coverImage": "/assets/hero-bg-2.jpg",
+    "coverImage": "https://www.parentprojectmd.org/wp-content/uploads/2022/01/exon-skipping-diagram-2022.png",
     "imageAlt": "Representação esquemática do RNA e mecanismo de salto de éxon",
     "imageCredit": "Biotechnology & Nature Reviews",
     "tags": [
@@ -209,7 +229,7 @@
     "contentFormat": "markdown",
     "content": "## Como Funciona o \"Salto de Éxon\"?\n\nImagine que a receita para fabricar a proteína do músculo é um texto longo com 79 capítulos (chamados de **éxons**). Na Distrofia Muscular de Duchenne, um desses capítulos está faltando ou com defeito, fazendo com que a leitura da receita pare no meio.\n\nA técnica do **Salto de Éxon** usa pequenos \"adesivos genéticos\" (chamados oligonucleotídeos) que mandam a célula **pular o capítulo estragado** e continuar lendo o resto da receita.\n\n---\n\n### 1. Quais Éxons Podem Ser \"Pulados\" Hoje?\n\nAtualmente, existem remédios desenvolvidos para pular capítulos específicos:\n- **Salto do Éxon 51** (atende cerca de 13% dos pacientes com Duchenne);\n- **Salto do Éxon 53** (atende cerca de 8% dos pacientes);\n- **Salto do Éxon 45** (atende cerca de 8% dos pacientes).\n\n---\n\n### 2. O Que o Remédio Faz no Corpo?\n\nAo pular a parte estragada da receita, o corpo consegue fabricar uma proteína um pouco menor, parecida com a proteína de quem tem Distrofia de Becker (que é um tipo mais leve de distrofia). Isso ajuda o músculo a ficar mais resistente.\n\n---\n\n### 3. O Que Ainda Não Sabemos?\n\n- **Remédio Semanal:** Esses medicamentos atuais precisam ser aplicados na veia toda semana no hospital.\n- **Novas Versões em Teste:** Cientistas estão testando uma nova tecnologia (chamada PPMO) para fazer o remédio grudar melhor no músculo e precisar de doses menos frequentes.\n\n---\n\n> **Aviso Institucional (Situação no Brasil):** Remédios de salto de éxon requerem um exame de DNA detalhado para saber se o paciente tem exatamente a mutação que encaixa no remédio. Consulte sempre o neuropediatra responsável.\n\n---\n\n### Fonte original\n- **Periódico Científico:** Nature Reviews Drug Discovery\n- **Título Original:** Advances in antisense oligonucleotide exon skipping for Duchenne\n- **Link:** [https://www.nature.com/nrd/](https://www.nature.com/nrd/)",
     "updatedAt": "2024-11-17",
-    "imageUrl": "/assets/hero-bg-2.jpg"
+    "imageUrl": "https://www.parentprojectmd.org/wp-content/uploads/2022/01/exon-skipping-diagram-2022.png"
   },
   {
     "id": "news_07_vamorolone_dmd",
@@ -231,7 +251,7 @@
       "url": "https://www.thelancet.com/journals/laneur/",
       "originalPublishedAt": "12/01/2024"
     },
-    "coverImage": "/assets/hero-bg-3.jpg",
+    "coverImage": "https://muscular-dystrophy.org/wp-content/uploads/2022/09/steroid-capsules-pills-768x512.jpg",
     "imageAlt": "Medicamento Vamorolona em avaliação clínica na Europa",
     "imageCredit": "European Medicines Agency (EMA)",
     "tags": [
@@ -244,7 +264,7 @@
     "contentFormat": "markdown",
     "content": "## O Que é a Vamorolona?\n\nOs corticosteroides (como a deflazacorte ou a prednisona) são remédios anti-inflamatórios muito usados na Distrofia de Duchenne para adiar a perda de força muscular. Porém, com os anos, eles podem causar efeitos colaterais como perda de altura (parar de crescer) e enfraquecimento dos ossos (osteoporose).\n\nA **Vamorolona** (nome comercial Agamree) foi desenhada em laboratório para manter o efeito bom de proteção do músculo, mas **diminuir bastante os efeitos colaterais negativos nos ossos e no crescimento**.\n\n---\n\n### 1. O Que Mostrou o Estudo Científico?\n\nEm pesquisas clínicas com mais de 100 meninos na Europa e Estados Unidos:\n- A vamorolona manteve a força motora e a função respiratória semelhante aos corticoides tradicionais.\n- As crianças tratadas com vamorolona mantiveram a curva de crescimento de altura normal para a idade.\n- Houve menor perda de densidade dos ossos da coluna.\n\n---\n\n### 2. Estágio Atual e Disponibilidade\n\n- **Estados Unidos (FDA) e Europa (EMA):** Já aprovaram o uso do medicamento para crianças acima de 2 anos com Duchenne.\n- **Brasil:** A medicação precisa passar por análise de registro na Anvisa para poder ser comercializada no país.\n\n---\n\n> **Aviso Institucional (Situação no Brasil):** Nunca interrompa ou troque a medicação corticoide do seu filho por conta própria. Qualquer mudança de medicação deve ser feita exclusivamente com orientação do médico neuropediatra.\n\n---\n\n### Fonte original\n- **Publicação:** The Lancet Neurology / Agência Europeia de Medicamentos (EMA)\n- **Título Original:** Vamorolone in boys with Duchenne muscular dystrophy: a randomized phase 2b trial\n- **Link:** [https://www.thelancet.com/journals/laneur/](https://www.thelancet.com/journals/laneur/)",
     "updatedAt": "2024-01-14",
-    "imageUrl": "/assets/hero-bg-3.jpg"
+    "imageUrl": "https://muscular-dystrophy.org/wp-content/uploads/2022/09/steroid-capsules-pills-768x512.jpg"
   },
   {
     "id": "news_08_coracao_dmd",
@@ -266,7 +286,7 @@
       "url": "https://www.jacc.org/",
       "originalPublishedAt": "18/09/2023"
     },
-    "coverImage": "/assets/hero-bg-4.jpg",
+    "coverImage": "https://www.mda.org/sites/default/files/styles/image_text_desktop/public/2022-01/heart-health-dmd.jpg",
     "imageAlt": "Exame de ressonância magnética e eletrocardiograma cardíaco",
     "imageCredit": "PPMD & Sociedade de Cardiologia",
     "tags": [
@@ -280,7 +300,7 @@
     "contentFormat": "markdown",
     "content": "## Por Que Cuidar do Coração?\n\nMuitas pessoas pensam na distrofia muscular apenas nos braços e pernas, mas **o coração também é feito de músculo** (chamado músculo cardíaco). Na Distrofia de Duchenne, a falta da proteína distrofina também afeta a parede do coração ao longo dos anos.\n\nA boa notícia é que, com o acompanhamento médico desde cedo, existem remédios que ajudam o coração a bater com menos esforço e a se proteger.\n\n---\n\n### 1. Quais Exames Devem Ser Feitos?\n\nAs diretrizes médicas recomendam os seguintes cuidados:\n\n- **Ecocardiograma (Ultrassom do Coração):** Deve ser feito uma vez por ano a partir do momento do diagnóstico.\n- **Ressonância Magnética do Coração:** Exame muito detalhado recomendado a partir dos 6 a 10 anos de idade para enxergar pequenas alterações antes de causarem sintomas.\n- **Holter de 24 Horas:** Exame que mede os batimentos cardíacos durante um dia inteiro para conferir se há palpitações ou arritmias.\n\n---\n\n### 2. Medicamentos Protetores do Coração\n\nMesmo que o jovem não sinta cansaço ou dor no peito, os cardiologistas costumam prescrever remédios protetores (como inibidores da ECA ou betabloqueadores) por volta dos 10 anos de idade. Esses remédios funcionam como um \"escudo\" para evitar que o coração dilate.\n\n---\n\n> **Dica Institucional ACADIM:** Todo paciente com distrofia muscular deve ter um cardiologista na sua equipe de saúde. Leve sempre seus exames anteriores em cada consulta!\n\n---\n\n### Fonte original\n- **Publicação:** Journal of the American College of Cardiology (JACC)\n- **Título:** Cardiovascular management in Duchenne muscular dystrophy\n- **Link:** [https://www.jacc.org/](https://www.jacc.org/)",
     "updatedAt": "2023-09-20",
-    "imageUrl": "/assets/hero-bg-4.jpg"
+    "imageUrl": "https://www.mda.org/sites/default/files/styles/image_text_desktop/public/2022-01/heart-health-dmd.jpg"
   },
   {
     "id": "news_09_becker_givinostat",
@@ -302,7 +322,7 @@
       "url": "https://www.nejm.org/",
       "originalPublishedAt": "21/03/2024"
     },
-    "coverImage": "/assets/cadeirante.jpg",
+    "coverImage": "https://musculardystrophynews.com/wp-content/uploads/2022/09/Becker-muscular-dystrophy.jpg",
     "imageAlt": "Acompanhamento de paciente com distrofia muscular de Becker",
     "imageCredit": "ClinicalTrials.gov / Italfarmaco",
     "tags": [
@@ -315,7 +335,7 @@
     "contentFormat": "markdown",
     "content": "## O Que é a Distrofia Muscular de Becker?\n\nA Distrofia Muscular de Becker (BMD) é parecida com a de Duchenne, mas o corpo consegue fabricar a proteína distrofina em menor quantidade ou em um tamanho alterado. Por isso, os sintomas costumam surgir mais tarde e progridem de forma mais lenta.\n\nCientistas estão testando um medicamento chamado **Givinostat**, que atua bloqueando enzimas que causam cicatrizes (fibrose) no músculo.\n\n---\n\n### 1. Como o Remédio Funciona?\n\nQuando o músculo sofre pequenas lesões, o corpo tenta cicatrizar o local. Se houver muita inflamação, o tecido muscular é substituído por gordura e fibrose. \nO Givinostat age como um **fio condutor que avisa as células para não formarem gordura**, preservando a massa muscular viva por mais tempo.\n\n---\n\n### 2. Resultados Apresentados nos Ensaios Clínicos\n\n- Nos testes de fase 3 com homens e jovens que têm Becker e Duchenne, o remédio ajudou a diminuir a gordura infiltrada nos músculos das coxas (medida por exame de ressonância).\n- Os participantes que tomaram o medicamento mantiveram melhor a velocidade nos testes de caminhada de 6 minutos.\n\n---\n\n> **Aviso Institucional (Situação no Brasil):** O Givinostat é um medicamento sob estudo e análise regulatória internacional. Ele **não está disponível comercialmente ou no SUS no Brasil**.\n\n---\n\n### Fonte original\n- **Periódico Científico:** The New England Journal of Medicine (NEJM)\n- **Título Original:** Phase 3 trial of Givinostat in muscular dystrophy\n- **Link:** [https://www.nejm.org/](https://www.nejm.org/)",
     "updatedAt": "2024-03-23",
-    "imageUrl": "/assets/cadeirante.jpg"
+    "imageUrl": "https://musculardystrophynews.com/wp-content/uploads/2022/09/Becker-muscular-dystrophy.jpg"
   },
   {
     "id": "news_10_crispr_gene_editing",
@@ -337,7 +357,7 @@
       "url": "https://www.science.org/journal/stm",
       "originalPublishedAt": "05/10/2024"
     },
-    "coverImage": "/assets/community-bg.jpg",
+    "coverImage": "https://www.genome.gov/sites/default/files/media/images/2023-01/CRISPR-Cas9-Editing-of-the-Genome.jpg",
     "imageAlt": "Modelagem 3D da dupla hélice de DNA sob edição genômica",
     "imageCredit": "Genome Research Institute",
     "tags": [
@@ -349,7 +369,7 @@
     "contentFormat": "markdown",
     "content": "## O Que é a Tecnologia CRISPR?\n\nImagine que o nosso DNA é um livro de receitas de 3 bilhões de letras. Se houver uma letra errada ou uma frase faltando na receita do músculo, a célula não consegue fabricar a proteína distrofina.\n\nA tecnologia **CRISPR** funciona como uma **\"tesoura molecular inteligente\"** que consegue ir exatamente na letra com defeito dentro da célula e fazer um corte para corrigir o texto da receita.\n\n---\n\n### 1. Como a Pesquisa Está Sendo Feita?\n\nDiferente da terapia gênica comum (que coloca uma cópia nova da receita dentro da célula), o CRISPR tenta **consertar a própria receita original que o paciente já tem no seu DNA**.\n\n- **Testes Atuais:** Os testes com CRISPR para distrofias estão em **fase pré-clínica** (em células de laboratório e modelos animais).\n- **Resultados em Laboratório:** Em camundongos com distrofia, os cientistas conseguiram cortar a parte defeituosa do gene e fazer o animal voltar a fabricar distrofina nos músculos.\n\n---\n\n### 2. O Que Ainda Falta para Chegar aos Humanos?\n\nApesar de ser uma ideia muito revolucionária, a tecnologia precisa de mais anos de estudo para garantir total segurança:\n1. **Precisão de Corte:** Garantir que a tesoura genômica corte apenas a letra certa, sem cortar nenhuma outra parte importante do DNA.\n2. **Entrega no Corpo Todo:** Descobrir a melhor forma de fazer o CRISPR chegar em todos os músculos do corpo humano de uma só vez.\n\n---\n\n> **Aviso Institucional:** A tecnologia CRISPR para distrofias musculares é uma **pesquisa em fase experimental de laboratório**. Não existem tratamentos comerciais por CRISPR disponíveis para distrofia muscular no Brasil ou no mundo neste momento.\n\n---\n\n### Fonte original\n- **Publicação:** Science Translational Medicine\n- **Título Original:** Gene editing strategies for neuromuscular diseases using CRISPR-Cas9\n- **Link:** [https://www.science.org/journal/stm](https://www.science.org/journal/stm)",
     "updatedAt": "2024-10-07",
-    "imageUrl": "/assets/community-bg.jpg"
+    "imageUrl": "https://www.genome.gov/sites/default/files/media/images/2023-01/CRISPR-Cas9-Editing-of-the-Genome.jpg"
   },
   {
     "id": "news_11_sus_ngs_exame_dna",
@@ -406,7 +426,7 @@
       "url": "https://www.cell.com/molecular-therapy-family/molecular-therapy",
       "originalPublishedAt": "08/04/2024"
     },
-    "coverImage": "/assets/hero-bg.jpg",
+    "coverImage": "https://muscular-dystrophy.org/wp-content/uploads/2022/07/gene-therapy-1-768x461.jpg",
     "imageAlt": "Laboratório de pesquisas genéticas em distrofias de cinturas",
     "imageCredit": "PubMed & LGMD Foundation",
     "tags": [
@@ -419,7 +439,7 @@
     "contentFormat": "markdown",
     "content": "## O Que é a Distrofia de Cinturas Tipo R1?\n\nA Distrofia Muscular de Cinturas Tipo R1 (antigamente chamada de Tipo 2A ou Calpainopatia) é causada por erros no gene chamado **CAPN3**. Esse gene fabrica uma enzima chamada **Calpaína-3**, que ajuda na organização interna dos músculos dos quadris, coxas e ombros.\n\nQuando a Calpaína-3 está ausente, os músculos da bacia e das pernas vão perdendo força progressivamente durante a juventude ou fase adulta.\n\n---\n\n### 1. O Que a Pesquisa Científica Está Testando?\n\nCientistas na Europa e nos Estados Unidos desenvolveram uma **terapia gênica por vetor AAV** específica para a Calpainopatia.\n\n- O tratamento coloca uma cópia saudável do gene *CAPN3* dentro do vetor viral entregador.\n- Nos testes iniciais de fase 1 e 2, o objetivo é confirmar que a enzima Calpaína-3 volta a ser produzida no tecido muscular sem causar toxicidade.\n\n---\n\n### 2. Estágio Atual das Pesquisas\n\nAs pesquisas estão em **fase de ensaio clínico inicial** em pequenos grupos de voluntários adultos na França e nos EUA. Os médicos avaliam a segurança das doses e monitoram a função do fígado.\n\n---\n\n> **Aviso Institucional:** Esta pesquisa está em fase experimental. **Não há tratamento de terapia gênica aprovado ou à venda para Distrofia de Cinturas R1 no Brasil ou no exterior neste momento.**\n\n---\n\n### Fonte original\n- **Publicação:** Molecular Therapy (Cell Press)\n- **Título Original:** Gene therapy for LGMD R1/2A using AAV vectors\n- **Link:** [https://www.cell.com/molecular-therapy-family/molecular-therapy](https://www.cell.com/molecular-therapy-family/molecular-therapy)",
     "updatedAt": "2024-04-10",
-    "imageUrl": "/assets/hero-bg.jpg"
+    "imageUrl": "https://muscular-dystrophy.org/wp-content/uploads/2022/07/gene-therapy-1-768x461.jpg"
   },
   {
     "id": "news_13_lgmd_r2_dysferlin",
@@ -441,7 +461,7 @@
       "url": "https://www.jci.org/",
       "originalPublishedAt": "19/07/2024"
     },
-    "coverImage": "/assets/hero-bg-2.jpg",
+    "coverImage": "https://www.jain-foundation.org/wp-content/uploads/2021/09/dysferlinopathy-research.jpg",
     "imageAlt": "Microscopia de membrana muscular sob estudo de disferlina",
     "imageCredit": "Jain Foundation & NIH",
     "tags": [
@@ -454,7 +474,7 @@
     "contentFormat": "markdown",
     "content": "## O Que é a Disferlinopatia (LGMD R2)?\n\nA Distrofia de Cinturas Tipo R2 (anteriormente Tipo 2B) e a Miopatia de Miyoshi são causadas por alterações no gene da **Disferlina**. \n\nA proteína disferlina funciona como um **\"remendo de emergência\"**: toda vez que o músculo faz força e sofre um pequeno rasgo microscópico na sua membrana, a disferlina corre até lá e fecha o buraco imediatamente. Sem essa proteína, as células musculares demoram para cicatrizar e inflamam.\n\n---\n\n### 1. O Que as Pesquisas da Fundação Jain Descobriram?\n\nA *Jain Foundation* (uma organização internacional dedicada exclusivamente ao estudo da disferlina) financia estudos no mundo todo sobre a doença:\n\n- **Controle da Inflamação:** Descobriu-se que o sistema de defesa do próprio corpo (imunidade) ataca o músculo lesionado. Por isso, remédios que regulam a inflamação estão em testes para proteger as fibras.\n- **Terapias Gênicas Grandes:** Como o gene da disferlina é muito grande para caber nos vetores virais comuns, cientistas desenvolveram a técnica do **\"gene duplo\"** (dividir a receita em duas partes que se juntam dentro da célula).\n\n---\n\n### 2. Cuidados no Dia a Dia\n\nMédicos especialistas recomendam que pessoas com disferlinopatia **evitem exercícios físicos de altíssima intensidade ou musculação com carga pesada**, pois o excesso de esforço pode aumentar as lesões na membrana que o corpo tem dificuldade para remendar.\n\n---\n\n> **Aviso Institucional:** Acompanhe sempre as orientações do seu médico fisiatra e fisioterapeuta especializado em doenças neuromusculares.\n\n---\n\n### Fonte original\n- **Organização e Periódico:** Jain Foundation / The Journal of Clinical Investigation\n- **Link:** [https://www.jci.org/](https://www.jci.org/)",
     "updatedAt": "2024-07-21",
-    "imageUrl": "/assets/hero-bg-2.jpg"
+    "imageUrl": "https://www.jain-foundation.org/wp-content/uploads/2021/09/dysferlinopathy-research.jpg"
   },
   {
     "id": "news_14_lgmd_r3_r6_sarcoglycan",
@@ -476,7 +496,7 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/",
       "originalPublishedAt": "11/02/2024"
     },
-    "coverImage": "/assets/hero-bg-3.jpg",
+    "coverImage": "https://cdn.ncbi.nlm.nih.gov/pubmed/persistent/pubmed-meta-image-v2.jpg",
     "imageAlt": "Análise de vetores adenoassociados em biologia molecular",
     "imageCredit": "Vector Biology Journal",
     "tags": [
@@ -488,7 +508,7 @@
     "contentFormat": "markdown",
     "content": "## O Que São as Sarcoglicanopatias?\n\nAs sarcoglicanopatias são um grupo de quatro distrofias de cinturas causadas pela falta de proteínas chamadas **sarcoglicanos** (Alfa, Beta, Gama e Delta). Elas formam um \"escudo protetor\" na parede da célula muscular.\n\n- LGMD R3 (antiga 2D): Deficiência de Alfa-sarcoglicano;\n- LGMD R4 (antiga 2E): Deficiência de Beta-sarcoglicano;\n- LGMD R5 (antiga 2C): Deficiência de Gama-sarcoglicano;\n- LGMD R6 (antiga 2F): Deficiência de Delta-sarcoglicano.\n\n---\n\n### 1. Avanços nos Testes de Terapia Gênica\n\nComo os genes dos sarcoglicanos têm um tamanho menor do que o gene da distrofina, **eles cabem por inteiro dentro dos vetores virais AAV**. Isso facilitou a criação de tratamentos experimentais.\n\n- Em ensaios clínicos de fase 1 e 2 nos Estados Unidos e Europa, meninos e meninas com LGMD R4 (Beta-sarcoglicano) receberam a infusão do gene correto.\n- A biópsia de acompanhamento mostrou que o tecido muscular voltou a produzir a proteína Beta-sarcoglicana com sucesso.\n\n---\n\n### 2. O Que Falta para se Tornar um Remédio de Prateleira?\n\nOs cientistas precisam concluir os testes de Fase 3 (com grupos maiores de pacientes) para comprovar se a produção da proteína se traduz em ganho de força e mobilidade no longo prazo.\n\n---\n\n> **Aviso Institucional:** As pesquisas para sarcoglicanopatias estão em **fase experimental em centros internacionais**. Não há medicamentos comercializados no SUS para esses tipos no momento.\n\n---\n\n### Fonte original\n- **Base de Dados:** PubMed / U.S. National Library of Medicine\n- **Link:** [https://pubmed.ncbi.nlm.nih.gov/](https://pubmed.ncbi.nlm.nih.gov/)",
     "updatedAt": "2024-02-13",
-    "imageUrl": "/assets/hero-bg-3.jpg"
+    "imageUrl": "https://cdn.ncbi.nlm.nih.gov/pubmed/persistent/pubmed-meta-image-v2.jpg"
   },
   {
     "id": "news_15_lgmd_brasil_mapeamento",
@@ -510,7 +530,7 @@
       "url": "https://www.scielo.br/j/anp/",
       "originalPublishedAt": "09/09/2024"
     },
-    "coverImage": "/assets/hero-bg-4.jpg",
+    "coverImage": "https://www.scielo.br/media/images/anp_glogo.gif",
     "imageAlt": "Sequenciador genético utilizado no mapeamento da população brasileira",
     "imageCredit": "Genômica USP & Fiocruz",
     "tags": [
@@ -523,7 +543,7 @@
     "contentFormat": "markdown",
     "content": "## A Importância da Pesquisa Brasileira\n\nA Distrofia de Cinturas possui dezenas de subtipos. Saber qual é o subtipo mais frequente na população brasileira é fundamental para que o SUS possa planejar a compra de exames de DNA e futuros tratamentos.\n\nUm estudo realizado pelo Centro de Pesquisas sobre o Genoma Humano da USP analisou o DNA de centenas de brasileiros com suspeita de distrofia de cinturas.\n\n---\n\n### 1. Quais Foram as Mutações Mais Encontradas no Brasil?\n\n- **LGMD R1 (Calpainopatia):** Foi um dos tipos mais frequentes encontrados nas regiões Sudeste e Sul.\n- **LGMD R2 (Disferlinopatia):** Apresentou grande número de casos em jovens adultos no país.\n- **LGMD R3 (Alfa-sarcoglicanopatia):** O tipo mais comum entre as distrofias do grupo dos sarcoglicanos no Brasil.\n\n---\n\n### 2. O Que Muda para as Famílias?\n\nEsse mapeamento ajuda a demonstrar ao Ministério da Saúde que o Brasil possui milhares de pessoas com diagnósticos de cinturas aguardando a chegada de testes e medicamentos específicos.\n\n---\n\n### Fonte original\n- **Publicação:** Arquivos de Neuro-Psiquiatria (SciELO Brasil)\n- **Link Oficial:** [https://www.scielo.br/j/anp/](https://www.scielo.br/j/anp/)",
     "updatedAt": "2024-09-11",
-    "imageUrl": "/assets/hero-bg-4.jpg"
+    "imageUrl": "https://www.scielo.br/media/images/anp_glogo.gif"
   },
   {
     "id": "news_16_fshd_losmapimod",
@@ -545,7 +565,7 @@
       "url": "https://www.fshdsociety.org/",
       "originalPublishedAt": "30/10/2024"
     },
-    "coverImage": "/assets/cadeirante.jpg",
+    "coverImage": "https://www.fshdsociety.org/wp-content/uploads/2021/06/FSHD-society-social-share.jpg",
     "imageAlt": "Pesquisadores analisando expressão da proteína DUX4",
     "imageCredit": "FSHD Society & Fulcrum Therapeutics",
     "tags": [
@@ -558,7 +578,7 @@
     "contentFormat": "markdown",
     "content": "## O Que Causa a Distrofia FSHD1?\n\nNa Distrofia Fácio-Escápulo-Umeral Tipo 1 (FSHD1), existe um gene chamado **DUX4** que deveria estar \"dormindo\" (desligado) nas células musculares após o nascimento. \n\nNas pessoas com FSHD, esse gene acorda por engano e produz uma proteína tóxica que faz com que os músculos do rosto, dos ombros e dos braços perçam força.\n\n---\n\n### 1. Como Funciona o Remédio Experimental (Losmapimod)?\n\nO medicamento **Losmapimod** foi desenvolvido para funcionar como um **\"botão de desligar\" do gene DUX4**.\n\n- Ao tomar o comprimido, o remédio inibe enzimas que ativam o DUX4.\n- Sem a proteína tóxica presente no músculo, a inflamação diminui e as células musculares conseguem se manter vivas e saudáveis por mais tempo.\n\n---\n\n### 2. Resultados do Ensaio Clínico (Estudo REACH)\n\nO ensaio clínico internacional de Fase 3 (chamado estudo REACH) testou o remédio em centenas de adultos com FSHD nos EUA e Europa. Os pesquisadores avaliaram a força muscular dos ombros e o volume dos músculos por ressonância magnética.\n\n---\n\n> **Aviso Institucional (Situação no Brasil):** O Losmapimod é uma droga experimental sob análise científica internacional. **Não está aprovado para venda ou distribuição no SUS no Brasil.**\n\n---\n\n### Fonte original\n- **Organização:** FSHD Society / Fulcrum Therapeutics\n- **Link:** [https://www.fshdsociety.org/](https://www.fshdsociety.org/)",
     "updatedAt": "2024-11-01",
-    "imageUrl": "/assets/cadeirante.jpg"
+    "imageUrl": "https://www.fshdsociety.org/wp-content/uploads/2021/06/FSHD-society-social-share.jpg"
   },
   {
     "id": "news_17_fshd2_epigenetica",
@@ -580,7 +600,7 @@
       "url": "https://academic.oup.com/hmg",
       "originalPublishedAt": "18/06/2024"
     },
-    "coverImage": "/assets/community-bg.jpg",
+    "coverImage": "https://www.genome.gov/sites/default/files/media/images/2022-09/DNA-methylation-epigenetics.jpg",
     "imageAlt": "Análise epigenética de metilação de DNA em laboratório",
     "imageCredit": "Human Molecular Genetics",
     "tags": [
@@ -593,7 +613,7 @@
     "contentFormat": "markdown",
     "content": "## Qual a Diferença Entre FSHD1 e FSHD2?\n\nEmbora os sintomas físicos (fraqueza no rosto, ombros e braços) sejam idênticos, a causa genética da doença tem duas formas:\n\n- **FSHD1 (95% dos casos):** Causa uma diminuição física no número de repetições do DNA na região D4Z4 do cromossomo 4.\n- **FSHD2 (5% dos casos):** Não altera a contagem física do DNA, mas altera o \"cadeado químico\" (chamado metilação) que mantinha o gene tóxico DUX4 trancado.\n\n---\n\n### 1. O Papel do Gene SMCHD1\n\nNa FSHD2, o erro costuma estar em outro gene chamado **SMCHD1**. Esse gene fabrica a proteína responsável por colocar o \"cadeado químico\" no DNA. Sem essa proteína, o cadeado abre e o gene DUX4 fica ativo provocando o enfraquecimento do músculo.\n\n---\n\n### 2. Como é Feito o Exame de DNA?\n\nQuando o teste tradicional para FSHD1 vem negativo, mas a pessoa tem todos os sintomas clínicos, o médico geneticista solicita o **teste de metilação de DNA** e o painel de sequenciamento do gene *SMCHD1*.\n\n---\n\n### Fonte original\n- **Periódico Científico:** Human Molecular Genetics (Oxford Academic)\n- **Link:** [https://academic.oup.com/hmg](https://academic.oup.com/hmg)",
     "updatedAt": "2024-06-20",
-    "imageUrl": "/assets/community-bg.jpg"
+    "imageUrl": "https://www.genome.gov/sites/default/files/media/images/2022-09/DNA-methylation-epigenetics.jpg"
   },
   {
     "id": "news_18_fshd_registro_internacional",
@@ -649,7 +669,7 @@
       "url": "https://www.curecmd.org/",
       "originalPublishedAt": "14/05/2024"
     },
-    "coverImage": "/assets/hero-bg.jpg",
+    "coverImage": "https://static.wixstatic.com/media/274224_bee2e10807624aa3bee97cb225a4bccb%7Emv2.png/v1/fit/w_2500,h_1330,al_c/274224_bee2e10807624aa3bee97cb225a4bccb%7Emv2.png",
     "imageAlt": "Cultura de células musculares e proteína laminina-211",
     "imageCredit": "Cure CMD & NIH",
     "tags": [
@@ -662,7 +682,7 @@
     "contentFormat": "markdown",
     "content": "## O Que é a Distrofia Muscular Congênita MDC1A?\n\nA Distrofia Muscular Congênita por Deficiência de LAMA2 (também conhecida como **MDC1A** ou Distrofia Deficiente de Merosina) é uma forma que se manifesta desde os primeiros meses de vida da criança, provocando hipotonia (corpinho mais molinho) e fraqueza muscular.\n\nEla é causada pela falta da proteína **Laminina alfa-2**, que funciona como uma estrutura de sustentação em volta de todas as fibras do músculo.\n\n---\n\n### 1. O Que a Ciência Está Testando?\n\nComo o gene LAMA2 é gigantesco, cientistas criaram duas estratégias de tratamento em laboratório:\n\n- **Proteína Linker (Conectora):** Uma proteína sintética menor (chamada LNK-754) que funciona como um \"adaptador\", ligando outras proteínas existentes no músculo para fazer o papel da laminina ausente.\n- **Terapia Gênica de Redundância:** Colocar um gene alternativo (como a Agrina) que ajuda a colar a membrana do músculo de forma semelhante.\n\n---\n\n### 2. Cuidados no Manejo Clínico\n\nCrianças com MDC1A precisam de acompanhamento fisioterapêutico motor precoce para prevenir contraturas nas articulações (joelhos e cotovelos) e de suporte respiratório preventivo durante o sono.\n\n---\n\n> **Aviso Institucional:** As pesquisas para MDC1A estão em **fase pré-clínica e inicial de testes laboramentais**. Não existem tratamentos curativos aprovados no Brasil no momento.\n\n---\n\n### Fonte original\n- **Organização de Apoio:** Cure CMD (Congenital Muscular Dystrophy)\n- **Link Oficial:** [https://www.curecmd.org/](https://www.curecmd.org/)",
     "updatedAt": "2024-05-16",
-    "imageUrl": "/assets/hero-bg.jpg"
+    "imageUrl": "https://static.wixstatic.com/media/274224_bee2e10807624aa3bee97cb225a4bccb%7Emv2.png/v1/fit/w_2500,h_1330,al_c/274224_bee2e10807624aa3bee97cb225a4bccb%7Emv2.png"
   },
   {
     "id": "news_20_cmd_colageno_vi",
@@ -684,7 +704,7 @@
       "url": "https://academic.oup.com/brain",
       "originalPublishedAt": "22/02/2024"
     },
-    "coverImage": "/assets/hero-bg-2.jpg",
+    "coverImage": "https://muscular-dystrophy.org/wp-content/uploads/2023/05/mitochondria-muscle-cell.jpg",
     "imageAlt": "Mitocôndrias e estruturas de colágeno em microscopia eletrônica",
     "imageCredit": "Matrix Biology International",
     "tags": [
@@ -697,7 +717,7 @@
     "contentFormat": "markdown",
     "content": "## O Que São as Distrofias por Colágeno VI?\n\nAs Distrofias Relacionadas ao Colágeno VI englobam a **Distrofia Muscular Congênita de Ullrich** (forma mais acentuada) e a **Miopatia de Bethlem** (forma mais moderada). \n\nElas ocorrem por mutações nos genes *COL6A1*, *COL6A2* ou *COL6A3*, que fabricam o colágeno tipo 6 — o \"tecido de estofamento\" que fica do lado de fora das células musculares.\n\n---\n\n### 1. A Descoberta Sobre as Mitocôndrias\n\nPesquisadores da Universidade de Pádua (Itália) descobriram que, quando o colágeno VI está ausente do lado de fora da célula, as **mitocôndrias** (que são as usinas de energia de dentro da célula) começam a dar defeito e vazam substâncias nocivas que matam o músculo.\n\n---\n\n### 2. Novas Linhas de Tratamento Experimental\n\n- **Proteção das Usinas de Energia:** Drogas protetoras de mitocôndrias estão sendo testadas para evitar que as células musculares entrem em autodestruição.\n- **Estímulo à Limpeza Celular (Autofagia):** Testes com dietas e compostos que ajudam a célula a reciclar suas partes danificadas.\n\n---\n\n> **Aviso Institucional:** Tratam-se de pesquisas acadêmicas de laboratório em andamento na Europa. Acompanhe sempre o atendimento neurológico e ortopédico de rotina.\n\n---\n\n### Fonte original\n- **Periódico:** Brain (Oxford University Press)\n- **Link:** [https://academic.oup.com/brain](https://academic.oup.com/brain)",
     "updatedAt": "2024-02-24",
-    "imageUrl": "/assets/hero-bg-2.jpg"
+    "imageUrl": "https://muscular-dystrophy.org/wp-content/uploads/2023/05/mitochondria-muscle-cell.jpg"
   },
   {
     "id": "news_21_dm1_aso_avidity",
@@ -719,7 +739,7 @@
       "url": "https://www.myotonic.org/",
       "originalPublishedAt": "12/12/2024"
     },
-    "coverImage": "/assets/hero-bg-3.jpg",
+    "coverImage": "https://myotonic.org/wp-content/uploads/mytonic-dystrophy-foundation-opengraph.png",
     "imageAlt": "Fita de RNA antisentido atuando no silenciamento do gene DMPK",
     "imageCredit": "Myotonic Dystrophy Foundation (MDF)",
     "tags": [
@@ -732,7 +752,7 @@
     "contentFormat": "markdown",
     "content": "## O Que Causa a Distrofia Miotônica (DM1)?\n\nA Distrofia Miotônica Tipo 1 (também chamada de doença de Steinert) é a forma de distrofia mais comum em adultos. Ela é marcada pela **miotonia** — que é a dificuldade que o músculo tem para relaxar após uma contração (por exemplo, ao apertar a mão de alguém e demorar para conseguir soltar).\n\nEla é causada por repetições anormais no gene **DMPK**, que produzem fitas de RNA \"tóxicas\" que ficam presas dentro do núcleo das células.\n\n---\n\n### 1. Como Funciona a Nova Terapia (AOC 1001)?\n\nCientistas criaram um medicamento inteligente que combina duas partes:\n1. **Um Anticorpo de Entrega:** Funciona como um \"superímã\" que se conecta aos receptores do músculo;\n2. **Um RNA Antisentido (ASO):** A carga que entra na célula e destrói especificamente as fitas tóxicas do gene DMPK.\n\n---\n\n### 2. Resultados dos Testes Clínicos\n\nNos ensaios de Fase 1/2 (estudo MARINER), os adultos com DM1 que receberam a medicação apresentaram melhora na velocidade de relaxamento muscular (diminuição da miotonia) e ganho na força das mãos.\n\n---\n\n> **Aviso Institucional (Situação no Brasil):** O medicamento AOC 1001 é uma droga experimental em ensaio clínico internacional. **Não possui registro na Anvisa ou disponibilidade no SUS.**\n\n---\n\n### Fonte original\n- **Organização:** Myotonic Dystrophy Foundation / Avidity Biosciences\n- **Link Oficial:** [https://www.myotonic.org/](https://www.myotonic.org/)",
     "updatedAt": "2024-12-14",
-    "imageUrl": "/assets/hero-bg-3.jpg"
+    "imageUrl": "https://myotonic.org/wp-content/uploads/mytonic-dystrophy-foundation-opengraph.png"
   },
   {
     "id": "news_22_dm1_dm2_coracao",
@@ -754,7 +774,7 @@
       "url": "https://www.ahajournals.org/journal/circ",
       "originalPublishedAt": "03/05/2024"
     },
-    "coverImage": "/assets/hero-bg-4.jpg",
+    "coverImage": "https://www.heart.org/-/media/Images/Health-Topics/Heart-Failure/heart-failure-patient-doctor.jpg",
     "imageAlt": "Monitor Holter e gráfico de ritmo cardíaco em paciente",
     "imageCredit": "Sociedade Brasileira de Arritmias Cardíacas",
     "tags": [
@@ -767,7 +787,7 @@
     "contentFormat": "markdown",
     "content": "## O Coração na Distrofia Miotônica\n\nTanto na Distrofia Miotônica Tipo 1 (DM1) quanto no Tipo 2 (DM2), o sistema elétrico do coração pode sofrer alterações ao longo dos anos. Essas alterações podem fazer o coração bater mais devagar do que o normal (chamado bloqueio atrioventricular) ou causar arritmias.\n\nComo o paciente muitas vezes não sente tontura ou desmaio no início, o acompanhamento preventivo é indispensável.\n\n---\n\n### 1. Exames Que Todo Paciente com DM1/DM2 Deve Fazer\n\n- **Eletrocardiograma (ECG):** Exame simples de fita de papel que deve ser feito pelo menos **uma vez por ano**.\n- **Holter de 24 Horas:** Para registrar o ritmo cardíaco durante o sono e atividades normais.\n\n---\n\n### 2. O Papel do Marcapasso Preventivo\n\nSe o exame de ECG mostrar que os impulsos elétricos do coração estão demorando para passar, o cardiologista pode recomendar a colocação preventiva de um **marcapasso**. O marcapasso garante que o coração nunca bata abaixo do ritmo seguro.\n\n---\n\n> **Dica de Cidadania ACADIM:** Informe sempre ao seu médico que você tem o diagnóstico de Distrofia Miotônica antes de passar por qualquer procedimento cirúrgico com anestesia.\n\n---\n\n### Fonte original\n- **Publicação:** Circulation (American Heart Association)\n- **Link:** [https://www.ahajournals.org/journal/circ](https://www.ahajournals.org/journal/circ)",
     "updatedAt": "2024-05-05",
-    "imageUrl": "/assets/hero-bg-4.jpg"
+    "imageUrl": "https://www.heart.org/-/media/Images/Health-Topics/Heart-Failure/heart-failure-patient-doctor.jpg"
   },
   {
     "id": "news_23_opmd_silence_replace",
@@ -789,7 +809,7 @@
       "url": "https://www.nature.com/nbt/",
       "originalPublishedAt": "29/08/2024"
     },
-    "coverImage": "/assets/cadeirante.jpg",
+    "coverImage": "https://www.mda.org/sites/default/files/styles/image_text_desktop/public/2023-07/eye-oculopharyngeal.jpg",
     "imageAlt": "Estudo clínico de terapia gênica em distrofia oculofaríngea",
     "imageCredit": "OPMD Consortium Europe",
     "tags": [
@@ -801,7 +821,7 @@
     "contentFormat": "markdown",
     "content": "## O Que é a Distrofia Oculofaríngea (OPMD)?\n\nA Distrofia Muscular Oculofaríngea (OPMD) é um tipo de distrofia de início na vida adulta (geralmente após os 40 ou 50 anos). Ela afeta principalmente os músculos que levantam as **pálpebras** (causando queda da pálpebra ou ptose) e os músculos da **garganta** (causando dificuldade para engolir alimentos, chamada disfagia).\n\nEla ocorre por mutações no gene **PABPN1**, que geram o acúmulo de proteínas defeituosas nas células.\n\n---\n\n### 1. Como Funciona a Técnica \"Silenciar e Substituir\"?\n\nComo o gene mutado produz uma proteína tóxica, colocar apenas um gene novo não resolveria, pois o gene velho continuaria sujando a célula. Por isso, os cientistas criaram a estratégia em dois passos:\n\n1. **Silenciar:** Um RNA especial entra na célula e \"desliga\" o gene defeituoso original.\n2. **Substituir:** No mesmo remédio, é entregue uma cópia nova e saudável do gene PABPN1 para assumir a função.\n\n---\n\n### 2. Cuidados com a Deglutição no Dia a Dia\n\nEnquanto as terapias genéticas passam por testes de segurança no exterior, adultos com OPMD devem fazer acompanhamento com **fonoaudiólogo especializado** para aprender técnicas de postura da cabeça e consistência dos alimentos que evitam engasgos.\n\n---\n\n> **Aviso Institucional:** Pesquisa em fase experimental de laboratório. Consulte sempre seu médico neurologista e fonoaudiólogo.\n\n---\n\n### Fonte original\n- **Publicação:** Nature Biotechnology\n- **Link:** [https://www.nature.com/nbt/](https://www.nature.com/nbt/)",
     "updatedAt": "2024-08-31",
-    "imageUrl": "/assets/cadeirante.jpg"
+    "imageUrl": "https://www.mda.org/sites/default/files/styles/image_text_desktop/public/2023-07/eye-oculopharyngeal.jpg"
   },
   {
     "id": "news_24_edmd_emery_dreifuss",
@@ -823,7 +843,7 @@
       "url": "https://www.nmd-journal.com/",
       "originalPublishedAt": "17/01/2024"
     },
-    "coverImage": "/assets/community-bg.jpg",
+    "coverImage": "https://rarediseases.org/wp-content/uploads/2023/09/Emery-Dreifuss-muscular-dystrophy.jpg",
     "imageAlt": "Fisioterapia articular e monitoramento em Emery-Dreifuss",
     "imageCredit": "Cardio-Neurology Review",
     "tags": [
@@ -836,7 +856,7 @@
     "contentFormat": "markdown",
     "content": "## O Que é a Distrofia de Emery-Dreifuss (EDMD)?\n\nA Distrofia Muscular de Emery-Dreifuss é um tipo raro de distrofia que pode ser causada por alterações no gene *EMD* (chamada de forma ligada ao X) ou no gene *LMNA* (chamada de laminopatia).\n\nEla é caracterizada por uma tríade de sinais:\n1. **Contraturas Precoces:** Encurtamento dos tendões do calcanhar (tendão de Aquiles), dos cotovelos e da nuca;\n2. **Fraqueza Muscular:** Fraqueza nos braços e pernas de progressão lenta;\n3. **Envolvimento Cardíaco:** Alterações no ritmo elétrico do coração.\n\n---\n\n### 1. Prevenção de Contraturas Articulares\n\nA fisioterapia motora diária e o uso de órteses noturnas para os pés ajudam a manter a elasticidade dos tendões, prevenindo que as articulações fiquem endurecidas em posições desconfortáveis.\n\n---\n\n### 2. Cuidados Cardíacos Rigorosos\n\nEm pessoas com mutação no gene *LMNA*, o acompanhamento com cardiologista deve ser feito sem falta **a cada 6 meses**, acompanhado de eletrocardiograma e ecocardiograma, pois a colocação de marcapasso ou desfibrilador automático pode ser indicada precocemente.\n\n---\n\n### Fonte original\n- **Periódico:** Neuromuscular Disorders Journal\n- **Link:** [https://www.nmd-journal.com/](https://www.nmd-journal.com/)",
     "updatedAt": "2024-01-19",
-    "imageUrl": "/assets/community-bg.jpg"
+    "imageUrl": "https://rarediseases.org/wp-content/uploads/2023/09/Emery-Dreifuss-muscular-dystrophy.jpg"
   },
   {
     "id": "news_25_triagem_neonatal_ck",
@@ -962,7 +982,7 @@
       "url": "https://www.nature.com/nbt/",
       "originalPublishedAt": "04/04/2026"
     },
-    "coverImage": "/assets/hero-bg.jpg",
+    "coverImage": "https://www.genome.gov/sites/default/files/media/images/2023-06/AI-machine-learning-genomics.jpg",
     "imageAlt": "Processamento de inteligência artificial sobre regeneração celular",
     "imageCredit": "AI in Health & Medicine",
     "tags": [
@@ -974,7 +994,7 @@
     "contentFormat": "markdown",
     "content": "## O Que São as Células Satélites do Músculo?\n\nDentro dos nossos músculos existem pequenas células-tronco chamadas **células satélites**. Elas ficam \"dormindo\" ao lado das fibras musculares e só acordam quando o músculo sofre uma lesão, trabalhando para fabricar novo tecido muscular.\n\nNas distrofias, como o músculo sofre pequenas lesões o tempo todo, as células satélites trabalham tanto que acabam ficando cansadas ao longo dos anos.\n\n---\n\n### 1. Como a Inteligência Artificial Entra na Pesquisa?\n\nCientistas nos Estados Unidos utilizaram supercomputadores com **Inteligência Artificial (IA)** para analisar milhares de células musculares de uma só vez (tecnologia de sequenciamento de célula única).\n\n- A IA conseguiu identificar exatamente qual botão químico faz a célula satélite se cansar.\n- Com isso, os pesquisadores estão testando compostos químicos que \"rejuvenescem\" as células satélites para que elas continuem reparando os músculos.\n\n---\n\n### 2. O Futuro das Descobertas\n\nO uso de computadores acelera em anos o tempo necessário para descobrir novas substâncias protetoras no laboratório.\n\n---\n\n### Fonte original\n- **Publicação:** Nature Biotechnology / MDA Press Releases\n- **Link:** [https://www.nature.com/nbt/](https://www.nature.com/nbt/)",
     "updatedAt": "2026-04-06",
-    "imageUrl": "/assets/hero-bg.jpg"
+    "imageUrl": "https://www.genome.gov/sites/default/files/media/images/2023-06/AI-machine-learning-genomics.jpg"
   },
   {
     "id": "news_29_rebrar_registros_doencas_raras",
