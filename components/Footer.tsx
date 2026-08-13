@@ -153,8 +153,29 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="text-center text-xs text-slate-500 pt-4">
-          © {new Date().getFullYear()} ACADIM — Associação Carioca de Distrofia Muscular. CNPJ: 02.916.982/0001-91. Todos os direitos reservados.
+        <div className="text-center text-xs text-slate-400 pt-6 border-t border-white/10 space-y-2">
+          <p>© {new Date().getFullYear()} ACADIM — Associação Carioca de Distrofia Muscular. CNPJ: 02.916.982/0001-91. Todos os direitos reservados.</p>
+          <p className="text-[11px] text-slate-400">
+            Desenvolvido por{' '}
+            <a
+              href="https://www.instagram.com/agomes.thiago83/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-300 hover:text-white font-bold underline"
+            >
+              Thiago Gomes
+            </a>{' '}
+            / {' '}
+            <a
+              href="https://www.instagram.com/nixsociety"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-300 hover:text-white font-bold underline"
+            >
+              Nix Society
+            </a>{' '}
+            para a ACADIM.
+          </p>
         </div>
       </div>
     </footer>
